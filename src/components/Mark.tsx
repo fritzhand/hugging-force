@@ -1,0 +1,22 @@
+/* The Hugging Force mark: a two-armed spiral galaxy whose arms hold its core, the hug in the name.
+   The same drawing as public/favicon.svg. */
+import { useId } from "react";
+
+export function Mark({ size = 28, className }: { size?: number; className?: string }) {
+  const id = useId();
+  return (
+    <svg className={className} width={size} height={size} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="var(--color-hf-orange)" />
+          <stop offset="1" stopColor="var(--color-hf-yellow)" />
+        </linearGradient>
+      </defs>
+      <g fill="none" stroke={`url(#${CSS.escape(id)})`} strokeWidth="2.4" strokeLinecap="round">
+        <path d="M19.4 14.8C19.5 14.9 19.7 15.4 19.9 15.8C20 16.1 20 16.5 20 17C20 17.4 20 17.8 19.8 18.2C19.7 18.6 19.5 19.1 19.3 19.5C19 19.9 18.7 20.3 18.3 20.6C17.9 20.9 17.4 21.2 16.9 21.4C16.4 21.6 15.9 21.8 15.3 21.8C14.7 21.9 14.1 21.9 13.5 21.8C12.9 21.7 12.2 21.5 11.6 21.2C11 20.8 10.4 20.4 9.9 19.9C9.4 19.4 8.9 18.8 8.5 18.2C8.2 17.5 7.8 16.7 7.7 15.9C7.5 15.1 7.4 14.2 7.5 13.4C7.5 12.5 7.9 11.1 8 10.6" />
+        <path d="M12.6 17.2C12.5 17.1 12.3 16.6 12.1 16.2C12 15.9 12 15.5 12 15C12 14.6 12 14.2 12.2 13.8C12.3 13.4 12.5 12.9 12.7 12.5C13 12.1 13.3 11.7 13.7 11.4C14.1 11.1 14.6 10.8 15.1 10.6C15.6 10.4 16.1 10.2 16.7 10.2C17.3 10.1 17.9 10.1 18.5 10.2C19.1 10.3 19.8 10.5 20.4 10.8C21 11.2 21.6 11.6 22.1 12.1C22.6 12.6 23.1 13.2 23.5 13.8C23.8 14.5 24.2 15.3 24.3 16.1C24.5 16.9 24.6 17.8 24.5 18.6C24.5 19.5 24.1 20.9 24 21.4" />
+      </g>
+      <circle cx="16" cy="16" r="2.6" fill="var(--color-hf-yellow)" />
+    </svg>
+  );
+}

@@ -1,0 +1,36 @@
+{
+  "_about": "The models Hugging Force shows as stars. Picked by hand on 2026-10-23 to spread across Hugging Face's four main modalities (language, vision, audio, multimodal) and across time on the Hub: early classics, 2023-2025 favorites, and models among the most trending on the Hub that day. Everything else about a model (its numbers, task, license, model tree) comes from the Hub API when `npm run catalog` runs. Add or remove an id here, then run `npm run catalog`.",
+  "models": [
+    "google-bert/bert-base-uncased",
+    "openai-community/gpt2",
+    "sentence-transformers/all-MiniLM-L6-v2",
+    "meta-llama/Llama-3.1-8B-Instruct",
+    "deepseek-ai/DeepSeek-R1",
+    "HuggingFaceTB/SmolLM3-3B",
+    "openai/gpt-oss-20b",
+    "google/embeddinggemma-2",
+
+    "google/vit-base-patch16-224",
+    "openai/clip-vit-large-patch14",
+    "stabilityai/stable-diffusion-xl-base-1.0",
+    "black-forest-labs/FLUX.1-dev",
+    "facebook/sam3",
+    "Lightricks/LTX-2.5",
+
+    "facebook/wav2vec2-base-960h",
+    "openai/whisper-large-v3",
+    "pyannote/speaker-diarization-3.1",
+    "openai/whisper-large-v3-turbo",
+    "hexgrad/Kokoro-82M",
+    "fishaudio/drama-3",
+
+    "llava-hf/llava-1.5-7b-hf",
+    "microsoft/Florence-2-large",
+    "Qwen/Qwen2.5-VL-7B-Instruct",
+    "google/gemma-3-27b-it",
+    "Qwen/Qwen3.8-27B",
+    "deepseek-ai/DeepSeek-V4.1-Flash-1017"
+  ],
+  "_unnamed": "Derivatives the site never names, whatever their rank; they still count. The script already skips models the Hub marks not-for-all-audiences and names that advertise adult content or removed safety tuning; list here what that misses.",
+  "unnamed": ["ifmylove2011/girlslike"]
+}

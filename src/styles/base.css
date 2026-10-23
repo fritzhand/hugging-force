@@ -1,0 +1,455 @@
+/* Shared foundations: type, the page's night sky, controls. Every value comes from tokens.css
+   (generated from design/hugging-force.tokens.json). */
+
+:root {
+  --gutter: var(--space-4);
+  --type-display: var(--font-weight-heavy) clamp(var(--size-text-displayMin), 7.2vw, var(--size-text-displayMax)) / 0.92 var(--font-family-display);
+  --type-heading: var(--font-weight-bold) clamp(var(--size-text-headingMin), 4vw, var(--size-text-headingMax)) / 1.06 var(--font-family-display);
+  --type-body: var(--font-weight-regular) var(--size-text-body) / 1.55 var(--font-family-body);
+  --type-detail: var(--font-weight-regular) var(--size-text-detail) / 1.45 var(--font-family-body);
+  --type-mono: var(--font-weight-regular) var(--size-text-micro) / 1.4 var(--font-family-mono);
+  --glass-blur: blur(14px) saturate(140%);
+}
+
+@media (min-width: 720px) {
+  :root {
+    --gutter: var(--space-6);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-sky-deep);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  color: var(--color-ink-primary);
+  background: var(--color-sky-deep);
+  font: var(--type-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* A still star field and two soft glows continue behind the page below the hero. */
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgb(246 241 231 / 0.55), transparent 60%),
+    radial-gradient(1px 1px at 72% 34%, rgb(246 241 231 / 0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 38% 72%, rgb(255 210 30 / 0.45), transparent 60%),
+    radial-gradient(1px 1px at 88% 82%, rgb(205 197 216 / 0.5), transparent 60%),
+    radial-gradient(1px 1px at 22% 58%, rgb(205 197 216 / 0.35), transparent 60%),
+    radial-gradient(1.5px 1.5px at 58% 8%, rgb(246 241 231 / 0.4), transparent 60%),
+    radial-gradient(60vw 40vh at 85% 110%, rgb(69 48 143 / 0.28), transparent 70%),
+    radial-gradient(50vw 40vh at 5% 60%, rgb(133 41 86 / 0.14), transparent 70%);
+  background-size: 360px 360px, 420px 420px, 520px 520px, 300px 300px, 460px 460px, 380px 380px, auto, auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-family-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--color-hf-yellow);
+  text-underline-offset: 3px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-focus);
+  outline-offset: 2px;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 100;
+  top: var(--space-2);
+  left: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-s);
+  background: var(--color-hf-yellow);
+  color: var(--color-ink-onAccent);
+  font-weight: var(--font-weight-semibold);
+  transform: translateY(-160%);
+  transition: transform var(--duration-base) var(--easing-standard);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- The brand ---------- */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-touch);
+  color: var(--color-ink-primary);
+  text-decoration: none;
+}
+
+.brand-btn {
+  padding: 0 var(--space-2) 0 0;
+  border: 0;
+  background: none;
+}
+
+.brand-name {
+  font: var(--font-weight-bold) 19px / 1 var(--font-family-display);
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+/* ---------- Controls ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--size-touch);
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font: var(--font-weight-semibold) 16px / 1 var(--font-family-body);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform var(--duration-quick) var(--easing-standard),
+    box-shadow var(--duration-base) var(--easing-standard),
+    background-color var(--duration-base) var(--easing-standard),
+    border-color var(--duration-base) var(--easing-standard);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-hf-yellow), var(--color-hf-orange));
+  color: var(--color-ink-onAccent);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover {
+  box-shadow:
+    var(--shadow-glow),
+    0 0 0 4px rgb(255 210 30 / 0.16);
+}
+
+.btn-glass {
+  border-color: var(--color-line-strong);
+  background: var(--color-surface-glass);
+  color: var(--color-ink-primary);
+  backdrop-filter: var(--glass-blur);
+}
+
+.btn-glass:hover,
+.btn-glass.is-on {
+  border-color: rgb(255 210 30 / 0.55);
+  background: var(--color-surface-2);
+}
+
+.btn-large {
+  min-height: 52px;
+  padding: 0 var(--space-6);
+  font-size: 17px;
+}
+
+.btn-small {
+  padding: 0 var(--space-4);
+  font-size: 15px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: var(--size-touch);
+  height: var(--size-touch);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-glass);
+  color: var(--color-ink-primary);
+  backdrop-filter: var(--glass-blur);
+  transition:
+    border-color var(--duration-base),
+    background-color var(--duration-base);
+}
+
+.icon-btn:hover {
+  border-color: rgb(255 210 30 / 0.55);
+  background: var(--color-surface-2);
+}
+
+.icon-group {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--size-touch);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-hf-yellow);
+  font: var(--font-weight-semibold) 15px / 1 var(--font-family-body);
+  text-decoration: none;
+}
+
+.text-btn:hover {
+  text-decoration: underline;
+}
+
+.text-btn.muted {
+  color: var(--color-ink-secondary);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-glass);
+  color: var(--color-ink-secondary);
+  font: var(--font-weight-semibold) 14.5px / 1 var(--font-family-body);
+  white-space: nowrap;
+  backdrop-filter: var(--glass-blur);
+  transition:
+    border-color var(--duration-base),
+    color var(--duration-base),
+    background-color var(--duration-base);
+}
+
+.chip:hover {
+  color: var(--color-ink-primary);
+  border-color: rgb(236 226 255 / 0.4);
+}
+
+.chip.is-on {
+  border-color: var(--color-hf-yellow);
+  background: var(--color-surface-3);
+  color: var(--color-ink-primary);
+}
+
+.chip-count {
+  color: var(--color-ink-muted);
+  font: var(--type-mono);
+}
+
+.swatch {
+  flex: none;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgb(7 6 11 / 0.6);
+}
+
+/* ---------- Model ids, chips ---------- */
+
+.model-id {
+  margin: 0;
+  font-family: var(--font-family-mono);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.model-owner {
+  color: var(--color-ink-muted);
+  font-weight: var(--font-weight-regular);
+}
+
+.model-name {
+  color: var(--color-ink-primary);
+}
+
+.arm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 8px;
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-2);
+  color: var(--color-ink-primary);
+  font: var(--font-weight-semibold) 13px / 1.2 var(--font-family-body);
+}
+
+.task-name {
+  color: var(--color-ink-muted);
+  font: var(--type-mono);
+}
+
+.unknown {
+  color: var(--color-ink-muted);
+}
+
+/* ---------- Labels in the scene ---------- */
+
+.scene-host {
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-host canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hf-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hf-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 2px rgb(7 6 11 / 0.95),
+    0 0 14px rgb(7 6 11 / 0.9);
+  will-change: transform;
+}
+
+.hf-label-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+}
+
+.hf-label-title {
+  color: var(--color-ink-primary);
+  font: var(--font-weight-semibold) 13px / 1.15 var(--font-family-body);
+}
+
+.hf-label-sub {
+  color: var(--color-ink-muted);
+  font: 10.5px / 1.2 var(--font-family-mono);
+}
+
+.hf-label-swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgb(7 6 11 / 0.7);
+}
+
+.hf-label-arm .hf-label-title {
+  font: var(--font-weight-bold) 13px / 1 var(--font-family-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hf-label-arm .hf-label-swatch {
+  width: 10px;
+  height: 10px;
+}
+
+.hf-label-year .hf-label-title {
+  color: var(--color-ink-muted);
+  font: 11px / 1 var(--font-family-mono);
+}
+
+.hf-label-core .hf-label-title {
+  color: var(--color-hf-yellow);
+  font: var(--font-weight-bold) 14px / 1 var(--font-family-display);
+  letter-spacing: 0.04em;
+}
+
+.hf-label-planet .hf-label-text {
+  align-items: flex-start;
+}
+
+.hf-label-planet .hf-label-title {
+  font-size: 12px;
+}

@@ -1,0 +1,42 @@
+{
+  "name": "hugging-force",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The open-model universe: the Hugging Face Hub as a galaxy you can fly through.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fritzhand/hugging-force.git"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "vite",
+    "catalog": "node scripts/fetch-catalog.mjs",
+    "tokens": "node scripts/build-tokens.mjs",
+    "validate": "node scripts/validate-catalog.mjs",
+    "typecheck": "tsc -p . && tsc -p tsconfig.node.json",
+    "test": "vitest run",
+    "prebuild": "node scripts/validate-catalog.mjs && node scripts/build-tokens.mjs --check",
+    "build": "tsc -p . && tsc -p tsconfig.node.json && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lucide-react": "^1.61.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

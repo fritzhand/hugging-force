@@ -1,0 +1,48 @@
+name: Refresh catalog
+
+# Re-fetches every model in data/curated.json from the public Hugging Face Hub API once a day,
+# checks the result like CI does, and commits src/data/catalog.json to main when it changed.
+# Vercel deploys the push. If the Hub errors or a model is gone, the run fails before committing
+# and the site keeps the last good snapshot.
+
+on:
+  schedule:
+    # 09:17 UTC daily (5:17 AM Eastern in summer, 4:17 AM in winter), off the hour.
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-catalog
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run catalog
+      - run: npm run validate
+      - run: npm test
+      - run: npm run build
+      - name: Commit the new snapshot
+        run: |
+          if git diff --quiet -- src/data/catalog.json; then
+            echo "The catalog did not change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/catalog.json
+          git commit -m "data: refresh the catalog from the Hub ($(date -u +%Y-%m-%d))"
+          # Someone may have pushed while the run fetched; the bot only touches the catalog.
+          git pull --rebase origin main
+          git push origin HEAD:main

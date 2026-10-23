@@ -1,0 +1,244 @@
+{
+  "_about": "Hugging Face's task taxonomy: each pipeline tag's display name and modality, copied from PIPELINE_DATA in the huggingface.js tasks package. scripts/fetch-catalog.mjs reads it to place a model on its modality's arm.",
+  "_source": "https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/pipelines.ts",
+  "_copied": "2026-10-23",
+  "modalities": {
+    "multimodal": "Multimodal",
+    "nlp": "Natural Language Processing",
+    "audio": "Audio",
+    "cv": "Computer Vision",
+    "rl": "Reinforcement Learning",
+    "tabular": "Tabular",
+    "other": "Other"
+  },
+  "tasks": {
+    "text-classification": {
+      "name": "Text Classification",
+      "modality": "nlp"
+    },
+    "token-classification": {
+      "name": "Token Classification",
+      "modality": "nlp"
+    },
+    "table-question-answering": {
+      "name": "Table Question Answering",
+      "modality": "nlp"
+    },
+    "question-answering": {
+      "name": "Question Answering",
+      "modality": "nlp"
+    },
+    "zero-shot-classification": {
+      "name": "Zero-Shot Classification",
+      "modality": "nlp"
+    },
+    "translation": {
+      "name": "Translation",
+      "modality": "nlp"
+    },
+    "summarization": {
+      "name": "Summarization",
+      "modality": "nlp"
+    },
+    "feature-extraction": {
+      "name": "Feature Extraction",
+      "modality": "nlp"
+    },
+    "text-generation": {
+      "name": "Text Generation",
+      "modality": "nlp"
+    },
+    "fill-mask": {
+      "name": "Fill-Mask",
+      "modality": "nlp"
+    },
+    "sentence-similarity": {
+      "name": "Sentence Similarity",
+      "modality": "nlp"
+    },
+    "text-to-speech": {
+      "name": "Text-to-Speech",
+      "modality": "audio"
+    },
+    "text-to-audio": {
+      "name": "Text-to-Audio",
+      "modality": "audio"
+    },
+    "automatic-speech-recognition": {
+      "name": "Automatic Speech Recognition",
+      "modality": "audio"
+    },
+    "audio-to-audio": {
+      "name": "Audio-to-Audio",
+      "modality": "audio"
+    },
+    "audio-classification": {
+      "name": "Audio Classification",
+      "modality": "audio"
+    },
+    "audio-text-to-text": {
+      "name": "Audio-Text-to-Text",
+      "modality": "multimodal"
+    },
+    "voice-activity-detection": {
+      "name": "Voice Activity Detection",
+      "modality": "audio"
+    },
+    "depth-estimation": {
+      "name": "Depth Estimation",
+      "modality": "cv"
+    },
+    "image-classification": {
+      "name": "Image Classification",
+      "modality": "cv"
+    },
+    "object-detection": {
+      "name": "Object Detection",
+      "modality": "cv"
+    },
+    "image-segmentation": {
+      "name": "Image Segmentation",
+      "modality": "cv"
+    },
+    "text-to-image": {
+      "name": "Text-to-Image",
+      "modality": "cv"
+    },
+    "image-to-text": {
+      "name": "Image-to-Text",
+      "modality": "cv"
+    },
+    "image-to-image": {
+      "name": "Image-to-Image",
+      "modality": "cv"
+    },
+    "image-to-video": {
+      "name": "Image-to-Video",
+      "modality": "cv"
+    },
+    "unconditional-image-generation": {
+      "name": "Unconditional Image Generation",
+      "modality": "cv"
+    },
+    "video-classification": {
+      "name": "Video Classification",
+      "modality": "cv"
+    },
+    "reinforcement-learning": {
+      "name": "Reinforcement Learning",
+      "modality": "rl"
+    },
+    "robotics": {
+      "name": "Robotics",
+      "modality": "rl"
+    },
+    "tabular-classification": {
+      "name": "Tabular Classification",
+      "modality": "tabular"
+    },
+    "tabular-regression": {
+      "name": "Tabular Regression",
+      "modality": "tabular"
+    },
+    "tabular-to-text": {
+      "name": "Tabular to Text",
+      "modality": "tabular"
+    },
+    "table-to-text": {
+      "name": "Table to Text",
+      "modality": "nlp"
+    },
+    "multiple-choice": {
+      "name": "Multiple Choice",
+      "modality": "nlp"
+    },
+    "text-ranking": {
+      "name": "Text Ranking",
+      "modality": "nlp"
+    },
+    "text-retrieval": {
+      "name": "Text Retrieval",
+      "modality": "nlp"
+    },
+    "time-series-forecasting": {
+      "name": "Time Series Forecasting",
+      "modality": "tabular"
+    },
+    "text-to-video": {
+      "name": "Text-to-Video",
+      "modality": "cv"
+    },
+    "image-text-to-text": {
+      "name": "Image-Text-to-Text",
+      "modality": "multimodal"
+    },
+    "image-text-to-image": {
+      "name": "Image-Text-to-Image",
+      "modality": "multimodal"
+    },
+    "image-text-to-video": {
+      "name": "Image-Text-to-Video",
+      "modality": "multimodal"
+    },
+    "visual-question-answering": {
+      "name": "Visual Question Answering",
+      "modality": "multimodal"
+    },
+    "document-question-answering": {
+      "name": "Document Question Answering",
+      "modality": "multimodal"
+    },
+    "zero-shot-image-classification": {
+      "name": "Zero-Shot Image Classification",
+      "modality": "cv"
+    },
+    "graph-ml": {
+      "name": "Graph Machine Learning",
+      "modality": "other"
+    },
+    "mask-generation": {
+      "name": "Mask Generation",
+      "modality": "cv"
+    },
+    "zero-shot-object-detection": {
+      "name": "Zero-Shot Object Detection",
+      "modality": "cv"
+    },
+    "text-to-3d": {
+      "name": "Text-to-3D",
+      "modality": "cv"
+    },
+    "image-to-3d": {
+      "name": "Image-to-3D",
+      "modality": "cv"
+    },
+    "image-feature-extraction": {
+      "name": "Image Feature Extraction",
+      "modality": "cv"
+    },
+    "video-text-to-text": {
+      "name": "Video-Text-to-Text",
+      "modality": "multimodal"
+    },
+    "keypoint-detection": {
+      "name": "Keypoint Detection",
+      "modality": "cv"
+    },
+    "visual-document-retrieval": {
+      "name": "Visual Document Retrieval",
+      "modality": "multimodal"
+    },
+    "any-to-any": {
+      "name": "Any-to-Any",
+      "modality": "multimodal"
+    },
+    "video-to-video": {
+      "name": "Video-to-Video",
+      "modality": "cv"
+    },
+    "other": {
+      "name": "Other",
+      "modality": "other"
+    }
+  }
+}

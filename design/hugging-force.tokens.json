@@ -1,0 +1,143 @@
+{
+  "$description": "Hugging Force design tokens, in the Design Tokens Community Group format (2025.10). The single source for the page's CSS variables (src/styles/tokens.css) and the 3D scene's colors (src/design/tokens.ts); scripts/build-tokens.mjs writes both. Warm Cosmos: Hugging Face's brand yellow and orange as starlight on a deep violet sky.",
+  "color": {
+    "$type": "color",
+    "hf": {
+      "$description": "Hugging Face's brand colors, as published at https://huggingface.co/brand. Used as light in the scene and for calls to action; never for body text on light surfaces.",
+      "yellow": { "$value": { "colorSpace": "srgb", "components": [1, 0.8235, 0.1176], "hex": "#ffd21e" } },
+      "orange": { "$value": { "colorSpace": "srgb", "components": [1, 0.6157, 0], "hex": "#ff9d00" } },
+      "gray": { "$value": { "colorSpace": "srgb", "components": [0.4196, 0.4471, 0.502], "hex": "#6b7280" }, "$description": "Decoration only (hairlines, inactive marks): 3.8:1 on the panel surface, too low for text." }
+    },
+    "sky": {
+      "$description": "The night the universe hangs in, deepest first.",
+      "deep": { "$value": { "colorSpace": "srgb", "components": [0.0275, 0.0235, 0.0431], "hex": "#07060b" } },
+      "base": { "$value": { "colorSpace": "srgb", "components": [0.0471, 0.0392, 0.0706], "hex": "#0c0a12" } },
+      "raised": { "$value": { "colorSpace": "srgb", "components": [0.0706, 0.0627, 0.102], "hex": "#12101a" } }
+    },
+    "surface": {
+      "$description": "Panels, cards and controls over the sky.",
+      "1": { "$value": { "colorSpace": "srgb", "components": [0.0902, 0.0784, 0.1216], "hex": "#17141f" } },
+      "2": { "$value": { "colorSpace": "srgb", "components": [0.1294, 0.1137, 0.1686], "hex": "#211d2b" } },
+      "3": { "$value": { "colorSpace": "srgb", "components": [0.1804, 0.1608, 0.2235], "hex": "#2e2939" } },
+      "glass": { "$value": { "colorSpace": "srgb", "components": [0.0902, 0.0784, 0.1216], "alpha": 0.82, "hex": "#17141f" } }
+    },
+    "line": {
+      "soft": { "$value": { "colorSpace": "srgb", "components": [0.9255, 0.8863, 1], "alpha": 0.1, "hex": "#ece2ff" } },
+      "strong": { "$value": { "colorSpace": "srgb", "components": [0.9255, 0.8863, 1], "alpha": 0.22, "hex": "#ece2ff" } }
+    },
+    "ink": {
+      "$description": "Text. Checked against every surface by src/design/tokens.test.ts (4.5:1 or more).",
+      "primary": { "$value": { "colorSpace": "srgb", "components": [0.9647, 0.9451, 0.9059], "hex": "#f6f1e7" }, "$description": "Starlight: headings, values, model names." },
+      "secondary": { "$value": { "colorSpace": "srgb", "components": [0.8039, 0.7725, 0.8471], "hex": "#cdc5d8" } },
+      "muted": { "$value": { "colorSpace": "srgb", "components": [0.6392, 0.6078, 0.698], "hex": "#a39bb2" }, "$description": "Labels and the owner part of a model id." },
+      "onAccent": { "$value": { "colorSpace": "srgb", "components": [0.102, 0.0706, 0], "hex": "#1a1200" }, "$description": "Text on the yellow or orange call to action (12.8:1 and 8.9:1)." }
+    },
+    "accent": {
+      "default": { "$value": "{color.hf.yellow}" },
+      "warm": { "$value": "{color.hf.orange}" },
+      "focus": { "$value": "{color.hf.yellow}" }
+    },
+    "arm": {
+      "$description": "One per Hugging Face modality: the galaxy's four arms. Validated as a categorical set on the dark sky (all pairs; color-blind separation in the 6-8 band, so every arm also carries its name and icon). Marks and swatches only; text stays in ink.",
+      "nlp": { "$value": { "colorSpace": "srgb", "components": [0.7882, 0.5216, 0], "hex": "#c98500" }, "$description": "Language" },
+      "cv": { "$value": { "colorSpace": "srgb", "components": [0.8353, 0.3176, 0.5059], "hex": "#d55181" }, "$description": "Vision" },
+      "audio": { "$value": { "colorSpace": "srgb", "components": [0, 0.5137, 0], "hex": "#008300" }, "$description": "Audio" },
+      "multimodal": { "$value": { "colorSpace": "srgb", "components": [0.5647, 0.5216, 0.9137], "hex": "#9085e9" }, "$description": "Multimodal" }
+    },
+    "orbit": {
+      "$description": "The model tree's four families, ordered by how far a derivative moves from its base's weights (and orbits, inside out). One orange hue stepped light to dark, validated as an ordinal ramp; each family also has its own shape (belt, ring, planets, comets) and name.",
+      "quantized": { "$value": { "colorSpace": "srgb", "components": [1, 0.8, 0.6314], "hex": "#ffcca1" } },
+      "adapter": { "$value": { "colorSpace": "srgb", "components": [1, 0.6353, 0.2706], "hex": "#ffa245" } },
+      "finetune": { "$value": { "colorSpace": "srgb", "components": [0.8902, 0.5137, 0.0196], "hex": "#e38305" } },
+      "merge": { "$value": { "colorSpace": "srgb", "components": [0.7412, 0.4235, 0.0039], "hex": "#bd6c01" } }
+    },
+    "core": {
+      "$description": "The Hub at the galaxy's center.",
+      "white": { "$value": { "colorSpace": "srgb", "components": [1, 0.9569, 0.7608], "hex": "#fff4c2" } },
+      "gold": { "$value": "{color.hf.yellow}" },
+      "ember": { "$value": "{color.hf.orange}" }
+    },
+    "nebula": {
+      "$description": "Decorative gas in the sky; never data.",
+      "rose": { "$value": { "colorSpace": "srgb", "components": [0.5216, 0.1608, 0.3373], "hex": "#852956" } },
+      "violet": { "$value": { "colorSpace": "srgb", "components": [0.2706, 0.1882, 0.5608], "hex": "#45308f" } },
+      "amber": { "$value": { "colorSpace": "srgb", "components": [0.6, 0.3333, 0.0745], "hex": "#995513" } }
+    }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "display": { "$value": ["Bricolage Grotesque", "Source Sans 3", "system-ui", "sans-serif"], "$description": "Headings and the wordmark: a warm, slightly quirky grotesque." },
+      "body": { "$value": ["Source Sans 3", "Source Sans Pro", "system-ui", "sans-serif"], "$description": "Body text: Hugging Face's own family." },
+      "mono": { "$value": ["IBM Plex Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"], "$description": "Model ids, numbers and readouts: Hugging Face's own mono." }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": { "$value": 400 },
+      "medium": { "$value": 500 },
+      "semibold": { "$value": 600 },
+      "bold": { "$value": 700 },
+      "heavy": { "$value": 800 }
+    }
+  },
+  "size": {
+    "$type": "dimension",
+    "text": {
+      "micro": { "$value": { "value": 12, "unit": "px" } },
+      "detail": { "$value": { "value": 14, "unit": "px" } },
+      "body": { "$value": { "value": 17, "unit": "px" } },
+      "lead": { "$value": { "value": 20, "unit": "px" } },
+      "title": { "$value": { "value": 24, "unit": "px" } },
+      "headingMin": { "$value": { "value": 30, "unit": "px" } },
+      "headingMax": { "$value": { "value": 46, "unit": "px" } },
+      "displayMin": { "$value": { "value": 46, "unit": "px" } },
+      "displayMax": { "$value": { "value": 104, "unit": "px" } }
+    },
+    "touch": { "$value": { "value": 44, "unit": "px" }, "$description": "The smallest hit target." }
+  },
+  "space": {
+    "$type": "dimension",
+    "1": { "$value": { "value": 4, "unit": "px" } },
+    "2": { "$value": { "value": 8, "unit": "px" } },
+    "3": { "$value": { "value": 12, "unit": "px" } },
+    "4": { "$value": { "value": 16, "unit": "px" } },
+    "5": { "$value": { "value": 24, "unit": "px" } },
+    "6": { "$value": { "value": 32, "unit": "px" } },
+    "7": { "$value": { "value": 48, "unit": "px" } },
+    "8": { "$value": { "value": 64, "unit": "px" } },
+    "9": { "$value": { "value": 96, "unit": "px" } }
+  },
+  "radius": {
+    "$type": "dimension",
+    "s": { "$value": { "value": 8, "unit": "px" } },
+    "m": { "$value": { "value": 14, "unit": "px" } },
+    "l": { "$value": { "value": 22, "unit": "px" } },
+    "pill": { "$value": { "value": 999, "unit": "px" } }
+  },
+  "duration": {
+    "$type": "duration",
+    "quick": { "$value": { "value": 120, "unit": "ms" } },
+    "base": { "$value": { "value": 200, "unit": "ms" } },
+    "slow": { "$value": { "value": 360, "unit": "ms" } },
+    "flight": { "$value": { "value": 1600, "unit": "ms" }, "$description": "A camera flight between stars (none under reduced motion)." }
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "orbit": { "$value": [0.22, 1, 0.36, 1], "$description": "Settles like a body falling into orbit." },
+    "standard": { "$value": [0.2, 0, 0, 1] }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "panel": {
+      "$value": [
+        { "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.5, "hex": "#000000" }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 24, "unit": "px" }, "blur": { "value": 64, "unit": "px" }, "spread": { "value": 0, "unit": "px" } }
+      ]
+    },
+    "glow": {
+      "$value": [
+        { "color": { "colorSpace": "srgb", "components": [1, 0.8235, 0.1176], "alpha": 0.28, "hex": "#ffd21e" }, "offsetX": { "value": 0, "unit": "px" }, "offsetY": { "value": 0, "unit": "px" }, "blur": { "value": 32, "unit": "px" }, "spread": { "value": 0, "unit": "px" } }
+      ],
+      "$description": "The warm halo of a call to action."
+    }
+  }
+}
