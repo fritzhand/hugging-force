@@ -1,0 +1,247 @@
+/* The promo stage (promo/stage.html): the universe full frame, and the cut's cards and captions over
+   it. One frame is 1280 x 720 CSS pixels, captured at 1.5x (1920 x 1080). Colors, fonts and radii
+   are the design tokens; the stage animates everything itself (stage.ts), so nothing here moves. */
+
+body.stage {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-sky-deep);
+}
+
+body.stage::before {
+  content: none;
+}
+
+.stage-scene,
+.stage-overlay {
+  position: fixed;
+  inset: 0;
+}
+
+.stage-overlay {
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* The scene's labels, a size up for video. */
+.stage .hf-label-title,
+.stage .hf-label-arm .hf-label-title {
+  font-size: var(--size-text-detail);
+}
+
+.stage .hf-label-sub,
+.stage .hf-label-year .hf-label-title {
+  font-size: var(--size-text-micro);
+}
+
+.stage .hf-label-core .hf-label-title {
+  font-size: var(--size-text-body);
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  visibility: hidden;
+}
+
+.card > * {
+  will-change: transform, opacity, filter;
+}
+
+.card-title {
+  justify-content: flex-start;
+  padding-top: 132px;
+}
+
+.card-mark {
+  width: 76px;
+  height: 76px;
+  margin-bottom: var(--space-5);
+  filter: drop-shadow(0 0 18px color-mix(in srgb, var(--color-hf-yellow) 45%, transparent));
+}
+
+.card-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.card-name {
+  color: var(--color-ink-primary);
+  font: var(--font-weight-heavy) var(--size-text-displayMax) / 0.92 var(--font-family-display);
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+  text-shadow: 0 2px 30px color-mix(in srgb, var(--color-sky-deep) 70%, transparent);
+}
+
+.card-tagline {
+  margin: var(--space-4) 0 0;
+  color: var(--color-ink-secondary);
+  font: var(--font-weight-bold) var(--size-text-headingMin) / 1.1 var(--font-family-display);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 24px color-mix(in srgb, var(--color-sky-deep) 80%, transparent);
+}
+
+.warm {
+  background: linear-gradient(100deg, var(--color-hf-yellow) 10%, var(--color-hf-orange) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-end {
+  padding-bottom: var(--space-4);
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  margin: var(--space-6) 0 0;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--color-hf-yellow), var(--color-hf-orange));
+  box-shadow:
+    var(--shadow-glow),
+    0 0 0 6px color-mix(in srgb, var(--color-hf-yellow) 14%, transparent);
+  color: var(--color-ink-onAccent);
+  font: var(--font-weight-semibold) var(--size-text-title) / 1 var(--font-family-mono);
+  letter-spacing: -0.01em;
+}
+
+.card-note {
+  margin: var(--space-6) 0 0;
+  color: var(--color-ink-secondary);
+  font: var(--font-weight-medium) var(--size-text-detail) / 1.4 var(--font-family-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card-fine {
+  margin: var(--space-2) 0 0;
+  color: var(--color-ink-muted);
+  font: var(--type-detail);
+}
+
+/* Darkens the turning galaxy behind the end card. */
+.end-scrim {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  background:
+    radial-gradient(52% 58% at 50% 50%, color-mix(in srgb, var(--color-sky-deep) 78%, transparent), transparent 100%),
+    color-mix(in srgb, var(--color-sky-deep) 28%, transparent);
+}
+
+/* ---------- Captions (lower left) ---------- */
+
+.caption {
+  position: absolute;
+  left: var(--space-8);
+  bottom: 56px;
+  max-width: 760px;
+  visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.caption::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -120px -220px -80px -140px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-sky-deep) 72%, transparent), transparent);
+}
+
+.caption-title {
+  color: var(--color-ink-primary);
+  font: var(--font-weight-bold) var(--size-text-headingMax) / 1.04 var(--font-family-display);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  text-shadow: 0 2px 18px color-mix(in srgb, var(--color-sky-deep) 85%, transparent);
+}
+
+.caption-sub {
+  margin: var(--space-3) 0 0;
+  color: var(--color-ink-secondary);
+  font: var(--font-weight-medium) var(--size-text-body) / 1.3 var(--font-family-mono);
+  text-shadow: 0 1px 10px var(--color-sky-deep);
+}
+
+.caption-sub b {
+  color: var(--color-hf-yellow);
+  font-weight: var(--font-weight-semibold);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.chip-promo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+  padding: 0 var(--space-4) 0 var(--space-3);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-glass);
+  color: var(--color-ink-primary);
+  font: var(--font-weight-semibold) 16px / 1 var(--font-family-body);
+  white-space: nowrap;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.chip-promo svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+
+.chip-promo .swatch {
+  width: 12px;
+  height: 12px;
+  margin: 0 var(--space-1);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-sky-deep) 70%, transparent);
+}
+
+.chip-count,
+.chip-value {
+  color: var(--color-ink-secondary);
+  font: var(--font-weight-medium) var(--size-text-detail) / 1 var(--font-family-mono);
+}
+
+.chip-promo.is-on {
+  border-color: var(--color-hf-yellow);
+  background: var(--color-surface-3);
+  box-shadow: var(--shadow-glow);
+}
+
+.chip-promo.is-on .chip-count {
+  color: var(--color-hf-yellow);
+}
+
+/* ---------- Finish ---------- */
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 95% at 50% 46%, transparent 58%, color-mix(in srgb, var(--color-sky-deep) 62%, transparent) 100%);
+}
+
+.black {
+  position: absolute;
+  inset: 0;
+  background: var(--color-sky-deep);
+}
