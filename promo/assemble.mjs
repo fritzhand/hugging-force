@@ -1,4 +1,4 @@
-/* Assembles the promo: the captured frames (promo/build/frames.mkv) and the soundtrack
+/* Assembles the promo: the captured frames (promo/build/frames-<format>.mkv) and the soundtrack
    (promo/build/score.wav) become one MP4, with a poster and a contact sheet.
 
    H.264 High 4.1, yuv420p, BT.709, 30 fps, CRF 18, +faststart; AAC 48 kHz stereo at 192 kb/s.
@@ -6,20 +6,19 @@
    true peak after encoding, and no frame that jumps away from its neighbors and straight back (a
    blank or half-drawn frame).
 
-     node promo/assemble.mjs              writes promo/out/hugging-force-promo-16x9.mp4 and friends
+     node promo/assemble.mjs                  writes promo/out/hugging-force-promo-16x9.mp4 and friends
+     node promo/assemble.mjs --format=9x16    the 9:16 cut
 */
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { FPS, MUSIC, SECONDS, VIEWPORT } from "./storyboard.mjs";
+import { FPS, MUSIC, SECONDS, formatFrom } from "./storyboard.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const BUILD = path.join(HERE, "build");
 export const OUT = path.join(HERE, "out");
 const FFMPEG = process.env.FFMPEG || "ffmpeg";
-const W = VIEWPORT.width * VIEWPORT.scale;
-const H = VIEWPORT.height * VIEWPORT.scale;
 
 function run(args, { quiet = true } = {}) {
   return new Promise((res, rej) => {
@@ -44,10 +43,10 @@ function probe(file) {
   return JSON.parse(r.stdout);
 }
 
-/** Decodes a clip as small gray frames (192 x 108), one Uint8Array each. */
-function grayFrames(file) {
+/** Decodes a clip as small gray frames (192 x 108, or 108 x 192 upright), one Uint8Array each. */
+function grayFrames(file, portrait) {
   return new Promise((res, rej) => {
-    const [w, h] = [192, 108];
+    const [w, h] = portrait ? [108, 192] : [192, 108];
     const p = spawn(FFMPEG, ["-v", "error", "-i", file, "-vf", `scale=${w}:${h}:flags=area,format=gray`, "-f", "rawvideo", "-"], { stdio: ["ignore", "pipe", "inherit"] });
     const size = w * h;
     const frames = [];
@@ -68,8 +67,8 @@ function grayFrames(file) {
  * jump in and jump out are both above max(10 x the median jump around them, 4), while the frames on
  * either side resemble each other far more than the flash (the same test as Embarc-3d's promo).
  */
-async function flashes(file) {
-  const F = await grayFrames(file);
+async function flashes(file, portrait) {
+  const F = await grayFrames(file, portrait);
   const diff = (a, b) => {
     let s = 0;
     for (let i = 0; i < a.length; i++) s += Math.abs(a[i] - b[i]);
@@ -92,12 +91,15 @@ async function flashes(file) {
   return { frames: F.length, found, largest: +Math.max(...d).toFixed(2) };
 }
 
-export async function assemble() {
-  const frames = path.join(BUILD, "frames.mkv");
+export async function assemble(format) {
+  const W = format.width * format.scale;
+  const H = format.height * format.scale;
+  const portrait = H > W;
+  const frames = path.join(BUILD, `frames-${format.id}.mkv`);
   const score = path.join(BUILD, "score.wav");
   for (const f of [frames, score]) if (!fs.existsSync(f)) throw new Error(`${path.relative(process.cwd(), f)} is missing: run promo/capture.mjs and promo/score.mjs first`);
   fs.mkdirSync(OUT, { recursive: true });
-  const mp4 = path.join(OUT, "hugging-force-promo-16x9.mp4");
+  const mp4 = path.join(OUT, `hugging-force-promo-${format.id}.mp4`);
   await run([
     "-i",
     frames,
@@ -164,21 +166,22 @@ export async function assemble() {
   const loud = loudness(mp4);
   if (Math.abs(loud.lufs - MUSIC.lufs) > 1) problems.push(`soundtrack at ${loud.lufs} LUFS`);
   if (loud.peak > MUSIC.truePeak) problems.push(`soundtrack true peak ${loud.peak} dBTP`);
-  const flash = await flashes(mp4);
+  const flash = await flashes(mp4, portrait);
   if (flash.found.length) problems.push(`frames that flash: ${flash.found.map((f) => `${f.t} s`).join(", ")}`);
   if (problems.length) throw new Error(`${path.relative(process.cwd(), mp4)}:\n  ${problems.join("\n  ")}`);
 
   // Poster: the title card over the arriving galaxy, from the lossless clip.
-  const poster = path.join(OUT, "poster-16x9.png");
+  const poster = path.join(OUT, `poster-${format.id}.png`);
   await run(["-ss", "3.2", "-i", frames, "-frames:v", "1", poster]);
   await run(["-i", poster, "-q:v", "2", poster.replace(/\.png$/, ".jpg")]);
 
   // Contact sheet: a frame every 2 s from 1 s, each labeled with its time.
-  const sheet = path.join(OUT, "contact-16x9.png");
+  const sheet = path.join(OUT, `contact-${format.id}.png`);
   const font = ["/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"].find((f) => fs.existsSync(f));
   const label = font ? `,drawtext=fontfile=${font}:text='%{pts\\:hms}':x=8:y=8:fontsize=20:fontcolor=white:box=1:boxcolor=black@0.6:boxborderw=5` : "";
   const pick = `select='gte(t\\,1)*(isnan(prev_selected_t)+gte(t-prev_selected_t\\,1.999))'`;
-  await run(["-i", mp4, "-vf", `${pick},scale=480:-2${label},tile=5x3:padding=6:margin=6:color=white`, "-frames:v", "1", sheet]);
+  const tiles = portrait ? "scale=270:-2" + label + ",tile=8x2" : "scale=480:-2" + label + ",tile=5x3";
+  await run(["-i", mp4, "-vf", `${pick},${tiles}:padding=6:margin=6:color=white`, "-frames:v", "1", sheet]);
 
   const mb = (Number(info.format.size) / 1e6).toFixed(1);
   console.log(`${path.relative(process.cwd(), mp4)}: ${W} x ${H}, ${v.nb_read_frames} frames, ${Number(info.format.duration).toFixed(2)} s, ${mb} MB`);
@@ -188,4 +191,4 @@ export async function assemble() {
   return { mp4, poster, sheet };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) await assemble();
+if (import.meta.url === `file://${process.argv[1]}`) await assemble(formatFrom(process.argv.slice(2)));

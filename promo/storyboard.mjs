@@ -1,6 +1,6 @@
-/* The promo's storyboard: one 30-second 16:9 cut, a single camera move through the real universe.
-   The stage (promo/stage.ts) and the soundtrack (promo/score.mjs) both read it, so the camera, the
-   captions and the music meet on the same beats. Times are seconds in the cut.
+/* The promo's storyboard: one 30-second cut, a single camera move through the real universe, in two
+   formats (16:9 and 9:16). The stage (promo/stage.ts) and the soundtrack (promo/score.mjs) both read
+   it, so the camera, the captions and the music meet on the same beats. Times are seconds in the cut.
 
    Every number in a caption is read from src/data/catalog.json when the stage renders (the counts
    below are placeholders filled by the stage), so the cut always shows the snapshot it was made from.
@@ -8,8 +8,23 @@
 
 export const FPS = 30;
 export const SECONDS = 30;
-/** CSS pixels at a device pixel ratio: 1920 x 1080 frames, the desktop layout. */
-export const VIEWPORT = { width: 1280, height: 720, scale: 1.5 };
+/**
+ * The formats: CSS pixels at a device pixel ratio. 16:9 is 1920 x 1080 frames in the desktop layout;
+ * 9:16 is 1080 x 1920 for Reels, TikTok and Shorts, its words kept inside the area those apps leave
+ * clear of their own buttons and captions (`safe`, in CSS pixels from each edge).
+ */
+export const FORMATS = {
+  "16x9": { id: "16x9", width: 1280, height: 720, scale: 1.5 },
+  "9x16": { id: "9x16", width: 540, height: 960, scale: 2, safe: { top: 110, right: 72, bottom: 210, left: 32 } },
+};
+
+/** The format named by `--format=` in these arguments (16:9 by default). */
+export function formatFrom(argv) {
+  const id = argv.find((a) => a.startsWith("--format="))?.slice(9) ?? "16x9";
+  const f = FORMATS[id];
+  if (!f) throw new Error(`unknown --format=${id} (use ${Object.keys(FORMATS).join(" or ")})`);
+  return f;
+}
 
 export const SITE = "huggingforce.com";
 
@@ -101,17 +116,20 @@ export const FADES = { in: 0.6, out: 0.9 };
 export const MUSIC = {
   /** Chords change on these beats: the cut's shots. */
   chords: [0, 5, 10, 15.5, 20.5, 25.5],
-  /** A low swell lands on these. */
+  /** Timpani and a low boom land on these. */
   impacts: [5, 25.5],
-  /** A rising sweep ends on each shot change. */
+  /** A cymbal swell rises into each shot change. */
   risers: [5, 10, 15.5, 20.5, 25.5],
-  /** A bell rings as each card appears. */
+  /** A tubular bell rings as each card appears. */
   bells: [0.9, 25.8],
-  /** A soft pluck marks each family and arm beat. */
+  /** An organ chime marks each family and arm beat. */
   accents: [17.5, 18.25, 19.0, 19.75, 22.4, 23.0, 23.6, 24.2],
-  /** The arpeggio runs between these times, the soft kick (every other beat) between the second pair. */
+  /** The organ's ostinato runs between these times. */
   pulse: [5, 25.5],
-  kick: [10, 25.5],
+  /** A clock ticks from the first time, every second, then every beat from the second time to the third. */
+  ticks: [1, 10, 25.4],
+  /** The timpani roll into the end card. */
+  roll: [23.6, 25.5],
   bpm: 120,
   /** Loudness of the finished soundtrack. */
   lufs: -14,
@@ -121,7 +139,7 @@ export const MUSIC = {
 // `node promo/storyboard.mjs` prints the timing table.
 if (typeof process !== "undefined" && process.argv?.[1]?.endsWith("storyboard.mjs")) {
   const pad = (s, n) => String(s).padEnd(n);
-  console.log(`${SECONDS} s at ${FPS} fps, ${VIEWPORT.width * VIEWPORT.scale} x ${VIEWPORT.height * VIEWPORT.scale}\n`);
+  console.log(`${SECONDS} s at ${FPS} fps, ${Object.values(FORMATS).map((f) => `${f.width * f.scale} x ${f.height * f.scale}`).join(" and ")}\n`);
   for (const s of SHOTS) console.log(`${pad(s.id, 8)} ${pad(`${s.from.toFixed(1)}-${s.to.toFixed(1)}`, 10)} ${s.what}`);
   console.log("");
   for (const c of CAPTIONS) console.log(`caption  ${pad(`${c.from.toFixed(1)}-${c.to.toFixed(1)}`, 10)} ${c.title}${c.sub ? ` / ${c.sub}` : ""}`);

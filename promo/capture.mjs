@@ -1,11 +1,12 @@
 /* Captures the promo's frames. Vite serves promo/stage.html; Chromium (SwiftShader, software WebGL)
-   draws it at 1280 x 720 CSS pixels and 1.5x, and every 1/30 s of the cut becomes one PNG piped
-   into a lossless clip (promo/build/frames.mkv, RGB). The stage draws a frame from its time alone,
-   so how long a frame takes to render never shows.
+   draws it at the format's CSS size and pixel ratio (1280 x 720 at 1.5x, or 540 x 960 at 2x), and
+   every 1/30 s of the cut becomes one PNG piped into a lossless clip (promo/build/frames-<format>.mkv,
+   RGB). The stage draws a frame from its time alone, so how long a frame takes never shows.
 
-     node promo/capture.mjs                 the whole cut (900 frames, about 8 minutes)
-     node promo/capture.mjs --stills        one PNG a second into promo/build/stills/ (a quick look)
-     node promo/capture.mjs --stills=12.2,17.7
+     node promo/capture.mjs                     the 16:9 cut (900 frames, about 20 minutes)
+     node promo/capture.mjs --format=9x16       the 9:16 cut
+     node promo/capture.mjs --stills            one PNG a second into promo/build/stills-<format>/
+     node promo/capture.mjs --stills=12.2,17.7  (with --format= as well)
 */
 import { spawn } from "node:child_process";
 import fs from "node:fs";
@@ -13,13 +14,12 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer } from "vite";
-import { FPS, SECONDS, VIEWPORT } from "./storyboard.mjs";
+import { FPS, SECONDS, formatFrom } from "./storyboard.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 export const REPO = path.resolve(HERE, "..");
 export const BUILD = path.join(HERE, "build");
 export const FFMPEG = process.env.FFMPEG || "ffmpeg";
-const SIZE = [VIEWPORT.width * VIEWPORT.scale, VIEWPORT.height * VIEWPORT.scale];
 
 /** Playwright: $PLAYWRIGHT_MODULE, or whichever install `require` finds (a project or global one). */
 function playwright() {
@@ -35,12 +35,12 @@ function playwright() {
  * Serves the repository with its own Vite config (React for the components the stage draws), with
  * no file watching and no hot reload: an edit during a capture must not reload the stage.
  */
-async function serve() {
+async function serve(format) {
   const server = await createServer({ root: REPO, configFile: path.join(REPO, "vite.config.ts"), logLevel: "warn", server: { port: 5199, strictPort: false, hmr: false, watch: null } });
   await server.listen();
   const url = server.resolvedUrls?.local?.[0];
   if (!url) throw new Error("vite did not report a URL");
-  return { server, url: new URL("promo/stage.html", url).href };
+  return { server, url: new URL(`promo/stage.html?format=${format.id}`, url).href };
 }
 
 /**
@@ -48,13 +48,13 @@ async function serve() {
  * fetched through Node (which trusts NODE_EXTRA_CA_CERTS behind a TLS-inspecting proxy; certificate
  * checks stay on), and the run stops if the brand fonts did not arrive.
  */
-async function openStage(url) {
+async function openStage(url, format) {
   const { chromium } = playwright();
   const browser = await chromium.launch({
     executablePath: process.env.CHROMIUM || (fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined),
     args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist", "--disable-gpu-compositing", "--hide-scrollbars", "--mute-audio", "--font-render-hinting=none"],
   });
-  const ctx = await browser.newContext({ viewport: { width: VIEWPORT.width, height: VIEWPORT.height }, deviceScaleFactor: VIEWPORT.scale, colorScheme: "dark", reducedMotion: "no-preference", locale: "en-US" });
+  const ctx = await browser.newContext({ viewport: { width: format.width, height: format.height }, deviceScaleFactor: format.scale, colorScheme: "dark", reducedMotion: "no-preference", locale: "en-US" });
   const cache = new Map();
   await ctx.route(/^https:\/\/fonts\.(googleapis|gstatic)\.com\//, async (route) => {
     const u = route.request().url();
@@ -90,8 +90,9 @@ async function openStage(url) {
   // Screenshots go through this CDP session, which needs the context's device metrics of its own,
   // or the page drops to a device pixel ratio of 1 after the first shot.
   const cdp = await ctx.newCDPSession(page);
-  await cdp.send("Emulation.setDeviceMetricsOverride", { mobile: false, width: VIEWPORT.width, height: VIEWPORT.height, screenWidth: VIEWPORT.width, screenHeight: VIEWPORT.height, deviceScaleFactor: VIEWPORT.scale, screenOrientation: { angle: 0, type: "landscapePrimary" } });
-  return { browser, page, cdp, errors };
+  const landscape = format.width > format.height;
+  await cdp.send("Emulation.setDeviceMetricsOverride", { mobile: false, width: format.width, height: format.height, screenWidth: format.width, screenHeight: format.height, deviceScaleFactor: format.scale, screenOrientation: landscape ? { angle: 0, type: "landscapePrimary" } : { angle: 0, type: "portraitPrimary" } });
+  return { browser, page, cdp, errors, format, size: [format.width * format.scale, format.height * format.scale] };
 }
 
 /** Draws the frame at `t` seconds and returns it as a PNG of the video's size. */
@@ -102,24 +103,25 @@ async function shoot(stage, t) {
   }, t);
   stage.drawings = (stage.drawings ?? 0) + samples;
   if (samples > 1) stage.blurred = (stage.blurred ?? 0) + 1;
-  if (dpr !== VIEWPORT.scale) throw new Error(`the page's devicePixelRatio is ${dpr} at ${t.toFixed(2)} s, expected ${VIEWPORT.scale}`);
+  if (dpr !== stage.format.scale) throw new Error(`the page's devicePixelRatio is ${dpr} at ${t.toFixed(2)} s, expected ${stage.format.scale}`);
   const { data } = await stage.cdp.send("Page.captureScreenshot", { format: "png" });
   const png = Buffer.from(data, "base64");
   // PNG header: width and height at bytes 16 and 20.
-  if (png.readUInt32BE(16) !== SIZE[0] || png.readUInt32BE(20) !== SIZE[1]) throw new Error(`a frame came out ${png.readUInt32BE(16)} x ${png.readUInt32BE(20)}, expected ${SIZE[0]} x ${SIZE[1]}`);
+  const [w, h] = stage.size;
+  if (png.readUInt32BE(16) !== w || png.readUInt32BE(20) !== h) throw new Error(`a frame came out ${png.readUInt32BE(16)} x ${png.readUInt32BE(20)}, expected ${w} x ${h}`);
   if (stage.errors.length) throw new Error(`the stage reported errors:\n${stage.errors.join("\n")}`);
   return png;
 }
 
-export async function capture({ stills = null } = {}) {
-  const { server, url } = await serve();
+export async function capture(format, { stills = null } = {}) {
+  const { server, url } = await serve(format);
   let stage;
   try {
-    stage = await openStage(url);
+    stage = await openStage(url, format);
     fs.mkdirSync(BUILD, { recursive: true });
     if (stills) {
       if (process.env.PROMO_KEYS) console.table(await stage.page.evaluate(() => window.stage.keys));
-      const dir = path.join(BUILD, "stills");
+      const dir = path.join(BUILD, `stills-${format.id}`);
       fs.mkdirSync(dir, { recursive: true });
       for (const t of stills) {
         const file = path.join(dir, `t${t.toFixed(2).padStart(5, "0")}.png`);
@@ -129,7 +131,7 @@ export async function capture({ stills = null } = {}) {
       }
       return;
     }
-    const file = path.join(BUILD, "frames.mkv");
+    const file = path.join(BUILD, `frames-${format.id}.mkv`);
     // Lossless RGB: the assembly makes the one lossy encode.
     const ff = spawn(FFMPEG, ["-y", "-v", "error", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "png", "-i", "-", "-c:v", "libx264rgb", "-preset", "ultrafast", "-qp", "0", "-r", String(FPS), file], { stdio: ["pipe", "inherit", "inherit"] });
     const done = new Promise((res, rej) => ff.on("close", (c) => (c === 0 ? res() : rej(new Error(`ffmpeg exited ${c}`)))));
@@ -145,7 +147,7 @@ export async function capture({ stills = null } = {}) {
     }
     ff.stdin.end();
     await done;
-    console.log(`${path.relative(process.cwd(), file)}: ${total} frames, ${SIZE[0]} x ${SIZE[1]}, ${FPS} fps (${stage.blurred ?? 0} motion-blurred, ${stage.drawings} drawings)`);
+    console.log(`${path.relative(process.cwd(), file)}: ${total} frames, ${stage.size[0]} x ${stage.size[1]}, ${FPS} fps (${stage.blurred ?? 0} motion-blurred, ${stage.drawings} drawings)`);
   } finally {
     await stage?.browser.close();
     await server.close();
@@ -155,5 +157,5 @@ export async function capture({ stills = null } = {}) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   const arg = process.argv.find((a) => a.startsWith("--stills"));
   const stills = !arg ? null : arg.includes("=") ? arg.split("=")[1].split(",").map(Number) : Array.from({ length: SECONDS }, (_, i) => i + 0.5);
-  await capture({ stills });
+  await capture(formatFrom(process.argv.slice(2)), { stills });
 }

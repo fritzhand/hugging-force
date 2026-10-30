@@ -1,12 +1,17 @@
 /* The promo's soundtrack, synthesized here from code: no samples, no licensed music.
 
-   D major, 120 BPM, one chord per shot (storyboard.mjs MUSIC): detuned saw pads under a sweeping
-   low-pass with a high shimmer and a breath of air above them, a bass that follows the roots, an
-   arpeggio with a ping-pong delay from the first impact to the end card, a soft kick on every other
-   beat, ticks on the off-beats, noise risers into each shot change, low impacts, FM bells on the two
-   cards and a mallet note on each family and arm beat. Every stem sends to one reverb (Freeverb).
-   The mix is then measured as BS.1770 loudness, brought to MUSIC.lufs and limited below
-   MUSIC.truePeak (measured 4x oversampled), and each stem's level is reported.
+   An organ symphony in A minor that turns to A major on the end card, 120 BPM, one chord per shot
+   (storyboard.mjs MUSIC). A pipe organ is built rank by rank: stopped flutes, principals, a gamba,
+   mutations, a mixture and trumpets, each pipe with its own chiff and a little detuning, the C and
+   C# sides of the case panned apart, and stops drawn as the cut builds. The great holds the chords,
+   the swell plays an ostinato (eighths, then sixteenths), and the pedal reaches down to 32' on the
+   end card. Around it: strings, a choir (formant-shaped), a clock that ticks faster as the camera
+   dives, timpani on the shot changes with a roll into the end card, a low brass swell, cymbal
+   swells, tubular bells on the cards and an organ chime on each family and arm beat, all in one
+   long cathedral reverb (Freeverb with a pre-delay).
+
+   The mix is measured as BS.1770 loudness, brought to MUSIC.lufs and limited below MUSIC.truePeak
+   (measured 4x oversampled), and each stem's level is reported.
 
      node promo/score.mjs        writes promo/build/score.wav (48 kHz stereo, 32-bit float)
 */
@@ -25,6 +30,11 @@ const BEAT = 60 / MUSIC.bpm;
 const hz = (m) => 440 * 2 ** ((m - 69) / 12);
 const dB = (d) => 10 ** (d / 20);
 const at = (t) => Math.round(t * SR);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const smooth = (a, b, t) => {
+  const x = clamp((t - a) / (b - a), 0, 1);
+  return x * x * (3 - 2 * x);
+};
 
 /** Deterministic noise (mulberry32), so every render is the same. */
 function noise(seed) {
@@ -39,42 +49,92 @@ function noise(seed) {
 }
 
 /** Equal-power pan, -1 (left) to 1 (right). */
-const pan = (p) => [Math.cos(((p + 1) * Math.PI) / 4), Math.sin(((p + 1) * Math.PI) / 4)];
+const pan = (p) => [Math.cos(((clamp(p, -1, 1) + 1) * Math.PI) / 4), Math.sin(((clamp(p, -1, 1) + 1) * Math.PI) / 4)];
 
-/* ---------- Harmony: one chord per shot (and A7sus4 resolving to A7 under the arm beats) ---------- */
+/** Linear interpolation through [time, value] keys. */
+function line(keys) {
+  return (t) => {
+    if (t <= keys[0][0]) return keys[0][1];
+    for (let i = 1; i < keys.length; i++) {
+      const [t1, v1] = keys[i];
+      if (t <= t1) {
+        const [t0, v0] = keys[i - 1];
+        return v0 + (v1 - v0) * ((t - t0) / (t1 - t0));
+      }
+    }
+    return keys[keys.length - 1][1];
+  };
+}
 
+/* ---------- Harmony ---------- */
+
+// A minor, VI, III, VII (suspended, then resolved), iv, V (suspended, then with its seventh) and A
+// major on the end card. `pedal` is the pedal's 8' pitch; `great` the organ's held chord; `strings`
+// the violins (the cellos double the pedal); `choir` the voices; `ost` the swell's ostinato notes.
 const HARMONY = [
-  { at: 0, name: "Dmaj9", pad: [50, 57, 64, 66, 73], root: 38, arp: [62, 66, 69, 73, 76, 78] },
-  { at: 5, name: "Bm11", pad: [47, 54, 62, 64, 69], root: 35, arp: [59, 62, 66, 69, 73, 76] },
-  { at: 10, name: "Gmaj7#11", pad: [43, 50, 59, 66, 73], root: 43, arp: [55, 62, 66, 71, 73, 78] },
-  { at: 15.5, name: "Em9", pad: [52, 59, 62, 66, 67], root: 40, arp: [64, 67, 71, 74, 78, 79] },
-  { at: 20.5, name: "A7sus4", pad: [45, 52, 57, 62, 67], root: 45, arp: [57, 62, 64, 67, 69, 76] },
-  { at: 23.6, name: "A7", pad: [45, 52, 57, 61, 67], root: 45, arp: [57, 61, 64, 67, 69, 76] },
-  { at: 25.5, name: "Dmaj9", pad: [50, 57, 64, 66, 73, 78], root: 38, arp: [] },
+  { at: 0, name: "Am(add9)", pedal: 45, great: [57, 60, 64, 71], strings: [69, 72, 76], choir: [57, 64, 69], ost: [57, 60, 64, 69, 71, 72] },
+  { at: 5, name: "Fmaj7(#11)", pedal: 41, great: [53, 57, 60, 64, 71], strings: [69, 72, 76], choir: [57, 60, 65], ost: [53, 57, 60, 64, 65, 71] },
+  { at: 10, name: "C(add9)/E", pedal: 40, great: [55, 60, 62, 64, 67], strings: [67, 72, 74, 76], choir: [55, 60, 64], ost: [52, 55, 60, 62, 64, 67] },
+  { at: 15.5, name: "Gsus4", pedal: 43, great: [55, 60, 62, 67], strings: [67, 72, 74, 79], choir: [55, 60, 62], ost: [55, 60, 62, 67, 72, 74] },
+  { at: 18.25, name: "G", pedal: 43, great: [55, 59, 62, 67], strings: [67, 71, 74, 79], choir: [55, 59, 62], ost: [55, 59, 62, 67, 71, 74] },
+  { at: 20.5, name: "Dm9", pedal: 38, great: [53, 57, 60, 64, 69], strings: [65, 69, 72, 76], choir: [57, 60, 65], ost: [50, 53, 57, 60, 64, 69] },
+  { at: 23.6, name: "E7sus4", pedal: 40, great: [52, 57, 59, 62, 64], strings: [69, 71, 74, 76], choir: [57, 59, 64], ost: [52, 57, 59, 62, 64, 69] },
+  { at: 24.6, name: "E7", pedal: 40, great: [52, 56, 59, 62, 64], strings: [68, 71, 74, 76], choir: [56, 59, 64], ost: [52, 56, 59, 62, 64, 68] },
+  { at: 25.5, name: "A", pedal: 45, great: [57, 61, 64, 69, 73], strings: [69, 73, 76, 81], choir: [57, 61, 64, 69], ost: [] },
 ];
 for (const t of MUSIC.chords) if (!HARMONY.some((h) => h.at === t)) throw new Error(`score: no chord at ${t} s (storyboard MUSIC.chords)`);
 const chordAt = (t) => [...HARMONY].reverse().find((h) => h.at <= t + 1e-9);
 const endOf = (k) => (k + 1 < HARMONY.length ? HARMONY[k + 1].at : SECONDS);
+/** The organ's final chord is released here; the cathedral carries it to the end. */
+const RELEASE = 28.3;
+
+/**
+ * Held notes for one voice of the harmony: a note common to two chords is held through, not
+ * struck again, as an organist would. Returns [{ midi, from, to }].
+ */
+function held(part, last = RELEASE) {
+  const notes = [];
+  const open = new Map();
+  HARMONY.forEach((h, k) => {
+    const now = new Set([].concat(h[part]));
+    for (const [m, n] of open) {
+      if (!now.has(m)) {
+        n.to = h.at;
+        open.delete(m);
+      }
+    }
+    for (const m of now) {
+      if (!open.has(m)) {
+        const n = { midi: m, from: h.at, to: endOf(k) };
+        notes.push(n);
+        open.set(m, n);
+      }
+    }
+  });
+  for (const n of open.values()) n.to = last;
+  return notes;
+}
 
 /** Each accent's note: rising chord tones, four over the families, four over the arms. */
-const ACCENT_NOTES = [76, 79, 83, 86, 81, 86, 88, 93];
+const ACCENT_NOTES = [74, 79, 83, 86, 81, 86, 88, 93];
 if (ACCENT_NOTES.length !== MUSIC.accents.length) throw new Error("score: one accent note per MUSIC.accents entry");
 
 /* ---------- Stems, each with its reverb send ---------- */
 
 const bus = () => [new Float32Array(N), new Float32Array(N)];
 const STEMS = {
-  pad: { send: 0.4 },
-  shimmer: { send: 0.8 },
-  air: { send: 0.3 },
-  bass: { send: 0 },
-  arp: { send: 0.22 },
-  kick: { send: 0.05 },
+  great: { send: 0.55 },
+  swell: { send: 0.5 },
+  pedal: { send: 0.25 },
+  chimes: { send: 0.6 },
+  strings: { send: 0.4 },
+  choir: { send: 0.6 },
+  brass: { send: 0.35 },
+  timpani: { send: 0.35 },
   ticks: { send: 0.15 },
-  risers: { send: 0.45 },
-  impacts: { send: 0.35 },
-  bells: { send: 0.6 },
-  accents: { send: 0.5 },
+  cymbals: { send: 0.3 },
+  bells: { send: 0.7 },
+  aether: { send: 0.3 },
 };
 for (const s of Object.values(STEMS)) s.bus = bus();
 const stem = (name) => STEMS[name].bus;
@@ -91,18 +151,6 @@ function polyblep(t, dt) {
     return t * t + t + t + 1;
   }
   return 0;
-}
-
-/** A band-limited sawtooth. */
-function saw(f, phase = 0) {
-  let p = phase;
-  const dt = f / SR;
-  return () => {
-    const v = 2 * p - 1 - polyblep(p, dt);
-    p += dt;
-    if (p >= 1) p -= 1;
-    return v;
-  };
 }
 
 /** Andrew Simper's state-variable filter (trapezoidal): low, band and high from one state. */
@@ -136,21 +184,6 @@ function svf() {
   };
 }
 
-/** Exponential interpolation through [time, value] keys (values above zero). */
-function curve(keys) {
-  return (t) => {
-    if (t <= keys[0][0]) return keys[0][1];
-    for (let i = 1; i < keys.length; i++) {
-      const [t1, v1] = keys[i];
-      if (t <= t1) {
-        const [t0, v0] = keys[i - 1];
-        return v0 * (v1 / v0) ** ((t - t0) / (t1 - t0));
-      }
-    }
-    return keys[keys.length - 1][1];
-  };
-}
-
 /** Writes a mono voice into a stem from `t0` for `len` seconds; `voice` gets the time since t0. */
 function place(target, t0, len, gain, p, voice) {
   const [l, r] = pan(p);
@@ -164,288 +197,474 @@ function place(target, t0, len, gain, p, voice) {
   }
 }
 
-/** A swell for a chord held from `a` to `b` (seconds since the voice started), released over `tau`. */
-function held(t, attack, length, tau) {
-  const x = Math.min(1, t / attack);
-  return x * x * (3 - 2 * x) * (t > length ? Math.exp(-(t - length) / tau) : 1);
+/* ---------- The organ ---------- */
+
+// Each pipe family's harmonic spectrum (amplitudes of harmonics 1, 2, 3...).
+const SPECTRA = {
+  // Stopped flute (Bourdon, Gedackt): the odd harmonics, soft and round.
+  stopped: [1, 0.03, 0.3, 0.02, 0.12, 0.015, 0.05, 0.01, 0.02],
+  // Open flute: a strong fundamental, a little octave.
+  flute: [1, 0.25, 0.1, 0.05, 0.03, 0.02],
+  // Principal (Diapason): the organ's own tone.
+  principal: [1, 0.55, 0.42, 0.28, 0.22, 0.15, 0.12, 0.08, 0.07, 0.05, 0.04, 0.03, 0.025, 0.02],
+  // Gamba: thin and bright, like bowed strings.
+  string: [0.7, 0.75, 0.7, 0.6, 0.55, 0.48, 0.42, 0.36, 0.32, 0.27, 0.23, 0.2, 0.17, 0.15, 0.13, 0.11, 0.09, 0.08, 0.07, 0.06],
+  // Trumpet: a reed, brassy, its strongest harmonics above the fundamental.
+  reed: [0.55, 0.85, 1, 0.9, 0.75, 0.6, 0.5, 0.42, 0.35, 0.3, 0.25, 0.21, 0.18, 0.15, 0.13, 0.11, 0.09, 0.08, 0.07, 0.06, 0.05, 0.045, 0.04, 0.035, 0.03],
+};
+const TABLE = 4096;
+const tables = new Map();
+/** One period of a pipe's tone with at most `n` harmonics (so no harmonic passes Nyquist), peak 1. */
+function table(type, n) {
+  const id = `${type}:${n}`;
+  if (tables.has(id)) return tables.get(id);
+  const amps = SPECTRA[type].slice(0, Math.max(1, n));
+  const rnd = noise(type.length * 97 + 13);
+  const phases = amps.map(() => rnd() * Math.PI);
+  const t = new Float32Array(TABLE + 1);
+  let peak = 0;
+  for (let i = 0; i < TABLE; i++) {
+    let v = 0;
+    for (let h = 0; h < amps.length; h++) v += amps[h] * Math.sin((2 * Math.PI * (h + 1) * i) / TABLE + phases[h]);
+    t[i] = v;
+    peak = Math.max(peak, Math.abs(v));
+  }
+  for (let i = 0; i < TABLE; i++) t[i] /= peak;
+  t[TABLE] = t[0];
+  tables.set(id, t);
+  return t;
 }
 
-/* ---------- Pads, shimmer and air ---------- */
+// The stops: a pipe family and its pitch against the key's 8' pitch (16' is 0.5, 2 2/3' is 3...).
+const STOPS = {
+  bourdon32: { pipe: "stopped", mult: 0.25 },
+  bourdon16: { pipe: "stopped", mult: 0.5 },
+  bourdon8: { pipe: "stopped", mult: 1 },
+  principal8: { pipe: "principal", mult: 1 },
+  gamba8: { pipe: "string", mult: 1, cents: 4 },
+  octave4: { pipe: "principal", mult: 2 },
+  flute4: { pipe: "flute", mult: 2 },
+  twelfth: { pipe: "principal", mult: 3 },
+  fifteenth: { pipe: "principal", mult: 4 },
+  tierce: { pipe: "principal", mult: 5 },
+  mixture: { pipe: "principal", mult: 8 },
+  trumpet16: { pipe: "reed", mult: 0.5 },
+  trumpet8: { pipe: "reed", mult: 1 },
+};
+
+// Registration: how far each stop is drawn over the cut, per division. The organ builds with the
+// cut: flutes under the title, principals from the galaxy, mutations and the mixture into the
+// overview, trumpets and the 32' on the end card.
+const REGISTRATION = {
+  great: {
+    bourdon8: line([[0, 0.55], [25.5, 0.62]]),
+    principal8: line([[0, 0], [4.9, 0], [5.1, 0.42], [10, 0.5], [25.5, 0.7]]),
+    octave4: line([[0, 0], [9.9, 0], [10.1, 0.3], [20.5, 0.38], [25.5, 0.55]]),
+    twelfth: line([[0, 0], [15.4, 0], [15.6, 0.14], [25.5, 0.26]]),
+    fifteenth: line([[0, 0], [15.4, 0], [15.6, 0.16], [25.5, 0.3]]),
+    tierce: line([[0, 0], [20.4, 0], [20.6, 0.08], [25.5, 0.14]]),
+    mixture: line([[0, 0], [22, 0], [25.3, 0.05], [25.5, 0.24]]),
+    trumpet8: line([[0, 0], [23.5, 0], [25.3, 0.08], [25.5, 0.45]]),
+  },
+  swell: {
+    flute4: line([[0, 0.55]]),
+    bourdon8: line([[0, 0.45]]),
+    gamba8: line([[0, 0], [9.9, 0], [10.1, 0.3], [25.5, 0.4]]),
+    principal8: line([[0, 0], [15.4, 0], [15.6, 0.25], [25.5, 0.35]]),
+    fifteenth: line([[0, 0], [20.4, 0], [20.6, 0.1]]),
+  },
+  pedal: {
+    bourdon16: line([[0, 0.75]]),
+    principal8: line([[0, 0], [4.9, 0], [5.1, 0.4], [25.5, 0.55]]),
+    octave4: line([[0, 0], [20.4, 0], [20.6, 0.22], [25.5, 0.32]]),
+    trumpet16: line([[0, 0], [25.3, 0], [25.5, 0.28]]),
+    bourdon32: line([[0, 0], [25.3, 0], [25.5, 0.55]]),
+  },
+  chimes: {
+    principal8: line([[0, 0.35]]),
+    octave4: line([[0, 0.4]]),
+    fifteenth: line([[0, 0.35]]),
+    mixture: line([[0, 0.15]]),
+  },
+};
+
+/** The swell box: the ostinato grows from soft to full. */
+const SWELL_BOX = line([[0, 0.55], [5, 0.55], [15.5, 0.75], [20.5, 0.85], [23.6, 0.9], [25.4, 0.8], [25.5, 1]]);
+
+let pipeSeed = 1;
+/**
+ * One organ note, `midi` held from `from` to `to`, on every stop the division draws: each pipe
+ * speaks with a short chiff (low pipes more slowly), detuned a little from its neighbors, and
+ * sounds from its side of the case (C side left, C# side right).
+ */
+function organ(division, midi, from, to, { gain = 1, width = 0.35, expression = () => 1 } = {}) {
+  const target = stem(division === "chimes" ? "chimes" : division);
+  const reg = REGISTRATION[division];
+  const side = midi % 2 === 0 ? -1 : 1;
+  const [l, r] = pan(side * width);
+  const rnd = noise(pipeSeed++ * 7919);
+  for (const [name, drawn] of Object.entries(reg)) {
+    // Skip a stop that is never drawn while the key is down.
+    let used = false;
+    for (let t = from; t <= to; t += 0.1) if (drawn(t) > 0) used = true;
+    if (!used) continue;
+    const stop = STOPS[name];
+    const f = hz(midi) * stop.mult * 2 ** (((stop.cents ?? 0) + rnd() * 1.5) / 1200);
+    if (f < 16 || f > 9000) continue;
+    const wave = table(stop.pipe, Math.floor(19000 / f));
+    const attack = clamp(0.012 + 3 / f, 0.012, 0.12);
+    const release = clamp(0.05 + 6 / f, 0.06, 0.25);
+    const chiffs = stop.pipe !== "reed" && f > 150;
+    const chiffNoise = noise(pipeSeed * 31 + name.length);
+    const bp = svf();
+    bp.set(Math.min(f * 2.5, 9000), 4);
+    let phase = rnd() * 0.5 + 0.5;
+    const s0 = Math.max(0, at(from));
+    const s1 = Math.min(N, at(to + release * 4));
+    let g = 0;
+    let e = 1;
+    for (let i = s0; i < s1; i++) {
+      const t = i / SR;
+      if ((i - s0) % 64 === 0) {
+        g = drawn(Math.min(t, to)) * expression(t) * gain;
+      }
+      const since = t - from;
+      const env = since < attack ? 0.5 - 0.5 * Math.cos((Math.PI * since) / attack) : t <= to ? 1 : Math.exp(-(t - to) / (release / 3));
+      phase += f / SR;
+      if (phase >= 1) phase -= 1;
+      const x = phase * TABLE;
+      const j = x | 0;
+      let v = wave[j] + (wave[j + 1] - wave[j]) * (x - j);
+      if (chiffs && since < 0.12) {
+        e = Math.exp(-since / (f < 400 ? 0.04 : 0.022));
+        v += bp.run(chiffNoise()).band * 0.35 * e;
+      }
+      v *= env * g;
+      target[0][i] += v * l;
+      target[1][i] += v * r;
+    }
+  }
+}
+
+/** A fade from silence at the start (the organ under the title swells in). */
+const OPENING = (t) => smooth(0, 2.6, t);
+
+// The great holds the chords, a little fuller from the end card's downbeat.
+const TUTTI = (t) => OPENING(t) * (1 + 0.15 * smooth(25.45, 25.55, t));
+for (const n of held("great")) organ("great", n.midi, n.from, n.to, { gain: 0.11, expression: TUTTI });
+
+// The pedal holds the roots.
+for (const n of held("pedal")) organ("pedal", n.midi, n.from, n.to, { gain: 0.16, width: 0.15, expression: OPENING });
+
+// The swell's ostinato: eighths from the first impact, an octave doubling from the tree shot,
+// sixteenths over the overview, a beat of rest before each swell lands.
+{
+  const [p0, p1] = MUSIC.pulse;
+  const EIGHTHS = [0, 2, 4, 2, 1, 3, 5, 3];
+  const SIXTEENTHS = [0, 2, 4, 5, 4, 2, 1, 3, 5, 3, 1, 2, 4, 5, 4, 2];
+  const rests = MUSIC.risers.map((t) => [t - BEAT, t]);
+  const fast = MUSIC.chords[4];
+  let k = 0;
+  for (let t0 = p0; t0 < p1 - 1e-9; k++) {
+    const step = t0 >= fast - 1e-9 ? BEAT / 4 : BEAT / 2;
+    const resting = rests.some(([a, b]) => t0 >= a - 1e-9 && t0 < b - 1e-9);
+    const notes = chordAt(t0).ost;
+    if (!resting && notes.length) {
+      const pattern = step < BEAT / 2 ? SIXTEENTHS : EIGHTHS;
+      const m = notes[pattern[k % pattern.length] % notes.length];
+      const accent = (step < BEAT / 2 ? k % 4 === 0 : k % 2 === 0) ? 1 : 0.8;
+      organ("swell", m, t0, t0 + step * 0.9, { gain: 0.2 * accent, width: 0.45, expression: SWELL_BOX });
+      if (t0 >= MUSIC.chords[3] - 1e-9 && k % 2 === 1) organ("swell", m + 12, t0, t0 + step * 0.9, { gain: 0.1, width: 0.55, expression: SWELL_BOX });
+    }
+    t0 = +(t0 + step).toFixed(6);
+  }
+}
+
+// A chime on each family and arm beat.
+// Softer over the arms, where the organ is already building to the end card.
+MUSIC.accents.forEach((t0, n) => organ("chimes", ACCENT_NOTES[n], t0, t0 + 0.42, { gain: n < 4 ? 0.17 : 0.12, width: 0.5 }));
+
+/* ---------- Strings ---------- */
 
 {
-  const DETUNE = [-9, 0, 9];
-  const PAN = [-0.85, 0, 0.85];
-  HARMONY.forEach((h, k) => {
-    const start = Math.max(0, h.at - 0.2);
-    const length = endOf(k) - start;
-    const attack = k === 0 ? 2.8 : 0.9;
-    h.pad.forEach((m, n) => {
-      DETUNE.forEach((cents, v) => {
-        const osc = saw(hz(m) * 2 ** (cents / 1200), (n * 0.37 + v * 0.29) % 1);
-        place(stem("pad"), start, length + 3, 0.042, PAN[v], (t) => osc() * held(t, attack, length, 0.75));
-      });
-    });
-    // Two octaves above the chord's upper two notes, trembling slowly, far left and right.
-    h.pad.slice(-2).forEach((m, n) => {
-      let p = 0;
-      const f = hz(m + 24);
-      place(stem("shimmer"), start, length + 3, 0.012, n ? 0.9 : -0.9, (t) => {
-        p += f / SR;
-        return Math.sin(2 * Math.PI * p) * (0.6 + 0.4 * Math.sin(2 * Math.PI * (0.31 + 0.07 * n) * t)) * held(t, attack * 1.4, length, 0.9);
+  const target = stem("strings");
+  const dynamic = line([[0, 0], [1.5, 0.3], [5, 0.5], [10, 0.6], [15.5, 0.7], [20.5, 0.8], [25.5, 1], [28.5, 0.9]]);
+  const parts = [...held("strings").map((n) => ({ ...n, cello: false })), ...held("pedal").map((n) => ({ ...n, cello: true }))];
+  parts.forEach((n, idx) => {
+    const p = n.cello ? 0.4 : -0.6 + 1.2 * (((n.midi - 64) / 18 + 1) / 2);
+    const len = n.to - n.from;
+    [-7, 0, 7].forEach((cents, v) => {
+      const f = hz(n.midi) * 2 ** (cents / 1200);
+      const dt = f / SR;
+      let ph = (idx * 0.31 + v * 0.17) % 1;
+      const rate = 5.0 + v * 0.35 + (idx % 3) * 0.1;
+      place(target, n.from - 0.15, len + 1.6, n.cello ? 0.044 : 0.036, p + (v - 1) * 0.15, (t) => {
+        const vib = 1 + (8 / 1200) * Math.LN2 * Math.sin(2 * Math.PI * rate * t) * smooth(0.3, 1.1, t);
+        ph += dt * vib;
+        if (ph >= 1) ph -= 1;
+        const s = 2 * ph - 1 - polyblep(ph, dt);
+        const a = smooth(0, 1.2, t) * (t > len ? Math.exp(-(t - len) / 0.45) : 1);
+        return s * a * dynamic(n.from + t);
       });
     });
   });
-  // The pads open with the cut: dark under the title, brightest on the end card's impact.
-  const cutoff = curve([
-    [0, 450],
-    [4.6, 1700],
-    [5, 2300],
-    [9.8, 3100],
-    [10, 3600],
-    [15.4, 4000],
-    [15.6, 3000],
-    [20.4, 4000],
-    [20.6, 3500],
-    [25.4, 5800],
-    [25.6, 4900],
-    [30, 2000],
-  ]);
-  const padBus = stem("pad");
+  // Bowed strings are darker played softly: the filter opens with the dynamic.
   for (const ch of [0, 1]) {
     const f = svf();
-    const x = padBus[ch];
+    const x = target[ch];
     for (let i = 0; i < N; i++) {
-      if (i % 32 === 0) {
-        const t = i / SR;
-        f.set(cutoff(t) * (1 + 0.08 * Math.sin(2 * Math.PI * 0.13 * t + ch)), 0.8);
-      }
+      if (i % 64 === 0) f.set(1600 + 3400 * dynamic(i / SR), 0.7);
       x[i] = f.run(x[i]).low;
     }
   }
-  // Air: high noise that breathes with the cut.
-  const air = stem("air");
-  const level = curve([
-    [0, 0.002],
-    [3, 0.006],
-    [5, 0.009],
-    [15.5, 0.011],
-    [25.5, 0.016],
-    [28, 0.01],
-    [30, 0.004],
-  ]);
+}
+
+/* ---------- Choir ("ah") ---------- */
+
+{
+  const target = stem("choir");
+  const dynamic = line([[0, 0], [9.6, 0], [10.5, 0.35], [15.5, 0.5], [20.5, 0.7], [25.5, 1], [28.5, 0.85]]);
+  for (const n of held("choir")) {
+    if (n.to < 9.6) continue;
+    const from = Math.max(n.from, 9.6);
+    const len = n.to - from;
+    [-6, 0, 6].forEach((cents, v) => {
+      const f = hz(n.midi) * 2 ** (cents / 1200);
+      const dt = f / SR;
+      let ph = (v * 0.37 + n.midi * 0.11) % 1;
+      const rate = 4.6 + v * 0.4;
+      place(target, from - 0.2, len + 2, 0.08, (v - 1) * 0.5, (t) => {
+        const vib = 1 + (12 / 1200) * Math.LN2 * Math.sin(2 * Math.PI * rate * t + v) * smooth(0.4, 1.4, t);
+        ph += dt * vib;
+        if (ph >= 1) ph -= 1;
+        const s = 2 * ph - 1 - polyblep(ph, dt);
+        const a = smooth(0, 1.0, t) * (t > len ? Math.exp(-(t - len) / 0.5) : 1);
+        return s * a * dynamic(from + t);
+      });
+    });
+  }
+  // The vowel: three formants of an open "ah".
   for (const ch of [0, 1]) {
-    const rnd = noise(17 + ch);
-    const f = svf();
-    f.set(7000, 0.7);
+    const formants = [
+      [800, 8, 1],
+      [1150, 10, 0.6],
+      [2900, 14, 0.25],
+    ].map(([fc, q, g]) => {
+      const f = svf();
+      f.set(fc, q);
+      return { f, g: g / q };
+    });
+    const x = target[ch];
     for (let i = 0; i < N; i++) {
-      const t = i / SR;
-      air[ch][i] = f.run(rnd()).high * level(t) * (0.75 + 0.25 * Math.sin(2 * Math.PI * 0.25 * t + ch * 1.7));
+      let y = 0;
+      for (const { f, g } of formants) y += f.run(x[i]).band * g;
+      x[i] = y * 2.2;
     }
   }
 }
 
-/* ---------- Bass: the chord roots, gliding ---------- */
+/* ---------- Low brass, swelling into the end card ---------- */
 
 {
-  const bass = stem("bass");
-  let phase = 0;
-  let f = hz(HARMONY[0].root);
-  const glide = Math.exp(-1 / (0.05 * SR));
-  const root = new Float32Array(N);
-  HARMONY.forEach((h, k) => root.fill(hz(h.root), at(h.at), at(endOf(k))));
-  for (let i = 0; i < N; i++) {
-    const t = i / SR;
-    f = root[i] + (f - root[i]) * glide;
-    phase += f / SR;
-    if (phase >= 1) phase -= 1;
-    // In from just before the first impact, a little stronger once the kick is in.
-    const env = 0.06 * Math.min(1, Math.max(0, (t - 3.8) / 1.2)) + 0.024 * Math.min(1, Math.max(0, (t - 9.5) / 0.5));
-    // A second harmonic, so the line carries on small speakers too.
-    const v = (Math.sin(2 * Math.PI * phase) + 0.3 * Math.sin(4 * Math.PI * phase)) * env;
-    bass[0][i] = v;
-    bass[1][i] = v;
+  const target = stem("brass");
+  const swell = line([[0, 0], [20.5, 0], [22.5, 0.25], [25.4, 0.6], [25.5, 1], [27.5, 0.85], [28.6, 0]]);
+  const NOTES = [
+    { midi: 50, from: 20.5, to: 23.6 },
+    { midi: 57, from: 20.5, to: 23.6 },
+    { midi: 52, from: 23.6, to: 25.5 },
+    { midi: 59, from: 23.6, to: 25.5 },
+    { midi: 45, from: 25.5, to: 28.3 },
+    { midi: 52, from: 25.5, to: 28.3 },
+    { midi: 57, from: 25.5, to: 28.3 },
+  ];
+  NOTES.forEach((n, idx) => {
+    const len = n.to - n.from;
+    [-5, 0, 5].forEach((cents, v) => {
+      const f = hz(n.midi) * 2 ** (cents / 1200);
+      const dt = f / SR;
+      let ph = (idx * 0.23 + v * 0.41) % 1;
+      place(target, n.from, len + 1, 0.05, (v - 1) * 0.35, (t) => {
+        ph += dt;
+        if (ph >= 1) ph -= 1;
+        const s = 2 * ph - 1 - polyblep(ph, dt);
+        return s * smooth(0, 0.25, t) * (t > len ? Math.exp(-(t - len) / 0.3) : 1);
+      });
+    });
+  });
+  // Brass brightens as it gets louder.
+  for (const ch of [0, 1]) {
+    const f = svf();
+    const x = target[ch];
+    for (let i = 0; i < N; i++) {
+      const s = swell(i / SR);
+      if (i % 64 === 0) f.set(300 + 2400 * s * s, 0.9);
+      x[i] = f.run(x[i]).low * s;
+    }
   }
 }
 
-/* ---------- Arpeggio, with a ping-pong delay ---------- */
+/* ---------- Timpani: the shot changes, a roll into the end card ---------- */
+
+/** A timpani stroke: the drum's inharmonic modes, the pitch settling after the strike, and the mallet. */
+function timpani(t0, midi, vel, seed) {
+  const f0 = hz(midi);
+  const RATIOS = [1, 1.5, 1.98, 2.44, 2.9, 3.38];
+  const AMPS = [1, 0.6, 0.38, 0.26, 0.16, 0.1];
+  const DECAYS = [1.8, 1.2, 0.9, 0.7, 0.55, 0.45].map((d) => d * (0.6 + 0.4 * vel));
+  const phases = RATIOS.map(() => 0);
+  const rnd = noise(seed);
+  const mallet = svf();
+  mallet.set(1500, 0.7);
+  place(stem("timpani"), t0, 3.5, 0.18 * vel, 0.1, (t) => {
+    const bend = 1 + 0.02 * Math.exp(-t / 0.08);
+    let v = 0;
+    for (let k = 0; k < RATIOS.length; k++) {
+      phases[k] += (f0 * RATIOS[k] * bend) / SR;
+      v += AMPS[k] * Math.sin(2 * Math.PI * phases[k]) * Math.exp(-t / DECAYS[k]);
+    }
+    return (v + mallet.run(rnd()).low * 1.5 * Math.exp(-t / 0.012)) * Math.min(1, t / 0.002);
+  });
+}
 
 {
-  const arp = stem("arp");
-  const PATTERN = [0, 2, 4, 5, 3, 1, 4, 2];
-  const [p0, p1] = MUSIC.pulse;
-  // A beat of rest before each riser lands.
-  const rests = MUSIC.risers.map((t) => [t - BEAT, t]);
-  const step = BEAT / 2;
-  for (let k = 0; p0 + k * step < p1 - 1e-9; k++) {
-    const t0 = p0 + k * step;
-    if (rests.some(([a, b]) => t0 >= a - 1e-9 && t0 < b - 1e-9)) continue;
-    const notes = chordAt(t0).arp;
-    if (!notes.length) continue;
-    const m = notes[PATTERN[k % PATTERN.length]];
-    const vel = (k % 2 === 0 ? 1 : 0.72) * (t0 < 10 ? 0.55 + 0.05 * (t0 - 5) : t0 < 20.5 ? 0.85 : 0.95 + 0.04 * (t0 - 20.5));
-    const osc = saw(hz(m));
-    const low = saw(hz(m) * 0.5, 0.5);
-    const f = svf();
-    let i = 0;
-    place(arp, t0, 0.9, 0.19 * vel, k % 2 ? 0.35 : -0.35, (t) => {
-      if (i++ % 16 === 0) f.set(600 + 4800 * Math.exp(-t / 0.075), 1.1);
-      const env = Math.min(1, t / 0.002) * Math.exp(-t / 0.2);
-      return f.run(osc() * 0.8 + low() * 0.35).low * env;
+  const PITCH = { 5: 41, 10: 40, 15.5: 43, 20.5: 38, 25.5: 45 };
+  const VELOCITY = { 5: 0.85, 10: 0.5, 15.5: 0.55, 20.5: 0.7, 25.5: 1 };
+  MUSIC.chords.slice(1).forEach((t, n) => timpani(t, PITCH[t] ?? 45, VELOCITY[t] ?? 0.6, 100 + n));
+  // The roll: strokes a fourteenth of a second apart on the dominant, growing to the end card.
+  const [r0, r1] = MUSIC.roll;
+  const jitter = noise(41);
+  let n = 0;
+  for (let t = r0; t < r1 - 0.06; t += 1 / 14, n++) {
+    const x = (t - r0) / (r1 - r0);
+    timpani(t + jitter() * 0.004, 40, 0.12 + 0.7 * x ** 2.2 * (n % 2 ? 0.92 : 1), 200 + n);
+  }
+  // A low boom under the two impacts.
+  for (const t0 of MUSIC.impacts) {
+    let ph = 0;
+    place(stem("timpani"), t0, 2.5, 0.22, 0, (t) => {
+      ph += (30 + 25 * Math.exp(-t / 0.25)) / SR;
+      return Math.sin(2 * Math.PI * ph) * Math.exp(-t / 0.9) * Math.min(1, t / 0.005);
     });
   }
-  // Ping-pong delay: a dotted eighth, damped repeats crossing the stereo field.
-  const d = at(BEAT * 0.75);
-  const fb = 0.38;
-  const wet = 0.3;
-  const bufL = new Float32Array(d);
-  const bufR = new Float32Array(d);
-  let lpL = 0;
-  let lpR = 0;
-  const damp = Math.exp((-2 * Math.PI * 3200) / SR);
-  for (let i = 0; i < N; i++) {
-    const j = i % d;
-    const outL = bufL[j];
-    const outR = bufR[j];
-    lpL = outL + (lpL - outL) * damp;
-    lpR = outR + (lpR - outR) * damp;
-    const inL = arp[0][i];
-    const inR = arp[1][i];
-    bufL[j] = (inL + inR) * 0.5 + lpR * fb;
-    bufR[j] = lpL * fb;
-    arp[0][i] = inL + outL * wet;
-    arp[1][i] = inR + outR * wet;
-  }
 }
 
-/* ---------- Kick (every other beat), with a side-chain on the pads, shimmer and arpeggio ---------- */
+/* ---------- The clock ---------- */
 
 {
-  const kicks = [];
-  const [k0, k1] = MUSIC.kick;
-  for (let t = k0; t < k1 - 1e-9; t += 2 * BEAT) kicks.push(t);
-  const click = noise(7);
-  for (const t0 of kicks) {
-    let phase = 0;
-    place(stem("kick"), t0, 0.6, 0.24, 0, (t) => {
-      phase += (44 + 80 * Math.exp(-t / 0.028)) / SR;
-      const body = Math.sin(2 * Math.PI * phase) * Math.exp(-t / 0.26) * Math.min(1, t / 0.001);
-      return body + click() * 0.12 * Math.exp(-t / 0.004);
+  const [a, b, c] = MUSIC.ticks;
+  const times = [];
+  for (let t = a; t < b - 1e-9; t += 2 * BEAT) times.push(t);
+  for (let t = b; t < c - 1e-9; t += BEAT) times.push(t);
+  const rnd = noise(23);
+  times.forEach((t0, n) => {
+    const tock = n % 2 === 1;
+    const f1 = tock ? 1650 : 1980;
+    const f2 = tock ? 2700 : 3170;
+    const hp = svf();
+    hp.set(3000, 0.7);
+    place(stem("ticks"), t0, 0.08, 0.4, tock ? -0.15 : 0.15, (t) => {
+      const click = hp.run(rnd()).high * Math.exp(-t / 0.002);
+      const wood = (Math.sin(2 * Math.PI * f1 * t) + 0.5 * Math.sin(2 * Math.PI * f2 * t)) * Math.exp(-t / 0.018);
+      return (click * 0.6 + wood * 0.5) * Math.min(1, t / 0.0005);
     });
-  }
-  const duck = new Float32Array(N).fill(1);
-  for (const t0 of kicks) for (let i = at(t0); i < Math.min(N, at(t0 + 0.5)); i++) duck[i] = Math.min(duck[i], 1 - 0.28 * Math.exp(-(i / SR - t0) / 0.16));
-  for (const name of ["pad", "shimmer", "arp"]) for (const ch of [0, 1]) for (let i = 0; i < N; i++) stem(name)[ch][i] *= duck[i];
+  });
 }
 
-/* ---------- Ticks on the off-beats, from the tree shot to the end card ---------- */
+/* ---------- Cymbals: a swell into each shot change, a crash on the end card ---------- */
 
 {
-  const rnd = noise(11);
-  const [a, b] = [MUSIC.chords[3], MUSIC.chords[5] - BEAT];
-  for (let t0 = a + BEAT / 2; t0 < b - 1e-9; t0 += BEAT) {
-    const f = svf();
-    f.set(7500, 0.7);
-    place(stem("ticks"), t0, 0.08, 0.15, 0.25, (t) => f.run(rnd()).high * Math.exp(-t / 0.022));
-  }
-}
-
-/* ---------- Risers into each shot change ---------- */
-
-{
-  const risers = stem("risers");
+  const target = stem("cymbals");
   const rL = noise(3);
   const rR = noise(5);
   MUSIC.risers.forEach((T, n) => {
-    const D = n === 0 ? 1.4 : 1.8;
-    const g = n === 0 ? 0.13 : 0.2;
+    const D = n === 0 ? 1.2 : 1.8;
+    const g = n === 0 ? 0.08 : 0.12;
     const fL = svf();
     const fR = svf();
     const s0 = at(T - D);
     for (let i = Math.max(0, s0); i < Math.min(N, at(T)); i++) {
       const x = (i - s0) / (at(T) - s0);
       if ((i - s0) % 32 === 0) {
-        const fc = 260 * (7200 / 260) ** x;
-        fL.set(fc, 2.2);
-        fR.set(fc * 1.06, 2.2);
+        fL.set(3000 + 6000 * x, 0.8);
+        fR.set(3200 + 6000 * x, 0.8);
       }
-      const env = g * x ** 2.4 * Math.min(1, (at(T) - i) / (0.008 * SR));
-      risers[0][i] += fL.run(rL()).band * env;
-      risers[1][i] += fR.run(rR()).band * env;
+      const env = g * x ** 3 * Math.min(1, (at(T) - i) / (0.01 * SR));
+      target[0][i] += fL.run(rL()).high * env;
+      target[1][i] += fR.run(rR()).high * env;
     }
   });
-}
-
-/* ---------- Impacts ---------- */
-
-{
-  const rnd = noise(13);
-  for (const t0 of MUSIC.impacts) {
-    let phase = 0;
-    const f = svf();
-    f.set(900, 0.7);
-    place(stem("impacts"), t0, 3.2, 0.45, 0, (t) => {
-      phase += (36 + 70 * Math.exp(-t / 0.22)) / SR;
-      const boom = Math.sin(2 * Math.PI * phase) * Math.exp(-t / 0.95) * Math.min(1, t / 0.006);
-      return boom + f.run(rnd()).low * 0.5 * Math.exp(-t / 0.3);
-    });
+  const crashL = svf();
+  const crashR = svf();
+  crashL.set(4000, 0.7);
+  crashR.set(4300, 0.7);
+  const t0 = MUSIC.impacts[MUSIC.impacts.length - 1];
+  for (let i = at(t0); i < Math.min(N, at(t0 + 4)); i++) {
+    const t = i / SR - t0;
+    const env = 0.1 * Math.exp(-t / 1.1) * Math.min(1, t / 0.004);
+    target[0][i] += crashL.run(rL()).high * env;
+    target[1][i] += crashR.run(rR()).high * env;
   }
 }
 
-/* ---------- Bells (FM) on the two cards ---------- */
+/* ---------- Tubular bells on the cards ---------- */
 
 {
-  const CHORDS = [
-    [74, 81, 86],
-    [74, 78, 81, 86, 90],
-  ];
+  const CHORDS = [[69], [69, 76, 81]];
+  const RATIOS = [1, 2, 3, 4.2, 5.4];
+  const AMPS = [0.6, 1, 0.7, 0.45, 0.3];
+  const DECAYS = [5, 4, 3, 2.2, 1.6];
   MUSIC.bells.forEach((t0, b) => {
     CHORDS[Math.min(b, CHORDS.length - 1)].forEach((m, n) => {
-      const c = hz(m);
-      let pc = 0;
-      let pm = 0;
-      let pi = 0;
-      place(stem("bells"), t0 + n * 0.045, 5, 0.075 * (1 - n * 0.08), n ? (n % 2 ? 0.3 : -0.3) : 0, (t) => {
-        pm += (c * 2) / SR;
-        pc += c / SR;
-        pi += (c * 2.756) / SR;
-        const tone = Math.sin(2 * Math.PI * pc + 2.0 * Math.exp(-t / 0.35) * Math.sin(2 * Math.PI * pm));
-        const shimmer = 0.25 * Math.sin(2 * Math.PI * pi) * Math.exp(-t / 0.5);
-        return (tone + shimmer) * Math.exp(-t / 2.2) * Math.min(1, t / 0.002);
+      const f = hz(m);
+      const ph = RATIOS.map(() => 0);
+      place(stem("bells"), t0 + n * 0.07, 5.5, 0.06 * (1 - n * 0.12), n ? (n % 2 ? 0.35 : -0.35) : 0, (t) => {
+        let v = 0;
+        for (let k = 0; k < RATIOS.length; k++) {
+          ph[k] += (f * RATIOS[k]) / SR;
+          v += AMPS[k] * Math.sin(2 * Math.PI * ph[k]) * Math.exp(-t / DECAYS[k]);
+        }
+        return v * Math.min(1, t / 0.002);
       });
     });
   });
 }
 
-/* ---------- A mallet note on each family and arm beat ---------- */
+/* ---------- Aether: a low wind of space under it all, swelling at the shot changes ---------- */
 
-MUSIC.accents.forEach((t0, n) => {
-  const c = hz(ACCENT_NOTES[n]);
-  let p1 = 0;
-  let p4 = 0;
-  place(stem("accents"), t0, 1.6, 0.1, -0.3 + 0.2 * (n % 4), (t) => {
-    p1 += c / SR;
-    p4 += (c * 4) / SR;
-    const body = Math.sin(2 * Math.PI * p1 + 0.9 * Math.exp(-t / 0.05) * Math.sin(2 * Math.PI * p1));
-    return (body * Math.exp(-t / 0.55) + 0.18 * Math.sin(2 * Math.PI * p4) * Math.exp(-t / 0.12)) * Math.min(1, t / 0.0015);
-  });
-});
+{
+  const target = stem("aether");
+  const level = (t) => 0.075 * (0.5 + 0.5 * MUSIC.chords.reduce((m, c) => Math.max(m, Math.exp(-(((t - c) / 1.2) ** 2))), 0)) * smooth(0, 1.5, t);
+  for (const ch of [0, 1]) {
+    const rnd = noise(61 + ch);
+    const f = svf();
+    const x = target[ch];
+    for (let i = 0; i < N; i++) {
+      const t = i / SR;
+      if (i % 64 === 0) f.set(180 + 120 * Math.sin(2 * Math.PI * 0.07 * t + ch * 2), 1.6);
+      x[i] = f.run(rnd()).band * level(t);
+    }
+  }
+}
 
-/* ---------- Reverb (Freeverb) ---------- */
+/* ---------- Reverb: a cathedral (Freeverb, with a pre-delay) ---------- */
 
-function freeverb(input, { room = 0.86, damp = 0.32, spread = 23 } = {}) {
+function freeverb(input, { room = 0.93, damp = 0.22, spread = 23, predelay = 0.04 } = {}) {
   const scale = SR / 44100;
   const COMBS = [1116, 1188, 1277, 1356, 1422, 1491, 1557, 1617];
   const ALLPASSES = [556, 441, 341, 225];
   const out = bus();
   const feedback = room * 0.28 + 0.7;
+  const pre = at(predelay);
   for (const ch of [0, 1]) {
     const off = ch ? spread : 0;
     const combs = COMBS.map((c) => ({ buf: new Float32Array(Math.round((c + off) * scale)), i: 0, store: 0 }));
     const aps = ALLPASSES.map((a) => ({ buf: new Float32Array(Math.round((a + off) * scale)), i: 0 }));
     const x = input[ch];
     const y = out[ch];
+    const lp = svf();
+    lp.set(6500, 0.7);
     for (let n = 0; n < N; n++) {
-      const v = x[n] * 0.015;
+      const v = (n >= pre ? x[n - pre] : 0) * 0.015;
       let sum = 0;
       for (const c of combs) {
         const o = c.buf[c.i];
@@ -460,7 +679,7 @@ function freeverb(input, { room = 0.86, damp = 0.32, spread = 23 } = {}) {
         if (++a.i >= a.buf.length) a.i = 0;
         sum = b - sum;
       }
-      y[n] = sum;
+      y[n] = lp.run(sum).low;
     }
   }
   return out;
@@ -481,15 +700,15 @@ for (const s of Object.values(STEMS)) {
 const wet = freeverb(send);
 const mix = bus();
 {
-  // A high-pass at 28 Hz (two one-pole stages) keeps the low end clean of DC.
-  const k = Math.exp((-2 * Math.PI * 28) / SR);
+  // A high-pass at 20 Hz (two one-pole stages): the 32' stays, DC goes.
+  const k = Math.exp((-2 * Math.PI * 20) / SR);
   for (const ch of [0, 1]) {
     let x1 = 0;
     let y1 = 0;
     let x2 = 0;
     let y2 = 0;
     for (let i = 0; i < N; i++) {
-      const x = dry[ch][i] + wet[ch][i] * 0.8;
+      const x = dry[ch][i] + wet[ch][i] * 0.9;
       y1 = k * (y1 + x - x1);
       x1 = x;
       y2 = k * (y2 + y1 - x2);
@@ -670,7 +889,7 @@ for (const [name, s] of Object.entries(STEMS)) {
   for (let a = 0; a + win <= N; a += win) {
     let e = 0;
     for (const ch of s.bus) for (let i = a; i < a + win; i++) e += ch[i] * ch[i];
-    if (e > 0) levels.push(10 * Math.log10(e / (2 * win)) + 20 * Math.log10(out.gain));
+    if (e > 1e-12) levels.push(10 * Math.log10(e / (2 * win)) + 20 * Math.log10(out.gain));
   }
   levels.sort((a, b) => b - a);
   const top = levels.slice(0, Math.max(1, Math.ceil(levels.length / 2)));

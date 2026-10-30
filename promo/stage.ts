@@ -24,7 +24,12 @@ import { RANGE, temperature } from "../src/lib/scales.ts";
 import { Mark } from "../src/components/Mark.tsx";
 import { ArmIcon, FamilyGlyph } from "../src/components/Icons.tsx";
 import { UniverseEngine } from "../src/three/engine.ts";
-import { ARM_BEATS, CAPTIONS, CARDS, ENCODINGS, FADES, FAMILY_BEATS, FEATURED, FPS, LABELS, ORBIT_SPEED, SECONDS, SITE } from "./storyboard.mjs";
+import { ARM_BEATS, CAPTIONS, CARDS, ENCODINGS, FADES, FAMILY_BEATS, FEATURED, FORMATS, FPS, LABELS, ORBIT_SPEED, SECONDS, SITE } from "./storyboard.mjs";
+
+/** The format drawn (`?format=9x16` for the upright cut); stage.css lays the overlay out for it. */
+const FORMAT = FORMATS[new URLSearchParams(location.search).get("format") === "9x16" ? "9x16" : "16x9"];
+const UPRIGHT = FORMAT.height > FORMAT.width;
+document.body.dataset.format = FORMAT.id;
 
 /* ---------- The engine ---------- */
 
@@ -72,8 +77,16 @@ interface Insets {
   left: number;
 }
 
-/** The title sits above the galaxy; the systems sit right of the lower-left captions. */
+/**
+ * 16:9: the title sits above the galaxy; the systems sit right of the lower-left captions.
+ * 9:16: the title, then the captions, take the top; the apps' own captions and buttons cover the
+ * bottom; the subject sits between them. The end card is centered in both.
+ */
 function insetsAt(t: number): Insets {
+  if (UPRIGHT) {
+    const end = 1 - smooth(24.9, 26.3, t);
+    return { top: 340 * end, right: 0, bottom: 200 * smooth(3.9, 5.4, t) * end, left: 0 };
+  }
   const top = 230 * (1 - smooth(3.9, 5.4, t));
   const systems = 300 * smooth(10.2, 12.0, t) * (1 - smooth(20.4, 22.6, t));
   const overview = 150 * smooth(21.0, 22.8, t) * (1 - smooth(24.9, 26.3, t));
@@ -132,17 +145,26 @@ function toward(t: number, target: THREE.Vector3, from: THREE.Vector3, share: nu
   return key(t, target, s.radius * share, s.phi, s.theta);
 }
 
+/**
+ * The galaxy views' elevations (radians above the disc) and how close they come (times the
+ * distance that frames the whole galaxy). Upright, the galaxy is seen more from above, where its
+ * disc is round enough for a narrow frame, and it may run past the frame's sides.
+ */
+const VIEWS = UPRIGHT
+  ? { start: 0.14, title: 0.6, sweep: 0.86, over: 1.12, end: 1.24, titleFit: 0.95, sweepFit: 0.62, overFit: 0.84, endFit: 0.98 }
+  : { start: 0.06, title: 0.36, sweep: 0.62, over: 1.0, end: 1.12, titleFit: 1.04, sweepFit: 0.74, overFit: 1.0, endFit: 1.14 };
+
 const keys: Key[] = [];
 {
   const ringCenter: THREE.Vector3 = e.centers[RING];
   const treeCenter: THREE.Vector3 = e.centers[TREE];
   // The galaxy turns until the camera stands outside the ring system, then dives to it, the core behind it.
   const t2 = outside(ringCenter) - 0.25;
-  const p1 = elev(0.36);
-  const p2 = elev(0.62);
-  keys.push(key(0, ORIGIN, 640, elev(0.06), t2 - 1.27));
-  keys.push(key(4.6, ORIGIN, galaxyDistance(4.6, p1, t2 - 0.84) * 1.04, p1, t2 - 0.84));
-  keys.push(key(9.4, ORIGIN, galaxyDistance(9.4, p2, t2) * 0.74, p2, t2));
+  const p1 = elev(VIEWS.title);
+  const p2 = elev(VIEWS.sweep);
+  keys.push(key(0, ORIGIN, 640, elev(VIEWS.start), t2 - 1.27));
+  keys.push(key(4.6, ORIGIN, galaxyDistance(4.6, p1, t2 - 0.84) * VIEWS.titleFit, p1, t2 - 0.84));
+  keys.push(key(9.4, ORIGIN, galaxyDistance(9.4, p2, t2) * VIEWS.sweepFit, p2, t2));
   // Turn to the system first, then push in (the azimuth keeps turning the same way).
   const turn = toward(10.7, ringCenter, cameraAt(keys[2]), 0.42);
   turn.theta = Math.max(turn.theta, t2 + 0.08);
@@ -166,10 +188,10 @@ const keys: Key[] = [];
   // Out over the galaxy: back from the tree system while facing it, then the core takes the center.
   keys.push(key(21.1, treeCenter, tv.r * 2.6, elev(0.75), tv.theta + 0.65));
   keys.push(key(22.1, treeCenter.clone().multiplyScalar(0.5), 60, elev(0.92), tv.theta + 0.9));
-  const p8 = elev(1.0);
-  const p9 = elev(1.12);
-  keys.push(key(23.4, ORIGIN, galaxyDistance(23.4, p8, tv.theta + 1.15) * 1.0, p8, tv.theta + 1.15));
-  keys.push(key(SECONDS, ORIGIN, galaxyDistance(SECONDS, p9, tv.theta + 1.95) * 1.14, p9, tv.theta + 1.95));
+  const p8 = elev(VIEWS.over);
+  const p9 = elev(VIEWS.end);
+  keys.push(key(23.4, ORIGIN, galaxyDistance(23.4, p8, tv.theta + 1.15) * VIEWS.overFit, p8, tv.theta + 1.15));
+  keys.push(key(SECONDS, ORIGIN, galaxyDistance(SECONDS, p9, tv.theta + 1.95) * VIEWS.endFit, p9, tv.theta + 1.95));
 }
 // Turn each azimuth the short way from the one before.
 for (let i = 1; i < keys.length; i++) {
