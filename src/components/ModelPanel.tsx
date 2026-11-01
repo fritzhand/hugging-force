@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowUpRight, ChevronDown, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { derivatives, systemById } from "../data/catalog.ts";
 import { RELATIONS, type ModelSystem, type Relation } from "../data/types.ts";
-import { compact, day, exact, hubDate, hubUrl, kelvin, parameters, plural, signed, splitId } from "../lib/format.ts";
+import { compact, day, exact, hubDate, hubUrl, kelvin, parameters, plural, score, signed, splitId } from "../lib/format.ts";
 import { FAMILY, MODALITY } from "../lib/modality.ts";
 import { magnitude, spectralClass, temperature } from "../lib/scales.ts";
 import { ArmIcon, FamilyGlyph } from "./Icons.tsx";
@@ -88,7 +88,7 @@ export function ModelPanel({ system: s, fetchedAt, family, planet, onFamily, onP
         </div>
         <div>
           <dt>Trending score</dt>
-          <dd>{exact(s.trendingScore)}</dd>
+          <dd>{score(s.trendingScore)}</dd>
         </div>
         <div>
           <dt>License</dt>

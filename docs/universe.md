@@ -18,7 +18,7 @@ system → star → planets, in one file, versioned in git and rebuilt from publ
 | `library`, `license`, `gated` | `library_name`, `cardData.license` (or the `license:` tag), `gated` | |
 | `createdAt` | `createdAt` | Repositories older than March 2022 all carry `2022-03-02T23:29:0xZ` |
 | `parameters` | `safetensors.total` | `null` when the Hub reports none |
-| `downloads`, `downloadsAllTime`, `likes`, `trendingScore` | the same names | `downloads` covers the last 30 days |
+| `downloads`, `downloadsAllTime`, `likes`, `trendingScore` | the same names | `downloads` covers the last 30 days; `trendingScore` is a score, not a count, and can be fractional (0.5) |
 | `parents` | tags `base_model:<relation>:<id>` | The Hub's canonical ids |
 | `tree.<relation>.count` | every page of `/api/models?filter=base_model:<relation>:<id>` | `quantized`, `adapter`, `finetune`, `merge` |
 | `tree.<relation>.top` | the first page, sorted by downloads | Up to five, skipping models marked `not-for-all-audiences` and names that advertise adult content or removed safety tuning, and ids in `data/curated.json`'s `unnamed` |

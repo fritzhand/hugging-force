@@ -23,6 +23,17 @@ describe("the catalog", () => {
     expect(problems.some((p) => p.includes("more than five named members"))).toBe(true);
   });
 
+  it("takes the Hub's trending score as a number, fractions included, but never below zero", () => {
+    const c = clone();
+    c.systems[0].trendingScore = 0.5;
+    expect(validateCatalog(c)).toEqual([]);
+    c.systems[1].trendingScore = -1;
+    c.systems[2].trendingScore = Number.NaN;
+    c.systems[3].trendingScore = "12";
+    const problems = validateCatalog(c);
+    expect(problems.filter((p) => p.includes("trendingScore must be a number, zero or more"))).toHaveLength(3);
+  });
+
   it("rejects a modality without an arm and duplicate ids", () => {
     const c = clone();
     c.systems[0].modality = "tabular";

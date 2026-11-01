@@ -17,6 +17,8 @@ const DERIVATIVE_KEYS = ["id", "downloads", "likes", "createdAt"];
 
 const isObject = (v: Json): v is Record<string, Json> => typeof v === "object" && v !== null && !Array.isArray(v);
 const isCount = (v: Json): v is number => typeof v === "number" && Number.isInteger(v) && v >= 0;
+/** A score the Hub computes: zero or more, and not always whole (a quiet model can score 0.5). */
+const isScore = (v: Json): v is number => typeof v === "number" && Number.isFinite(v) && v >= 0;
 const isText = (v: Json): v is string => typeof v === "string" && v.trim().length > 0;
 
 function keys(where: string, v: Record<string, Json>, allowed: readonly string[], problems: string[]): void {
@@ -59,7 +61,8 @@ function system(where: string, s: Json, problems: string[]): string | null {
   if (s.gated !== false && s.gated !== "auto" && s.gated !== "manual") problems.push(`${at}: gated must be false, "auto" or "manual"`);
   date(`${at}.createdAt`, s.createdAt, problems);
   if (s.parameters !== null && !(isCount(s.parameters) && s.parameters > 0)) problems.push(`${at}: parameters must be a positive count or null`);
-  for (const k of ["downloads", "downloadsAllTime", "likes", "trendingScore"] as const) if (!isCount(s[k])) problems.push(`${at}: ${k} must be a count`);
+  for (const k of ["downloads", "downloadsAllTime", "likes"] as const) if (!isCount(s[k])) problems.push(`${at}: ${k} must be a count`);
+  if (!isScore(s.trendingScore)) problems.push(`${at}: trendingScore must be a number, zero or more`);
   if (isCount(s.downloads) && isCount(s.downloadsAllTime) && s.downloadsAllTime > 0 && s.downloads > s.downloadsAllTime) problems.push(`${at}: 30-day downloads exceed all-time downloads`);
   if (!Array.isArray(s.parents)) problems.push(`${at}: parents must be a list`);
   else

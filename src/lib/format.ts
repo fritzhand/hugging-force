@@ -25,6 +25,11 @@ export function exact(n: number): string {
   return Math.round(n).toLocaleString("en-US");
 }
 
+/** A score as the Hub gives it, fractions kept: 59 -> "59", 0.5 -> "0.5", 1234.25 -> "1,234.25". */
+export function score(n: number): string {
+  return n.toLocaleString("en-US", { maximumFractionDigits: 2 });
+}
+
 /** A parameter count, or what the Hub says about it. */
 export function parameters(n: number | null): string {
   return n === null ? "Not reported" : compact(n);

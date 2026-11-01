@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compact, day, exact, hubDate, hubUrl, kelvin, parameters, signed, splitId } from "./format.ts";
+import { compact, day, exact, hubDate, hubUrl, kelvin, parameters, score, signed, splitId } from "./format.ts";
 
 describe("format", () => {
   it("writes compact numbers with three significant figures", () => {
@@ -19,6 +19,13 @@ describe("format", () => {
     expect(kelvin(11523)).toBe("11,500 K");
     expect(signed(-1.74)).toBe("−1.7");
     expect(signed(2.36)).toBe("+2.4");
+  });
+
+  it("writes trending scores as the Hub gives them, fractions kept", () => {
+    expect(score(59)).toBe("59");
+    expect(score(0.5)).toBe("0.5");
+    expect(score(1234.25)).toBe("1,234.25");
+    expect(score(0)).toBe("0");
   });
 
   it("writes Hub dates, and says when the Hub does not know", () => {
