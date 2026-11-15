@@ -1,6 +1,6 @@
 {
   "format": "hugging-force/catalog@1",
-  "fetchedAt": "2026-11-14T09:22:20.465Z",
+  "fetchedAt": "2026-11-15T09:23:03.972Z",
   "source": {
     "name": "Hugging Face Hub API",
     "url": "https://huggingface.co/api/models",
@@ -20,44 +20,44 @@
       "gated": false,
       "createdAt": "2022-03-02T23:29:04.000Z",
       "parameters": 110106428,
-      "downloads": 32267618,
-      "downloadsAllTime": 3296574841,
-      "likes": 3072,
-      "trendingScore": 4,
+      "downloads": 31500001,
+      "downloadsAllTime": 3297311779,
+      "likes": 3074,
+      "trendingScore": 6,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 7253,
+          "count": 7256,
           "top": [
             {
               "id": "GuardrailsAI/prompt-saturation-attack-detector",
-              "downloads": 240173,
+              "downloads": 236395,
               "likes": 2,
               "createdAt": "2024-11-07T21:16:59.000Z"
             },
             {
               "id": "pritamdeb68/BERTAIDetector",
-              "downloads": 36329,
+              "downloads": 39145,
               "likes": 1,
               "createdAt": "2025-01-25T15:12:36.000Z"
             },
             {
               "id": "huggingface-mic/bert-base-uncased-mic",
-              "downloads": 3099,
+              "downloads": 3191,
               "likes": 0,
               "createdAt": "2026-10-07T12:13:24.000Z"
             },
             {
-              "id": "dannashao/bert-base-uncased-finetuned-advanced-srl_arg",
-              "downloads": 2687,
-              "likes": 1,
-              "createdAt": "2024-03-28T13:38:14.000Z"
-            },
-            {
               "id": "boltuix/bert-lite",
-              "downloads": 2632,
+              "downloads": 2721,
               "likes": 28,
               "createdAt": "2025-04-04T18:26:42.000Z"
+            },
+            {
+              "id": "Yanni8/google-query-rating",
+              "downloads": 2456,
+              "likes": 0,
+              "createdAt": "2023-12-03T14:12:09.000Z"
             }
           ]
         },
@@ -66,7 +66,7 @@
           "top": [
             {
               "id": "vllm-sr/lora_intent_classifier_bert-base-uncased_model",
-              "downloads": 769,
+              "downloads": 778,
               "likes": 1,
               "createdAt": "2025-09-13T16:07:55.000Z"
             },
@@ -78,7 +78,7 @@
             },
             {
               "id": "vllm-sr/lora_jailbreak_classifier_bert-base-uncased_model",
-              "downloads": 109,
+              "downloads": 111,
               "likes": 0,
               "createdAt": "2025-09-13T16:10:27.000Z"
             },
@@ -90,7 +90,7 @@
             },
             {
               "id": "vllm-sr/lora_pii_detector_modernbert-base_model",
-              "downloads": 57,
+              "downloads": 56,
               "likes": 1,
               "createdAt": "2025-09-13T16:09:50.000Z"
             }
@@ -101,31 +101,31 @@
           "top": [
             {
               "id": "Xenova/bert-base-uncased",
-              "downloads": 3205,
+              "downloads": 3253,
               "likes": 2,
               "createdAt": "2023-05-02T21:26:05.000Z"
             },
             {
               "id": "Intel/polite-guard",
-              "downloads": 621,
+              "downloads": 628,
               "likes": 18,
               "createdAt": "2024-12-16T17:17:43.000Z"
             },
             {
               "id": "mobilint/bert-base-uncased",
-              "downloads": 287,
+              "downloads": 285,
               "likes": 0,
               "createdAt": "2025-12-09T07:10:45.000Z"
             },
             {
               "id": "haithamd/fake-news-bert",
-              "downloads": 198,
+              "downloads": 199,
               "likes": 0,
               "createdAt": "2026-09-27T10:56:16.000Z"
             },
             {
               "id": "OpenVINO/bert-base-uncased-sst2-unstructured80-int8-ov",
-              "downloads": 164,
+              "downloads": 166,
               "likes": 4,
               "createdAt": "2023-03-06T05:02:23.000Z"
             }
@@ -136,25 +136,19 @@
           "top": [
             {
               "id": "nagayama0706/language_model",
-              "downloads": 19,
+              "downloads": 20,
               "likes": 0,
               "createdAt": "2024-04-11T08:32:20.000Z"
             },
             {
               "id": "nagayama0706/sales_talk_model",
-              "downloads": 8,
+              "downloads": 10,
               "likes": 0,
               "createdAt": "2024-04-15T08:43:19.000Z"
             },
             {
-              "id": "nagayama0706/natural_science_model",
-              "downloads": 8,
-              "likes": 0,
-              "createdAt": "2024-04-16T02:28:32.000Z"
-            },
-            {
               "id": "nagayama0706/translation_model",
-              "downloads": 7,
+              "downloads": 8,
               "likes": 0,
               "createdAt": "2024-04-15T08:23:50.000Z"
             },
@@ -163,6 +157,12 @@
               "downloads": 7,
               "likes": 1,
               "createdAt": "2024-04-16T02:38:39.000Z"
+            },
+            {
+              "id": "nagayama0706/natural_science_model",
+              "downloads": 6,
+              "likes": 0,
+              "createdAt": "2024-04-16T02:28:32.000Z"
             }
           ]
         }
@@ -179,44 +179,44 @@
       "gated": false,
       "createdAt": "2022-03-02T23:29:04.000Z",
       "parameters": 137022720,
-      "downloads": 33593897,
-      "downloadsAllTime": 974525466,
-      "likes": 3935,
-      "trendingScore": 11,
+      "downloads": 33889983,
+      "downloadsAllTime": 975577041,
+      "likes": 3936,
+      "trendingScore": 13,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 2354,
+          "count": 2357,
           "top": [
             {
               "id": "huggingface-mic/gpt2-mic",
-              "downloads": 3017,
+              "downloads": 3158,
               "likes": 0,
               "createdAt": "2026-10-12T14:20:36.000Z"
             },
             {
               "id": "harpertoken/chat",
-              "downloads": 1718,
+              "downloads": 1700,
               "likes": 0,
               "createdAt": "2025-02-23T20:37:01.000Z"
             },
             {
               "id": "MikeMpapa/8_bar_lmd_clean_custom_final_token_scheme_epochs10",
-              "downloads": 1230,
+              "downloads": 1241,
               "likes": 0,
               "createdAt": "2024-07-31T11:04:38.000Z"
             },
             {
               "id": "PoungPoung/fen_chess",
-              "downloads": 966,
+              "downloads": 972,
               "likes": 0,
               "createdAt": "2023-09-06T11:55:41.000Z"
             },
             {
-              "id": "MiniLLM/init-gpt2-120M",
-              "downloads": 924,
-              "likes": 1,
-              "createdAt": "2024-09-26T08:40:36.000Z"
+              "id": "nikokons/gpt2-greek",
+              "downloads": 931,
+              "likes": 2,
+              "createdAt": "2022-03-02T23:29:05.000Z"
             }
           ]
         },
@@ -225,31 +225,31 @@
           "top": [
             {
               "id": "peft-internal-testing/gpt2-lora-random",
-              "downloads": 17253,
+              "downloads": 17919,
               "likes": 0,
               "createdAt": "2023-11-22T11:11:21.000Z"
             },
             {
-              "id": "leonvanbokhorst/emotion-gpt2-lora",
-              "downloads": 220,
-              "likes": 0,
-              "createdAt": "2024-05-04T16:45:35.000Z"
-            },
-            {
               "id": "monsterapi/gpt2_alpaca-lora",
-              "downloads": 204,
+              "downloads": 227,
               "likes": 1,
               "createdAt": "2023-05-06T05:59:05.000Z"
             },
             {
+              "id": "leonvanbokhorst/emotion-gpt2-lora",
+              "downloads": 221,
+              "likes": 0,
+              "createdAt": "2024-05-04T16:45:35.000Z"
+            },
+            {
               "id": "MobiusGaian/openai-community-gpt2-ffe25b82_FT_adapter",
-              "downloads": 94,
+              "downloads": 99,
               "likes": 0,
               "createdAt": "2026-11-03T13:40:05.000Z"
             },
             {
               "id": "MobiusGaian/gpt_FT_adapter12",
-              "downloads": 76,
+              "downloads": 78,
               "likes": 0,
               "createdAt": "2026-08-04T12:07:56.000Z"
             }
@@ -260,31 +260,31 @@
           "top": [
             {
               "id": "Xenova/gpt2",
-              "downloads": 8794,
+              "downloads": 8585,
               "likes": 12,
               "createdAt": "2023-05-02T21:33:00.000Z"
             },
             {
               "id": "PrunaAI/gpt2-GGUF-smashed",
-              "downloads": 2723,
+              "downloads": 2651,
               "likes": 5,
               "createdAt": "2024-05-15T17:13:10.000Z"
             },
             {
               "id": "PrunaAI/openai-community-gpt2-GGUF-smashed",
-              "downloads": 2429,
+              "downloads": 2335,
               "likes": 1,
               "createdAt": "2025-02-14T18:02:42.000Z"
             },
             {
               "id": "mradermacher/gpt2-i1-GGUF",
-              "downloads": 2023,
+              "downloads": 1865,
               "likes": 0,
               "createdAt": "2024-09-08T14:31:09.000Z"
             },
             {
               "id": "mradermacher/gpt2-GGUF",
-              "downloads": 1983,
+              "downloads": 1849,
               "likes": 0,
               "createdAt": "2024-09-08T02:08:10.000Z"
             }
@@ -301,7 +301,7 @@
             },
             {
               "id": "amitom/DialoGPT-gpt2-TIES-DialoHeavy",
-              "downloads": 11,
+              "downloads": 10,
               "likes": 0,
               "createdAt": "2025-04-10T12:02:18.000Z"
             },
@@ -338,10 +338,10 @@
       "gated": false,
       "createdAt": "2022-03-02T23:29:05.000Z",
       "parameters": 22713728,
-      "downloads": 172686714,
-      "downloadsAllTime": 4269303011,
-      "likes": 6118,
-      "trendingScore": 28,
+      "downloads": 171152694,
+      "downloadsAllTime": 4274204527,
+      "likes": 6126,
+      "trendingScore": 29,
       "parents": [
         {
           "id": "nreimers/MiniLM-L6-H384-uncased",
@@ -350,49 +350,43 @@
       ],
       "tree": {
         "finetune": {
-          "count": 1165,
+          "count": 1168,
           "top": [
             {
               "id": "abdur197/fine-tuned-column-mapper",
-              "downloads": 34336,
+              "downloads": 34423,
               "likes": 0,
               "createdAt": "2025-08-25T03:28:45.000Z"
             },
             {
               "id": "anass1209/resume-job-matcher-all-MiniLM-L6-v2",
-              "downloads": 706,
+              "downloads": 699,
               "likes": 15,
               "createdAt": "2025-04-16T09:50:27.000Z"
             },
             {
               "id": "redis/langcache-embed-v3-small",
-              "downloads": 706,
+              "downloads": 663,
               "likes": 11,
               "createdAt": "2025-10-15T11:35:36.000Z"
             },
             {
               "id": "farbodtavakkoli/OTel-Embedding-22M",
-              "downloads": 669,
+              "downloads": 650,
               "likes": 2,
               "createdAt": "2026-02-02T10:42:55.000Z"
             },
             {
               "id": "codersan/FaMiniLM",
-              "downloads": 545,
+              "downloads": 559,
               "likes": 1,
               "createdAt": "2025-07-31T13:32:45.000Z"
             }
           ]
         },
         "adapter": {
-          "count": 23,
+          "count": 22,
           "top": [
-            {
-              "id": "SZLHOLDINGS/miniembed-nano-r1-candidate",
-              "downloads": 85,
-              "likes": 0,
-              "createdAt": "2026-11-05T01:29:27.000Z"
-            },
             {
               "id": "vivekkopthsd/minilm-l6-v2-taxfinance-lora",
               "downloads": 13,
@@ -401,7 +395,7 @@
             },
             {
               "id": "Icey444/emb-rag-minilm-indirect-rl",
-              "downloads": 9,
+              "downloads": 8,
               "likes": 0,
               "createdAt": "2026-07-14T06:04:09.000Z"
             },
@@ -412,8 +406,14 @@
               "createdAt": "2025-05-13T17:34:33.000Z"
             },
             {
+              "id": "Shipmaster1/minilm-youtube-adapter",
+              "downloads": 6,
+              "likes": 0,
+              "createdAt": "2025-05-09T07:59:14.000Z"
+            },
+            {
               "id": "MatteoBucc/passphrase-identification-sentence-transformers-all-MiniLM-L6-v2-qqp-final",
-              "downloads": 7,
+              "downloads": 6,
               "likes": 0,
               "createdAt": "2025-05-13T17:45:16.000Z"
             }
@@ -424,33 +424,33 @@
           "top": [
             {
               "id": "Xenova/all-MiniLM-L6-v2",
-              "downloads": 4536422,
+              "downloads": 4510730,
               "likes": 181,
               "createdAt": "2023-05-02T22:46:15.000Z"
             },
             {
               "id": "leliuga/all-MiniLM-L6-v2-GGUF",
-              "downloads": 255579,
+              "downloads": 234239,
               "likes": 11,
               "createdAt": "2024-03-15T12:02:17.000Z"
             },
             {
               "id": "second-state/All-MiniLM-L6-v2-Embedding-GGUF",
-              "downloads": 167218,
+              "downloads": 167420,
               "likes": 25,
               "createdAt": "2024-03-12T09:36:26.000Z"
             },
             {
               "id": "zgpu-ai/zlm-v1-iab-classify-edge",
-              "downloads": 140876,
+              "downloads": 139296,
               "likes": 1,
               "createdAt": "2026-09-29T18:21:54.000Z"
             },
             {
-              "id": "onnx-community/all-MiniLM-L6-v2-ONNX",
-              "downloads": 20709,
-              "likes": 5,
-              "createdAt": "2025-07-29T21:17:27.000Z"
+              "id": "Mozilla/smart-tab-embedding",
+              "downloads": 20772,
+              "likes": 11,
+              "createdAt": "2024-12-16T22:29:12.000Z"
             }
           ]
         },
@@ -496,9 +496,9 @@
       "gated": "manual",
       "createdAt": "2024-07-18T08:56:00.000Z",
       "parameters": 8030261248,
-      "downloads": 4210422,
-      "downloadsAllTime": 194368066,
-      "likes": 8925,
+      "downloads": 4238569,
+      "downloadsAllTime": 194525582,
+      "likes": 8938,
       "trendingScore": 53,
       "parents": [
         {
@@ -508,105 +508,105 @@
       ],
       "tree": {
         "finetune": {
-          "count": 3315,
+          "count": 3317,
           "top": [
             {
               "id": "unsloth/Llama-3.1-8B-Instruct",
-              "downloads": 324597,
+              "downloads": 318639,
               "likes": 17,
               "createdAt": "2025-02-15T10:20:05.000Z"
             },
             {
               "id": "unsloth/Meta-Llama-3.1-8B-Instruct",
-              "downloads": 165618,
+              "downloads": 163594,
               "likes": 99,
               "createdAt": "2024-07-23T16:24:05.000Z"
             },
             {
               "id": "nvidia/Llama-3.1-8B-Instruct-FP8",
-              "downloads": 40057,
+              "downloads": 39663,
               "likes": 43,
               "createdAt": "2024-08-29T08:52:39.000Z"
             },
             {
               "id": "Vikhrmodels/Vikhr-Llama3.1-8B-Instruct-R-21-09-24",
-              "downloads": 38319,
+              "downloads": 38333,
               "likes": 35,
               "createdAt": "2024-09-20T20:14:48.000Z"
             },
             {
               "id": "Skywork/Skywork-Reward-V2-Llama-3.1-8B",
-              "downloads": 13353,
+              "downloads": 13232,
               "likes": 50,
               "createdAt": "2025-06-26T04:06:09.000Z"
             }
           ]
         },
         "adapter": {
-          "count": 3059,
+          "count": 3060,
           "top": [
             {
               "id": "adamkarvonen/checkpoints_latentqa_cls_past_lens_Llama-3_1-8B-Instruct",
-              "downloads": 2283,
+              "downloads": 2282,
               "likes": 1,
               "createdAt": "2025-12-22T01:00:47.000Z"
             },
             {
               "id": "hypaai/Hypa-Llama3.1-8b-SFT",
-              "downloads": 982,
+              "downloads": 999,
               "likes": 0,
               "createdAt": "2026-05-06T15:16:13.000Z"
             },
             {
               "id": "calix-ai-labs/Llama-Calix-CLM-1.0",
-              "downloads": 830,
+              "downloads": 843,
               "likes": 5,
               "createdAt": "2026-10-19T06:48:05.000Z"
             },
             {
-              "id": "facebook/Meta-SecAlign-8B",
-              "downloads": 776,
-              "likes": 22,
-              "createdAt": "2025-06-26T22:21:55.000Z"
-            },
-            {
               "id": "jeorgesilva/llama3.1-german-corrector-q4",
-              "downloads": 662,
+              "downloads": 680,
               "likes": 0,
               "createdAt": "2026-10-18T15:05:47.000Z"
+            },
+            {
+              "id": "Kawon/llama3.1-food-finetune_v14_r8",
+              "downloads": 596,
+              "likes": 0,
+              "createdAt": "2025-02-14T06:19:24.000Z"
             }
           ]
         },
         "quantized": {
-          "count": 964,
+          "count": 966,
           "top": [
             {
               "id": "bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
-              "downloads": 305527,
+              "downloads": 302162,
               "likes": 433,
               "createdAt": "2024-07-23T15:36:34.000Z"
             },
             {
               "id": "unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit",
-              "downloads": 81776,
+              "downloads": 79251,
               "likes": 107,
               "createdAt": "2024-07-23T16:09:09.000Z"
             },
             {
               "id": "RedHatAI/Meta-Llama-3.1-8B-Instruct-FP8",
-              "downloads": 64437,
+              "downloads": 67780,
               "likes": 45,
               "createdAt": "2024-07-23T20:48:26.000Z"
             },
             {
               "id": "lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF",
-              "downloads": 60277,
+              "downloads": 58453,
               "likes": 264,
               "createdAt": "2024-07-23T16:18:30.000Z"
             },
             {
               "id": "GaleneAI/llama-3.1-nemoguard-8b-content-safety-merged-NVFP4",
-              "downloads": 36307,
+              "downloads": 46762,
               "likes": 0,
               "createdAt": "2026-01-19T22:53:26.000Z"
             }
@@ -617,31 +617,31 @@
           "top": [
             {
               "id": "voidful/Llama-3.1-TAIDE-R1-8B-Chat",
-              "downloads": 2813,
+              "downloads": 2815,
               "likes": 23,
               "createdAt": "2025-02-23T01:01:42.000Z"
             },
             {
               "id": "microsoft/HARC-Llama-3.1-8B-Instruct",
-              "downloads": 2031,
+              "downloads": 2208,
               "likes": 5,
               "createdAt": "2026-07-02T05:50:14.000Z"
             },
             {
               "id": "ForSureTesterSim/Llama-3.1-8B-SLERP-0.5",
-              "downloads": 814,
+              "downloads": 825,
               "likes": 1,
               "createdAt": "2026-11-07T21:50:52.000Z"
             },
             {
               "id": "QuantFactory/Llama3.1-ArrowSE-v0.4-GGUF",
-              "downloads": 356,
+              "downloads": 363,
               "likes": 1,
               "createdAt": "2024-07-28T06:17:48.000Z"
             },
             {
               "id": "tartuNLP/Llama-3.1-EstLLM-8B-Instruct-1125",
-              "downloads": 135,
+              "downloads": 133,
               "likes": 6,
               "createdAt": "2025-11-28T13:27:42.000Z"
             }
@@ -660,9 +660,9 @@
       "gated": false,
       "createdAt": "2025-01-20T03:46:07.000Z",
       "parameters": 684489845504,
-      "downloads": 1646817,
-      "downloadsAllTime": 51636618,
-      "likes": 14455,
+      "downloads": 1649739,
+      "downloadsAllTime": 51682930,
+      "likes": 14457,
       "trendingScore": 9,
       "parents": [],
       "tree": {
@@ -671,31 +671,31 @@
           "top": [
             {
               "id": "unsloth/DeepSeek-R1-BF16",
-              "downloads": 9762,
+              "downloads": 8845,
               "likes": 24,
               "createdAt": "2025-01-20T09:32:51.000Z"
             },
             {
               "id": "microsoft/MAI-DS-R1",
-              "downloads": 2325,
+              "downloads": 2443,
               "likes": 316,
               "createdAt": "2025-04-16T19:37:19.000Z"
             },
             {
               "id": "nvidia/DeepSeek-R1-NVFP4-v2",
-              "downloads": 2290,
+              "downloads": 2274,
               "likes": 10,
               "createdAt": "2025-07-22T02:35:54.000Z"
             },
             {
               "id": "huggingface-mic/DeepSeek-R1-mic",
-              "downloads": 1891,
+              "downloads": 2027,
               "likes": 0,
               "createdAt": "2026-10-29T16:39:41.000Z"
             },
             {
               "id": "nvidia/DeepSeek-R1-NVFP4",
-              "downloads": 1586,
+              "downloads": 1564,
               "likes": 287,
               "createdAt": "2025-02-21T00:41:17.000Z"
             }
@@ -712,7 +712,7 @@
             },
             {
               "id": "Avener/Sd3m",
-              "downloads": 37,
+              "downloads": 36,
               "likes": 0,
               "createdAt": "2024-10-17T08:46:13.000Z"
             },
@@ -741,31 +741,31 @@
           "top": [
             {
               "id": "unsloth/DeepSeek-R1-GGUF",
-              "downloads": 46994,
-              "likes": 1127,
+              "downloads": 47165,
+              "likes": 1128,
               "createdAt": "2025-01-20T13:09:42.000Z"
             },
             {
               "id": "amd/DeepSeek-R1-MXFP4",
-              "downloads": 13806,
+              "downloads": 14348,
               "likes": 5,
               "createdAt": "2025-05-21T07:55:49.000Z"
             },
             {
               "id": "unsloth/DeepSeek-R1-GGUF-UD",
-              "downloads": 2457,
+              "downloads": 2383,
               "likes": 16,
               "createdAt": "2025-04-20T21:12:47.000Z"
             },
             {
               "id": "mlx-community/DeepSeek-R1-4bit",
-              "downloads": 1866,
+              "downloads": 1939,
               "likes": 40,
               "createdAt": "2025-01-20T18:54:28.000Z"
             },
             {
               "id": "bartowski/DeepSeek-R1-GGUF",
-              "downloads": 1478,
+              "downloads": 1436,
               "likes": 108,
               "createdAt": "2025-01-21T02:24:25.000Z"
             }
@@ -776,19 +776,19 @@
           "top": [
             {
               "id": "tngtech/DeepSeek-TNG-R1T2-Chimera",
-              "downloads": 689,
+              "downloads": 692,
               "likes": 288,
               "createdAt": "2025-07-02T12:05:00.000Z"
             },
             {
               "id": "tngtech/DeepSeek-R1T-Chimera",
-              "downloads": 234,
+              "downloads": 236,
               "likes": 272,
               "createdAt": "2025-04-26T19:38:10.000Z"
             },
             {
               "id": "TVS759/DeepSeek-TNG-R1T2-Chimera",
-              "downloads": 23,
+              "downloads": 25,
               "likes": 0,
               "createdAt": "2026-09-06T22:31:37.000Z"
             },
@@ -813,8 +813,8 @@
       "gated": false,
       "createdAt": "2025-07-08T10:11:45.000Z",
       "parameters": 3075098624,
-      "downloads": 245898,
-      "downloadsAllTime": 6708619,
+      "downloads": 229124,
+      "downloadsAllTime": 6711096,
       "likes": 1079,
       "trendingScore": 3,
       "parents": [
@@ -825,58 +825,58 @@
       ],
       "tree": {
         "finetune": {
-          "count": 180,
+          "count": 181,
           "top": [
             {
               "id": "yujiepan/smollm3-tiny-random",
-              "downloads": 2273,
+              "downloads": 2156,
               "likes": 0,
               "createdAt": "2025-07-10T16:40:26.000Z"
             },
             {
               "id": "huggingface-mic/SmolLM3-3B-mic",
-              "downloads": 1825,
+              "downloads": 1942,
               "likes": 0,
               "createdAt": "2026-10-29T10:57:25.000Z"
             },
             {
               "id": "unsloth/SmolLM3-3B",
-              "downloads": 1065,
+              "downloads": 958,
               "likes": 10,
               "createdAt": "2025-07-08T21:15:13.000Z"
             },
             {
               "id": "princeton-nlp/queen_pawn-8",
-              "downloads": 600,
+              "downloads": 565,
               "likes": 10,
               "createdAt": "2026-10-02T18:06:01.000Z"
             },
             {
               "id": "tiny-random/smollm3",
-              "downloads": 461,
+              "downloads": 447,
               "likes": 0,
               "createdAt": "2025-07-10T16:40:59.000Z"
             }
           ]
         },
         "adapter": {
-          "count": 82,
+          "count": 83,
           "top": [
             {
               "id": "webAI-Official/TwIL-LM3",
-              "downloads": 258466,
+              "downloads": 257822,
               "likes": 100,
               "createdAt": "2026-08-03T20:53:55.000Z"
             },
             {
               "id": "notpaulmartin/SmolLM3-3B-flax",
-              "downloads": 1350,
+              "downloads": 1277,
               "likes": 0,
               "createdAt": "2026-10-01T14:14:40.000Z"
             },
             {
               "id": "BasselNashaat/SmolLM3-3B-banking77",
-              "downloads": 612,
+              "downloads": 613,
               "likes": 2,
               "createdAt": "2026-11-06T02:04:01.000Z"
             },
@@ -895,35 +895,35 @@
           ]
         },
         "quantized": {
-          "count": 129,
+          "count": 131,
           "top": [
             {
               "id": "bartowski/HuggingFaceTB_SmolLM3-3B-GGUF",
-              "downloads": 67886,
+              "downloads": 69333,
               "likes": 14,
               "createdAt": "2025-07-08T16:09:26.000Z"
             },
             {
               "id": "ggml-org/SmolLM3-3B-GGUF",
-              "downloads": 29085,
+              "downloads": 28828,
               "likes": 81,
               "createdAt": "2025-07-08T12:36:39.000Z"
             },
             {
               "id": "unsloth/SmolLM3-3B-GGUF",
-              "downloads": 7211,
+              "downloads": 7371,
               "likes": 36,
               "createdAt": "2025-07-08T22:00:38.000Z"
             },
             {
               "id": "unsloth/SmolLM3-3B-128K-GGUF",
-              "downloads": 4939,
-              "likes": 48,
+              "downloads": 4786,
+              "likes": 49,
               "createdAt": "2025-07-08T23:13:59.000Z"
             },
             {
               "id": "mlx-community/SmolLM3-3B-4bit",
-              "downloads": 3488,
+              "downloads": 3474,
               "likes": 7,
               "createdAt": "2025-07-08T16:06:25.000Z"
             }
@@ -934,7 +934,7 @@
           "top": [
             {
               "id": "muzerai/SmolLM3-3B-Merged-AIJOAH",
-              "downloads": 13,
+              "downloads": 11,
               "likes": 0,
               "createdAt": "2025-07-17T20:10:38.000Z"
             }
@@ -953,10 +953,10 @@
       "gated": false,
       "createdAt": "2025-08-04T22:33:29.000Z",
       "parameters": 20914757184,
-      "downloads": 5641053,
-      "downloadsAllTime": 109401404,
-      "likes": 5310,
-      "trendingScore": 15,
+      "downloads": 5590307,
+      "downloadsAllTime": 109574606,
+      "likes": 5315,
+      "trendingScore": 17,
       "parents": [],
       "tree": {
         "finetune": {
@@ -964,33 +964,33 @@
           "top": [
             {
               "id": "openai/gpt-oss-safeguard-20b",
-              "downloads": 25714,
+              "downloads": 27178,
               "likes": 293,
               "createdAt": "2025-09-18T18:51:08.000Z"
             },
             {
               "id": "unsloth/gpt-oss-20b-BF16",
-              "downloads": 21941,
+              "downloads": 21465,
               "likes": 36,
               "createdAt": "2025-08-05T17:44:50.000Z"
             },
             {
               "id": "huggingface-mic/gpt_oss-mic",
-              "downloads": 2106,
+              "downloads": 2228,
               "likes": 0,
               "createdAt": "2026-10-12T15:57:06.000Z"
             },
             {
               "id": "StarLiu714/GPT-oss-MOFinder-1field-ablation",
-              "downloads": 740,
+              "downloads": 747,
               "likes": 0,
               "createdAt": "2026-10-03T05:12:51.000Z"
             },
             {
-              "id": "fastcoder-factory/gpt-oss-20b-FCF-ck400-ablation-halfdata",
-              "downloads": 633,
-              "likes": 0,
-              "createdAt": "2026-11-06T23:21:59.000Z"
+              "id": "chromadb/context-1",
+              "downloads": 647,
+              "likes": 425,
+              "createdAt": "2026-03-12T05:00:08.000Z"
             }
           ]
         },
@@ -999,31 +999,31 @@
           "top": [
             {
               "id": "StarLiu714/GPT-oss-MOFinder",
-              "downloads": 364,
+              "downloads": 369,
               "likes": 0,
               "createdAt": "2026-09-25T13:46:41.000Z"
             },
             {
               "id": "mikalv/gpt-oss-20b-chemistry",
-              "downloads": 236,
+              "downloads": 242,
               "likes": 1,
               "createdAt": "2025-12-16T01:39:17.000Z"
             },
             {
               "id": "jorge-erdb/gpt-oss-20b-sonnet-flavored-gguf",
-              "downloads": 168,
+              "downloads": 158,
               "likes": 1,
               "createdAt": "2026-05-04T02:09:46.000Z"
             },
             {
               "id": "yiwenX/gpt-oss-20b-multilingual-reasoner",
-              "downloads": 141,
+              "downloads": 135,
               "likes": 0,
               "createdAt": "2025-08-31T08:27:11.000Z"
             },
             {
               "id": "ZeroAgency/gpt-oss-20b-multilingual-reasoner-lora",
-              "downloads": 120,
+              "downloads": 119,
               "likes": 1,
               "createdAt": "2025-08-08T11:57:08.000Z"
             }
@@ -1034,31 +1034,31 @@
           "top": [
             {
               "id": "unsloth/gpt-oss-20b-GGUF",
-              "downloads": 615143,
+              "downloads": 617393,
               "likes": 909,
               "createdAt": "2025-08-05T17:12:17.000Z"
             },
             {
               "id": "ggml-org/gpt-oss-20b-GGUF",
-              "downloads": 378904,
-              "likes": 201,
+              "downloads": 382764,
+              "likes": 203,
               "createdAt": "2025-08-02T10:45:18.000Z"
             },
             {
               "id": "mlx-community/gpt-oss-20b-MXFP4-Q8",
-              "downloads": 175215,
+              "downloads": 176137,
               "likes": 104,
               "createdAt": "2025-08-29T17:57:36.000Z"
             },
             {
               "id": "lmstudio-community/gpt-oss-20b-GGUF",
-              "downloads": 115711,
+              "downloads": 117458,
               "likes": 88,
               "createdAt": "2025-08-05T17:23:35.000Z"
             },
             {
               "id": "unsloth/gpt-oss-20b-unsloth-bnb-4bit",
-              "downloads": 74470,
+              "downloads": 73560,
               "likes": 41,
               "createdAt": "2025-08-07T16:30:18.000Z"
             }
@@ -1069,31 +1069,31 @@
           "top": [
             {
               "id": "OpenGVLab/InternVL3_5-GPT-OSS-20B-A4B-Preview-HF",
-              "downloads": 661917,
+              "downloads": 664378,
               "likes": 10,
               "createdAt": "2025-08-29T13:16:54.000Z"
             },
             {
               "id": "OpenGVLab/InternVL3_5-GPT-OSS-20B-A4B-Preview",
-              "downloads": 8956,
+              "downloads": 9210,
               "likes": 85,
               "createdAt": "2025-08-25T16:38:37.000Z"
             },
             {
               "id": "mlx-community/InternVL3_5-GPT-OSS-20B-A4B-Preview-4bit",
-              "downloads": 113,
+              "downloads": 111,
               "likes": 0,
               "createdAt": "2025-10-04T05:05:13.000Z"
             },
             {
               "id": "vlnkane/InternVL3_5-GPT-OSS-20B-A4B-Preview",
-              "downloads": 24,
+              "downloads": 25,
               "likes": 1,
               "createdAt": "2025-09-17T07:57:51.000Z"
             },
             {
               "id": "PoSTMEDIA/Vayne-V1",
-              "downloads": 24,
+              "downloads": 25,
               "likes": 0,
               "createdAt": "2025-10-23T20:20:58.000Z"
             }
@@ -1112,42 +1112,42 @@
       "gated": false,
       "createdAt": "2026-09-14T14:53:42.000Z",
       "parameters": 744371512,
-      "downloads": 517987,
-      "downloadsAllTime": 661386,
-      "likes": 3418,
-      "trendingScore": 159,
+      "downloads": 532592,
+      "downloadsAllTime": 683853,
+      "likes": 3435,
+      "trendingScore": 169,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 178,
+          "count": 179,
           "top": [
             {
               "id": "litert-community/embeddinggemma-2-740m-litert-lm",
-              "downloads": 150652,
-              "likes": 44,
+              "downloads": 149093,
+              "likes": 45,
               "createdAt": "2026-09-29T21:13:11.000Z"
             },
             {
               "id": "litert-community/embeddinggemma-2-text-vision-440m-litert-lm",
-              "downloads": 16483,
+              "downloads": 16370,
               "likes": 7,
               "createdAt": "2026-09-29T21:15:31.000Z"
             },
             {
               "id": "litert-community/embeddinggemma-2-text-270m-litert-lm",
-              "downloads": 16214,
-              "likes": 13,
+              "downloads": 16062,
+              "likes": 14,
               "createdAt": "2026-09-29T21:15:59.000Z"
             },
             {
               "id": "abacusai/Smaug-AI-Image-Detector",
-              "downloads": 9686,
+              "downloads": 10017,
               "likes": 11,
               "createdAt": "2026-10-16T07:34:56.000Z"
             },
             {
               "id": "unsloth/embeddinggemma-2",
-              "downloads": 5619,
+              "downloads": 5494,
               "likes": 15,
               "createdAt": "2026-10-06T10:58:36.000Z"
             }
@@ -1176,48 +1176,48 @@
             },
             {
               "id": "naijaml/embeddinggemma-2-african-speech-lora",
-              "downloads": 51,
+              "downloads": 34,
               "likes": 1,
               "createdAt": "2026-10-15T07:40:44.000Z"
             },
             {
               "id": "ML-Intern-lab/embeddinggemma2-nli-lora-poc",
-              "downloads": 17,
+              "downloads": 15,
               "likes": 0,
               "createdAt": "2026-10-13T22:40:59.000Z"
             }
           ]
         },
         "quantized": {
-          "count": 140,
+          "count": 141,
           "top": [
             {
               "id": "onnx-community/embeddinggemma-2-ONNX",
-              "downloads": 512172,
-              "likes": 37,
+              "downloads": 505776,
+              "likes": 38,
               "createdAt": "2026-10-04T20:51:33.000Z"
             },
             {
               "id": "ggml-org/embeddinggemma-2-GGUF",
-              "downloads": 125632,
+              "downloads": 121663,
               "likes": 60,
               "createdAt": "2026-10-06T16:08:06.000Z"
             },
             {
               "id": "unsloth/embeddinggemma-2-GGUF",
-              "downloads": 93928,
-              "likes": 373,
+              "downloads": 90070,
+              "likes": 374,
               "createdAt": "2026-10-06T10:58:50.000Z"
             },
             {
               "id": "mlx-community/embeddinggemma-2-8bit",
-              "downloads": 5655,
+              "downloads": 5612,
               "likes": 9,
               "createdAt": "2026-10-06T15:48:47.000Z"
             },
             {
               "id": "ngquocvinh/EmbeddingGemma-2-GGUF",
-              "downloads": 3490,
+              "downloads": 3330,
               "likes": 1,
               "createdAt": "2026-10-08T02:46:34.000Z"
             }
@@ -1240,8 +1240,8 @@
       "gated": false,
       "createdAt": "2022-03-02T23:29:05.000Z",
       "parameters": 86567656,
-      "downloads": 15813089,
-      "downloadsAllTime": 210860590,
+      "downloads": 15726212,
+      "downloadsAllTime": 211173335,
       "likes": 1053,
       "trendingScore": 1,
       "parents": [],
@@ -1251,25 +1251,25 @@
           "top": [
             {
               "id": "ISxOdin/vit-base-oxford-iiit-pets",
-              "downloads": 195569,
+              "downloads": 192982,
               "likes": 2,
               "createdAt": "2025-04-01T15:21:11.000Z"
             },
             {
               "id": "ufal/vit-historical-page",
-              "downloads": 10098,
+              "downloads": 10221,
               "likes": 4,
               "createdAt": "2025-03-07T14:02:27.000Z"
             },
             {
               "id": "sharmajai901/UL_base_classification",
-              "downloads": 3122,
+              "downloads": 2974,
               "likes": 1,
               "createdAt": "2024-06-11T10:02:13.000Z"
             },
             {
               "id": "huggingface-mic/vit-mic",
-              "downloads": 2689,
+              "downloads": 2809,
               "likes": 0,
               "createdAt": "2026-10-12T14:21:11.000Z"
             },
@@ -1286,19 +1286,19 @@
           "top": [
             {
               "id": "Ganymede981/ham10000-vit",
-              "downloads": 89,
+              "downloads": 94,
               "likes": 1,
               "createdAt": "2026-05-14T15:30:02.000Z"
             },
             {
               "id": "Ganymede981/bigearthnet-vit",
-              "downloads": 22,
+              "downloads": 23,
               "likes": 0,
               "createdAt": "2026-05-12T06:25:37.000Z"
             },
             {
               "id": "Ganymede981/eurosat-vit",
-              "downloads": 10,
+              "downloads": 9,
               "likes": 2,
               "createdAt": "2026-05-14T11:02:57.000Z"
             },
@@ -1317,23 +1317,23 @@
           ]
         },
         "quantized": {
-          "count": 20,
+          "count": 21,
           "top": [
             {
               "id": "Xenova/vit-base-patch16-224",
-              "downloads": 2987,
+              "downloads": 3010,
               "likes": 3,
               "createdAt": "2023-05-02T22:25:35.000Z"
             },
             {
               "id": "patcdaniel/UCSCPhytoViT83",
-              "downloads": 708,
+              "downloads": 707,
               "likes": 0,
               "createdAt": "2025-08-05T22:30:18.000Z"
             },
             {
               "id": "Arm/vit-base-int8-xnnpack-executorch",
-              "downloads": 658,
+              "downloads": 673,
               "likes": 0,
               "createdAt": "2026-05-29T14:12:13.000Z"
             },
@@ -1345,7 +1345,7 @@
             },
             {
               "id": "NMFS-OSI/noaa-esd-coral-bleaching-vit-classifier-v1",
-              "downloads": 53,
+              "downloads": 45,
               "likes": 1,
               "createdAt": "2025-02-19T22:54:48.000Z"
             }
@@ -1368,10 +1368,10 @@
       "gated": false,
       "createdAt": "2022-03-02T23:29:05.000Z",
       "parameters": 427616846,
-      "downloads": 7974676,
-      "downloadsAllTime": 1205890109,
-      "likes": 2139,
-      "trendingScore": 2,
+      "downloads": 8230130,
+      "downloadsAllTime": 1206326543,
+      "likes": 2140,
+      "trendingScore": 3,
       "parents": [],
       "tree": {
         "finetune": {
@@ -1379,31 +1379,31 @@
           "top": [
             {
               "id": "zer0int/CLIP-GmP-ViT-L-14",
-              "downloads": 8684,
+              "downloads": 8491,
               "likes": 523,
               "createdAt": "2024-06-15T12:47:19.000Z"
             },
             {
               "id": "OpenGVLab/ViCLIP-L-14-hf",
-              "downloads": 6386,
+              "downloads": 6046,
               "likes": 1,
               "createdAt": "2024-09-15T07:53:59.000Z"
             },
             {
               "id": "BAAI/BGE-VL-large",
-              "downloads": 1731,
+              "downloads": 1691,
               "likes": 25,
               "createdAt": "2025-02-25T03:17:49.000Z"
             },
             {
               "id": "tanganke/clip-vit-large-patch14_stanford-cars",
-              "downloads": 854,
+              "downloads": 856,
               "likes": 0,
               "createdAt": "2024-04-29T04:01:26.000Z"
             },
             {
               "id": "tanganke/clip-vit-large-patch14_gtsrb",
-              "downloads": 737,
+              "downloads": 736,
               "likes": 1,
               "createdAt": "2024-04-29T03:56:26.000Z"
             }
@@ -1449,33 +1449,33 @@
           "top": [
             {
               "id": "Xenova/clip-vit-large-patch14",
-              "downloads": 4644,
+              "downloads": 4654,
               "likes": 1,
               "createdAt": "2023-09-01T22:44:26.000Z"
             },
             {
               "id": "yuxi-liu-wired/CSD",
-              "downloads": 1047,
+              "downloads": 1051,
               "likes": 14,
               "createdAt": "2024-09-07T00:31:24.000Z"
             },
             {
               "id": "onnx-community/clip-vit-large-patch14-ONNX",
-              "downloads": 38,
+              "downloads": 44,
               "likes": 1,
               "createdAt": "2026-01-31T13:13:25.000Z"
             },
             {
               "id": "Prince-1/clip-vit-large-patch14",
-              "downloads": 11,
+              "downloads": 10,
               "likes": 0,
               "createdAt": "2026-05-14T06:02:10.000Z"
             },
             {
-              "id": "robotflowlabs/clip-vit-large-patch14-int8",
-              "downloads": 7,
+              "id": "ycrainyu/spotclue-clip-vit-l14-q4",
+              "downloads": 10,
               "likes": 0,
-              "createdAt": "2026-03-19T22:24:10.000Z"
+              "createdAt": "2026-11-14T06:05:32.000Z"
             }
           ]
         },
@@ -1496,10 +1496,10 @@
       "gated": false,
       "createdAt": "2023-07-25T13:25:51.000Z",
       "parameters": 2567463684,
-      "downloads": 4755797,
-      "downloadsAllTime": 132280798,
-      "likes": 8471,
-      "trendingScore": 14,
+      "downloads": 4759073,
+      "downloadsAllTime": 132438230,
+      "likes": 8477,
+      "trendingScore": 16,
       "parents": [],
       "tree": {
         "finetune": {
@@ -1507,32 +1507,32 @@
           "top": [
             {
               "id": "cagliostrolab/animagine-xl-4.0",
-              "downloads": 1032714,
-              "likes": 584,
+              "downloads": 1028899,
+              "likes": 586,
               "createdAt": "2025-01-10T17:51:13.000Z"
             },
             {
               "id": "RunDiffusion/Juggernaut-XL-v9",
-              "downloads": 603779,
+              "downloads": 617579,
               "likes": 524,
               "createdAt": "2024-02-18T21:05:03.000Z"
             },
             {
               "id": "diffusers/stable-diffusion-xl-1.0-inpainting-0.1",
-              "downloads": 86320,
+              "downloads": 78489,
               "likes": 394,
               "createdAt": "2023-09-01T14:07:10.000Z"
             },
             {
               "id": "RunDiffusion/Juggernaut-XL-Lightning",
-              "downloads": 50162,
+              "downloads": 52411,
               "likes": 68,
               "createdAt": "2024-02-23T20:45:29.000Z"
             },
             {
               "id": "RunDiffusion/Juggernaut-X-v10",
-              "downloads": 41613,
-              "likes": 180,
+              "downloads": 40335,
+              "likes": 181,
               "createdAt": "2024-04-19T21:30:46.000Z"
             }
           ]
@@ -1542,31 +1542,31 @@
           "top": [
             {
               "id": "thibaud/controlnet-openpose-sdxl-1.0",
-              "downloads": 88378,
+              "downloads": 89713,
               "likes": 443,
               "createdAt": "2023-08-13T18:14:13.000Z"
             },
             {
               "id": "diffusers/controlnet-depth-sdxl-1.0",
-              "downloads": 40605,
-              "likes": 211,
+              "downloads": 39900,
+              "likes": 212,
               "createdAt": "2023-08-12T17:23:20.000Z"
             },
             {
               "id": "nerijs/pixel-art-xl",
-              "downloads": 38936,
+              "downloads": 39357,
               "likes": 669,
               "createdAt": "2023-08-03T19:13:23.000Z"
             },
             {
               "id": "latent-consistency/lcm-lora-sdxl",
-              "downloads": 27840,
+              "downloads": 28183,
               "likes": 776,
               "createdAt": "2023-11-09T00:34:02.000Z"
             },
             {
               "id": "AiWise/Juggernaut-XL-V9-GE-RDPhoto2-Lightning_4S",
-              "downloads": 23205,
+              "downloads": 23244,
               "likes": 19,
               "createdAt": "2024-12-26T02:02:33.000Z"
             }
@@ -1577,31 +1577,31 @@
           "top": [
             {
               "id": "kostakoff/stable-diffusion-xl-base-1.0-GGUF",
-              "downloads": 3821,
+              "downloads": 3713,
               "likes": 2,
               "createdAt": "2026-03-06T07:43:39.000Z"
             },
             {
               "id": "gpustack/stable-diffusion-xl-inpainting-1.0-GGUF",
-              "downloads": 1963,
+              "downloads": 2818,
               "likes": 6,
               "createdAt": "2024-12-24T15:16:44.000Z"
             },
             {
               "id": "HyperX-Sentience/SDXL-GGUF",
-              "downloads": 1821,
+              "downloads": 1779,
               "likes": 19,
               "createdAt": "2025-03-06T13:59:11.000Z"
             },
             {
               "id": "flammenai/FlammenSDXL1-GGUF",
-              "downloads": 1446,
+              "downloads": 1437,
               "likes": 0,
               "createdAt": "2026-05-21T16:40:03.000Z"
             },
             {
               "id": "Old-Fisherman/SDXL_Finetune_GGUF_Files",
-              "downloads": 1369,
+              "downloads": 1362,
               "likes": 30,
               "createdAt": "2025-01-09T03:45:26.000Z"
             }
@@ -1612,7 +1612,7 @@
           "top": [
             {
               "id": "Se7sinBlackbird/AllInOne-XL-V12.5",
-              "downloads": 51,
+              "downloads": 59,
               "likes": 2,
               "createdAt": "2026-04-01T14:10:22.000Z"
             },
@@ -1655,79 +1655,79 @@
       "gated": "auto",
       "createdAt": "2024-07-31T21:13:44.000Z",
       "parameters": 11901408320,
-      "downloads": 476037,
-      "downloadsAllTime": 34701849,
-      "likes": 16154,
-      "trendingScore": 58,
+      "downloads": 471487,
+      "downloadsAllTime": 34712484,
+      "likes": 16176,
+      "trendingScore": 57,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 1288,
+          "count": 1290,
           "top": [
             {
               "id": "black-forest-labs/FLUX.1-Krea-dev",
-              "downloads": 23378,
-              "likes": 963,
+              "downloads": 23132,
+              "likes": 964,
               "createdAt": "2025-07-07T10:39:11.000Z"
             },
             {
               "id": "alimama-creative/FLUX.1-Turbo-Alpha",
-              "downloads": 21263,
+              "downloads": 21000,
               "likes": 643,
               "createdAt": "2024-10-12T09:27:45.000Z"
             },
             {
               "id": "DeepBeepMeep/Flux",
-              "downloads": 19259,
+              "downloads": 19515,
               "likes": 1,
               "createdAt": "2025-07-11T18:59:39.000Z"
             },
             {
               "id": "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro-2.0",
-              "downloads": 18619,
+              "downloads": 18131,
               "likes": 470,
               "createdAt": "2025-04-14T08:19:42.000Z"
             },
             {
               "id": "Shakker-Labs/FLUX.1-dev-ControlNet-Union-Pro",
-              "downloads": 15475,
+              "downloads": 15424,
               "likes": 633,
               "createdAt": "2024-08-23T10:36:42.000Z"
             }
           ]
         },
         "adapter": {
-          "count": 42688,
+          "count": 42685,
           "top": [
             {
               "id": "ByteDance/Hyper-SD",
-              "downloads": 92059,
-              "likes": 1368,
+              "downloads": 92005,
+              "likes": 1369,
               "createdAt": "2024-04-20T06:34:54.000Z"
             },
             {
               "id": "XLabs-AI/flux-RealismLora",
-              "downloads": 22587,
+              "downloads": 23687,
               "likes": 1276,
               "createdAt": "2024-08-06T21:12:23.000Z"
             },
             {
               "id": "strangerzonehf/Flux-Ultimate-LoRA-Collection",
-              "downloads": 19397,
+              "downloads": 18738,
               "likes": 126,
               "createdAt": "2024-11-18T06:47:02.000Z"
             },
             {
               "id": "GeorgyGUF/adidas-tracksuit-with-three-stripes-lora-experiments",
-              "downloads": 8160,
+              "downloads": 8125,
               "likes": 1,
               "createdAt": "2025-05-05T06:16:36.000Z"
             },
             {
-              "id": "Naznut/Pony_LORAs",
-              "downloads": 5113,
-              "likes": 3,
-              "createdAt": "2024-04-18T08:19:32.000Z"
+              "id": "model-hub-nd/test3",
+              "downloads": 4916,
+              "likes": 1,
+              "createdAt": "2023-08-03T19:18:41.000Z"
             }
           ]
         },
@@ -1736,31 +1736,31 @@
           "top": [
             {
               "id": "city96/FLUX.1-dev-gguf",
-              "downloads": 260517,
-              "likes": 1515,
+              "downloads": 260928,
+              "likes": 1516,
               "createdAt": "2024-08-15T02:27:07.000Z"
             },
             {
               "id": "unsloth/FLUX.1-dev-GGUF",
-              "downloads": 61292,
+              "downloads": 62208,
               "likes": 30,
               "createdAt": "2025-06-30T10:43:08.000Z"
             },
             {
               "id": "nunchaku-ai/nunchaku-flux.1-dev",
-              "downloads": 11536,
+              "downloads": 11949,
               "likes": 52,
               "createdAt": "2025-07-17T00:41:11.000Z"
             },
             {
               "id": "second-state/FLUX.1-dev-GGUF",
-              "downloads": 11483,
+              "downloads": 11481,
               "likes": 14,
               "createdAt": "2024-09-24T03:56:22.000Z"
             },
             {
               "id": "Eviation/flux-imatrix",
-              "downloads": 8075,
+              "downloads": 7894,
               "likes": 4,
               "createdAt": "2025-01-29T08:15:40.000Z"
             }
@@ -1771,13 +1771,13 @@
           "top": [
             {
               "id": "sayakpaul/FLUX.1-merged",
-              "downloads": 359,
+              "downloads": 343,
               "likes": 204,
               "createdAt": "2024-08-05T12:30:56.000Z"
             },
             {
               "id": "city96/Flux.1-Heavy-17B",
-              "downloads": 94,
+              "downloads": 88,
               "likes": 26,
               "createdAt": "2024-11-17T20:56:55.000Z"
             },
@@ -1789,13 +1789,13 @@
             },
             {
               "id": "condzero/flux1d-merge-model",
-              "downloads": 34,
+              "downloads": 20,
               "likes": 0,
               "createdAt": "2025-02-20T16:38:49.000Z"
             },
             {
               "id": "prithivMLmods/Flux.1-Krea-Merged-Dev",
-              "downloads": 13,
+              "downloads": 11,
               "likes": 9,
               "createdAt": "2025-07-31T20:35:14.000Z"
             }
@@ -1814,10 +1814,10 @@
       "gated": "manual",
       "createdAt": "2025-11-07T05:17:48.000Z",
       "parameters": 859922360,
-      "downloads": 2065427,
-      "downloadsAllTime": 24489670,
-      "likes": 6561,
-      "trendingScore": 215,
+      "downloads": 2011153,
+      "downloadsAllTime": 24516402,
+      "likes": 6611,
+      "trendingScore": 220,
       "parents": [],
       "tree": {
         "finetune": {
@@ -1825,31 +1825,31 @@
           "top": [
             {
               "id": "cubert-gmbh/sam3",
-              "downloads": 212,
+              "downloads": 209,
               "likes": 0,
               "createdAt": "2026-09-04T11:57:12.000Z"
             },
             {
               "id": "yujiepan/sam3-tiny-random",
-              "downloads": 210,
+              "downloads": 190,
               "likes": 0,
               "createdAt": "2025-11-22T18:52:46.000Z"
             },
             {
               "id": "AEmotionStudio/sam3",
-              "downloads": 190,
+              "downloads": 186,
               "likes": 8,
               "createdAt": "2026-02-23T14:22:14.000Z"
             },
             {
               "id": "mlx-community/sam3-bf16",
-              "downloads": 158,
+              "downloads": 163,
               "likes": 6,
               "createdAt": "2026-03-28T03:50:55.000Z"
             },
             {
               "id": "tiny-random/sam3",
-              "downloads": 151,
+              "downloads": 141,
               "likes": 1,
               "createdAt": "2025-11-22T18:53:01.000Z"
             }
@@ -1895,13 +1895,13 @@
           "top": [
             {
               "id": "onnx-community/sam3-tracker-ONNX",
-              "downloads": 2052,
+              "downloads": 2083,
               "likes": 40,
               "createdAt": "2025-11-17T23:57:09.000Z"
             },
             {
               "id": "infosave/SAM3-cmf",
-              "downloads": 315,
+              "downloads": 316,
               "likes": 1,
               "createdAt": "2026-10-24T13:44:01.000Z"
             },
@@ -1913,13 +1913,13 @@
             },
             {
               "id": "nklockiewicz/react-native-executorch-demo-models",
-              "downloads": 256,
+              "downloads": 244,
               "likes": 0,
               "createdAt": "2026-09-01T12:40:57.000Z"
             },
             {
               "id": "mlx-community/sam3-8bit",
-              "downloads": 204,
+              "downloads": 208,
               "likes": 6,
               "createdAt": "2026-03-28T03:57:40.000Z"
             }
@@ -1949,42 +1949,42 @@
       "gated": "auto",
       "createdAt": "2026-07-23T07:55:24.000Z",
       "parameters": null,
-      "downloads": 2778909,
-      "downloadsAllTime": 6733768,
-      "likes": 11832,
-      "trendingScore": 424,
+      "downloads": 2777667,
+      "downloadsAllTime": 6845271,
+      "likes": 11967,
+      "trendingScore": 422,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 45,
+          "count": 46,
           "top": [
             {
               "id": "LiconStudio/LTX-2.5-Multiple-Subject-Reference",
-              "downloads": 14885,
-              "likes": 110,
+              "downloads": 14960,
+              "likes": 111,
               "createdAt": "2026-08-14T16:59:36.000Z"
             },
             {
               "id": "mlx-community/ltx-2.5-mlx-q8",
-              "downloads": 628,
+              "downloads": 641,
               "likes": 3,
               "createdAt": "2026-08-21T14:51:24.000Z"
             },
             {
               "id": "MrMofer/ltx-2.5-mlx-q8",
-              "downloads": 570,
+              "downloads": 573,
               "likes": 5,
               "createdAt": "2026-08-12T23:08:09.000Z"
             },
             {
               "id": "mlx-community/ltx-2.5-mlx",
-              "downloads": 553,
+              "downloads": 559,
               "likes": 6,
               "createdAt": "2026-08-12T16:53:58.000Z"
             },
             {
               "id": "Woovee/ltx25-studio-runpod",
-              "downloads": 339,
+              "downloads": 340,
               "likes": 2,
               "createdAt": "2026-10-18T07:09:38.000Z"
             }
@@ -1995,32 +1995,32 @@
           "top": [
             {
               "id": "Lightricks/LTX-2.5-22b-IC-LoRA-SDR-To-HDR",
-              "downloads": 20565,
+              "downloads": 20106,
               "likes": 65,
               "createdAt": "2026-09-28T02:55:34.000Z"
             },
             {
-              "id": "Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details",
-              "downloads": 19202,
-              "likes": 92,
-              "createdAt": "2026-09-27T14:45:01.000Z"
-            },
-            {
               "id": "Lightricks/LTX-2.5-22b-IC-LoRA-Layout-To-Render",
-              "downloads": 19164,
+              "downloads": 19125,
               "likes": 140,
               "createdAt": "2026-09-22T09:48:27.000Z"
             },
             {
+              "id": "Lightricks/LTX-2.5-22b-IC-LoRA-Refine-Details",
+              "downloads": 18848,
+              "likes": 92,
+              "createdAt": "2026-09-27T14:45:01.000Z"
+            },
+            {
               "id": "Lightricks/LTX-2.5-22b-IC-LoRA-Alpha-Gen",
-              "downloads": 18889,
-              "likes": 267,
+              "downloads": 18576,
+              "likes": 269,
               "createdAt": "2026-09-28T20:01:47.000Z"
             },
             {
               "id": "Lightricks/LTX-2.5-22b-IC-LoRA-Ingredients",
-              "downloads": 16160,
-              "likes": 119,
+              "downloads": 16494,
+              "likes": 122,
               "createdAt": "2026-09-10T16:55:56.000Z"
             }
           ]
@@ -2030,32 +2030,32 @@
           "top": [
             {
               "id": "unsloth/LTX-2.5-GGUF",
-              "downloads": 373837,
-              "likes": 44,
+              "downloads": 380986,
+              "likes": 45,
               "createdAt": "2026-10-13T09:07:16.000Z"
             },
             {
               "id": "Abiray/LTX-2.5-Distilled-GGUF",
-              "downloads": 38168,
+              "downloads": 38873,
               "likes": 95,
               "createdAt": "2026-08-12T04:59:29.000Z"
             },
             {
               "id": "vantagewithai/LTX-2.5-GGUF",
-              "downloads": 30020,
+              "downloads": 29993,
               "likes": 10,
               "createdAt": "2026-08-12T07:22:45.000Z"
             },
             {
               "id": "realrebelai/LTX-2.5_GGUFs",
-              "downloads": 27603,
+              "downloads": 26392,
               "likes": 43,
               "createdAt": "2026-08-12T01:27:03.000Z"
             },
             {
               "id": "elix3r/gemma4-12b-with-proj-ltx-2.5-GGUF",
-              "downloads": 20313,
-              "likes": 68,
+              "downloads": 20660,
+              "likes": 72,
               "createdAt": "2026-08-13T18:04:10.000Z"
             }
           ]
@@ -2065,7 +2065,7 @@
           "top": [
             {
               "id": "joeygambino/joyai-echo-ltx25-echoVid-gguf",
-              "downloads": 2791,
+              "downloads": 2736,
               "likes": 7,
               "createdAt": "2026-08-18T08:10:12.000Z"
             },
@@ -2108,8 +2108,8 @@
       "gated": false,
       "createdAt": "2022-03-02T23:29:05.000Z",
       "parameters": 94395552,
-      "downloads": 1781293,
-      "downloadsAllTime": 121198246,
+      "downloads": 1768126,
+      "downloadsAllTime": 121237422,
       "likes": 418,
       "trendingScore": 1,
       "parents": [],
@@ -2119,31 +2119,31 @@
           "top": [
             {
               "id": "prithivMLmods/Common-Voice-Gender-Detection",
-              "downloads": 172287,
+              "downloads": 169153,
               "likes": 36,
               "createdAt": "2025-05-31T10:39:16.000Z"
             },
             {
               "id": "Wataru/sfi_w2v2_distill_ears",
-              "downloads": 15805,
+              "downloads": 16174,
               "likes": 0,
               "createdAt": "2025-05-16T01:59:10.000Z"
             },
             {
               "id": "dima806/english_accents_classification",
-              "downloads": 14925,
+              "downloads": 15205,
               "likes": 6,
               "createdAt": "2023-08-27T11:25:04.000Z"
             },
             {
               "id": "huggingface-mic/wav2vec2-base-960h-mic",
-              "downloads": 3089,
+              "downloads": 3181,
               "likes": 0,
               "createdAt": "2026-10-07T12:15:11.000Z"
             },
             {
               "id": "dima806/music_genres_classification",
-              "downloads": 1634,
+              "downloads": 1636,
               "likes": 41,
               "createdAt": "2023-08-11T21:57:47.000Z"
             }
@@ -2165,31 +2165,31 @@
           "top": [
             {
               "id": "Xenova/wav2vec2-base-960h",
-              "downloads": 27669,
+              "downloads": 28893,
               "likes": 4,
               "createdAt": "2023-07-26T17:48:06.000Z"
             },
             {
               "id": "onnx-community/wav2vec2-base-960h-ONNX",
-              "downloads": 2284,
+              "downloads": 2259,
               "likes": 2,
               "createdAt": "2025-08-13T09:05:45.000Z"
             },
             {
               "id": "liodon-ai/wav2vec2-base-960h-GGUF",
-              "downloads": 154,
+              "downloads": 162,
               "likes": 0,
               "createdAt": "2026-06-28T07:31:12.000Z"
             },
             {
               "id": "cstr/wav2vec2-base-960h-GGUF",
-              "downloads": 101,
+              "downloads": 97,
               "likes": 1,
               "createdAt": "2026-07-11T11:01:54.000Z"
             },
             {
               "id": "litert-community/wav2vec2-base-960h-LiteRT",
-              "downloads": 89,
+              "downloads": 91,
               "likes": 1,
               "createdAt": "2026-08-13T01:58:05.000Z"
             }
@@ -2212,10 +2212,10 @@
       "gated": false,
       "createdAt": "2023-11-07T18:41:14.000Z",
       "parameters": 1543490560,
-      "downloads": 3414552,
-      "downloadsAllTime": 153783887,
-      "likes": 6806,
-      "trendingScore": 25,
+      "downloads": 3350491,
+      "downloadsAllTime": 153866475,
+      "likes": 6812,
+      "trendingScore": 23,
       "parents": [],
       "tree": {
         "finetune": {
@@ -2223,31 +2223,31 @@
           "top": [
             {
               "id": "openai/whisper-large-v3-turbo",
-              "downloads": 4821167,
-              "likes": 3528,
+              "downloads": 4766957,
+              "likes": 3545,
               "createdAt": "2024-10-01T07:39:28.000Z"
             },
             {
               "id": "nyralabs/CrisperWhisper",
-              "downloads": 16916,
+              "downloads": 17118,
               "likes": 346,
               "createdAt": "2024-08-29T15:53:10.000Z"
             },
             {
-              "id": "ivrit-ai/whisper-large-v3-ct2",
-              "downloads": 7534,
-              "likes": 24,
-              "createdAt": "2025-03-06T14:26:46.000Z"
-            },
-            {
               "id": "typhoon-ai/typhoon-whisper-large-v3",
-              "downloads": 7438,
+              "downloads": 7513,
               "likes": 9,
               "createdAt": "2026-01-08T02:03:59.000Z"
             },
             {
+              "id": "ivrit-ai/whisper-large-v3-ct2",
+              "downloads": 7418,
+              "likes": 24,
+              "createdAt": "2025-03-06T14:26:46.000Z"
+            },
+            {
               "id": "ivrit-ai/whisper-large-v3",
-              "downloads": 5984,
+              "downloads": 6005,
               "likes": 28,
               "createdAt": "2025-03-04T10:21:44.000Z"
             }
@@ -2258,31 +2258,31 @@
           "top": [
             {
               "id": "gcoli/whisper-large-v3-swiss-german-mit",
-              "downloads": 364,
+              "downloads": 367,
               "likes": 3,
               "createdAt": "2026-09-23T22:32:25.000Z"
             },
             {
-              "id": "AbdelrahmanHassan/whisper-large-v3-egyptian-arabic",
-              "downloads": 189,
-              "likes": 13,
-              "createdAt": "2025-08-04T10:30:52.000Z"
-            },
-            {
               "id": "Flix-AI/flix-swissgerman-lora",
-              "downloads": 164,
+              "downloads": 207,
               "likes": 3,
               "createdAt": "2026-05-25T18:25:42.000Z"
             },
             {
+              "id": "AbdelrahmanHassan/whisper-large-v3-egyptian-arabic",
+              "downloads": 195,
+              "likes": 13,
+              "createdAt": "2025-08-04T10:30:52.000Z"
+            },
+            {
               "id": "montachouig/whisper-large-v3-tunisian",
-              "downloads": 151,
+              "downloads": 130,
               "likes": 1,
               "createdAt": "2026-06-17T12:17:30.000Z"
             },
             {
               "id": "andreoosthuizen/whisper-large-v3-afrikaans",
-              "downloads": 122,
+              "downloads": 124,
               "likes": 3,
               "createdAt": "2026-01-14T17:35:17.000Z"
             }
@@ -2293,31 +2293,31 @@
           "top": [
             {
               "id": "handy-computer/whisper-large-v3-gguf",
-              "downloads": 798060,
+              "downloads": 829501,
               "likes": 3,
               "createdAt": "2026-04-27T02:20:38.000Z"
             },
             {
               "id": "KBLab/kb-whisper-large",
-              "downloads": 15356,
-              "likes": 76,
+              "downloads": 15213,
+              "likes": 75,
               "createdAt": "2025-02-14T14:25:04.000Z"
             },
             {
               "id": "xkeyC/whisper-large-v3-turbo-gguf",
-              "downloads": 14597,
+              "downloads": 14296,
               "likes": 41,
               "createdAt": "2025-03-20T13:26:47.000Z"
             },
             {
               "id": "eventhorizon0/tarteel-ai-onnx-whisper-base-ar-quran",
-              "downloads": 2000,
+              "downloads": 2210,
               "likes": 2,
               "createdAt": "2025-12-29T08:55:59.000Z"
             },
             {
               "id": "onnx-community/whisper-large-v3-ONNX",
-              "downloads": 1840,
+              "downloads": 1857,
               "likes": 10,
               "createdAt": "2025-04-23T22:09:40.000Z"
             }
@@ -2328,13 +2328,13 @@
           "top": [
             {
               "id": "AMAImedia/NOESIS-Whisper3-1.6B-Large-Turbo-Darwin-99LANG-BF16",
-              "downloads": 55,
+              "downloads": 62,
               "likes": 1,
               "createdAt": "2026-04-26T06:47:49.000Z"
             },
             {
               "id": "AMAImedia/NOESIS-Whisper3-1.6B-Large-Turbo-Darwin-99LANG-ONNX-INT8",
-              "downloads": 43,
+              "downloads": 47,
               "likes": 0,
               "createdAt": "2026-08-27T19:48:20.000Z"
             },
@@ -2359,10 +2359,10 @@
       "gated": "auto",
       "createdAt": "2023-11-16T08:19:01.000Z",
       "parameters": null,
-      "downloads": 6597019,
-      "downloadsAllTime": 360357593,
-      "likes": 5172,
-      "trendingScore": 84,
+      "downloads": 6472446,
+      "downloadsAllTime": 360512073,
+      "likes": 5201,
+      "trendingScore": 83,
       "parents": [],
       "tree": {
         "finetune": {
@@ -2376,7 +2376,7 @@
             },
             {
               "id": "jamil117/speaker-segmentation-fine-tuned-callhome-jpn",
-              "downloads": 53,
+              "downloads": 54,
               "likes": 0,
               "createdAt": "2024-08-27T06:22:35.000Z"
             },
@@ -2409,7 +2409,7 @@
           "top": [
             {
               "id": "litert-community/Speaker-Diarization-LiteRT",
-              "downloads": 1090,
+              "downloads": 1209,
               "likes": 2,
               "createdAt": "2026-07-02T08:57:13.000Z"
             }
@@ -2432,10 +2432,10 @@
       "gated": false,
       "createdAt": "2024-10-01T07:39:28.000Z",
       "parameters": 808878080,
-      "downloads": 4821167,
-      "downloadsAllTime": 128306528,
-      "likes": 3528,
-      "trendingScore": 14,
+      "downloads": 4766957,
+      "downloadsAllTime": 128440486,
+      "likes": 3545,
+      "trendingScore": 23,
       "parents": [
         {
           "id": "openai/whisper-large-v3",
@@ -2444,70 +2444,70 @@
       ],
       "tree": {
         "finetune": {
-          "count": 688,
+          "count": 689,
           "top": [
             {
               "id": "ivrit-ai/whisper-large-v3-turbo-ct2",
-              "downloads": 53386,
+              "downloads": 53639,
               "likes": 28,
               "createdAt": "2025-02-09T15:51:33.000Z"
             },
             {
               "id": "mesolitica/Malaysian-whisper-large-v3-turbo-v3",
-              "downloads": 51775,
+              "downloads": 51728,
               "likes": 10,
               "createdAt": "2025-02-23T08:33:38.000Z"
             },
             {
               "id": "sbintuitions/kana-whisper",
-              "downloads": 43464,
-              "likes": 20,
+              "downloads": 43037,
+              "likes": 21,
               "createdAt": "2026-05-28T01:25:24.000Z"
             },
             {
               "id": "mlx-community/whisper-large-v3-turbo-4bit",
-              "downloads": 13075,
+              "downloads": 12866,
               "likes": 8,
               "createdAt": "2025-12-14T12:58:12.000Z"
             },
             {
               "id": "ivrit-ai/whisper-large-v3-turbo",
-              "downloads": 12751,
+              "downloads": 12635,
               "likes": 11,
               "createdAt": "2025-02-09T12:17:24.000Z"
             }
           ]
         },
         "adapter": {
-          "count": 173,
+          "count": 174,
           "top": [
             {
               "id": "anaszil/whisper-large-v3-turbo-darija",
-              "downloads": 4092,
+              "downloads": 4237,
               "likes": 9,
               "createdAt": "2025-03-26T21:18:31.000Z"
             },
             {
               "id": "Blgn94/whisper-large-v3-turbo-mn-lora",
-              "downloads": 694,
+              "downloads": 696,
               "likes": 1,
               "createdAt": "2026-07-19T05:03:00.000Z"
             },
             {
               "id": "awaaz-se-alfaaz/whisper-turbo-v3-urdu",
-              "downloads": 541,
+              "downloads": 539,
               "likes": 0,
               "createdAt": "2026-08-10T18:47:45.000Z"
             },
             {
               "id": "gcoli/whisper-large-v3-turbo-swiss-german-mit",
-              "downloads": 274,
+              "downloads": 286,
               "likes": 0,
               "createdAt": "2026-09-23T13:22:44.000Z"
             },
             {
               "id": "thomaseibner/whisper-large-v3-turbo-us-atc-v3",
-              "downloads": 269,
+              "downloads": 270,
               "likes": 1,
               "createdAt": "2026-09-22T02:07:26.000Z"
             }
@@ -2518,31 +2518,31 @@
           "top": [
             {
               "id": "handy-computer/whisper-large-v3-turbo-gguf",
-              "downloads": 661389,
+              "downloads": 632268,
               "likes": 6,
               "createdAt": "2026-04-27T02:11:18.000Z"
             },
             {
               "id": "onnx-community/whisper-large-v3-turbo",
-              "downloads": 51284,
+              "downloads": 51347,
               "likes": 79,
               "createdAt": "2024-10-01T09:33:07.000Z"
             },
             {
-              "id": "Yehor/whisper-large-v3-turbo-quantized-uk",
-              "downloads": 20451,
-              "likes": 5,
-              "createdAt": "2025-02-24T20:52:17.000Z"
-            },
-            {
               "id": "onnx-community/whisper-large-v3-turbo_timestamped",
-              "downloads": 17584,
+              "downloads": 17792,
               "likes": 13,
               "createdAt": "2024-10-03T06:22:52.000Z"
             },
             {
+              "id": "Yehor/whisper-large-v3-turbo-quantized-uk",
+              "downloads": 17327,
+              "likes": 5,
+              "createdAt": "2025-02-24T20:52:17.000Z"
+            },
+            {
               "id": "oxide-lab/whisper-large-v3-turbo-GGUF",
-              "downloads": 4918,
+              "downloads": 5027,
               "likes": 11,
               "createdAt": "2026-01-30T09:16:45.000Z"
             }
@@ -2553,25 +2553,25 @@
           "top": [
             {
               "id": "AMAImedia/NOESIS-Whisper3-1.6B-Large-Turbo-Darwin-99LANG-BF16",
-              "downloads": 55,
+              "downloads": 62,
               "likes": 1,
               "createdAt": "2026-04-26T06:47:49.000Z"
             },
             {
               "id": "AMAImedia/NOESIS-Whisper3-1.6B-Large-Turbo-Darwin-99LANG-ONNX-INT8",
-              "downloads": 43,
+              "downloads": 47,
               "likes": 0,
               "createdAt": "2026-08-27T19:48:20.000Z"
             },
             {
               "id": "ISTNetworks/ultravox-v0_6-qwen-3-32b-arabic",
-              "downloads": 31,
+              "downloads": 34,
               "likes": 0,
               "createdAt": "2026-08-26T08:14:23.000Z"
             },
             {
               "id": "bkbj/Atest",
-              "downloads": 29,
+              "downloads": 30,
               "likes": 0,
               "createdAt": "2024-10-28T22:42:51.000Z"
             }
@@ -2590,9 +2590,9 @@
       "gated": false,
       "createdAt": "2024-12-26T00:20:08.000Z",
       "parameters": null,
-      "downloads": 12676613,
-      "downloadsAllTime": 144385445,
-      "likes": 7412,
+      "downloads": 12732764,
+      "downloadsAllTime": 144869651,
+      "likes": 7424,
       "trendingScore": 35,
       "parents": [
         {
@@ -2602,35 +2602,35 @@
       ],
       "tree": {
         "finetune": {
-          "count": 76,
+          "count": 77,
           "top": [
             {
               "id": "hexgrad/Kokoro-82M-v1.1-zh",
-              "downloads": 77247,
+              "downloads": 78747,
               "likes": 247,
               "createdAt": "2025-02-27T02:15:25.000Z"
             },
             {
               "id": "aufklarer/Kokoro-82M-CoreML",
-              "downloads": 25228,
+              "downloads": 22461,
               "likes": 5,
               "createdAt": "2026-03-09T12:39:32.000Z"
             },
             {
               "id": "Joakim/kokoro-sv-voices",
-              "downloads": 3110,
+              "downloads": 3118,
               "likes": 8,
               "createdAt": "2026-07-08T11:06:07.000Z"
             },
             {
               "id": "oddadmix/Nabra-82M-v0.1",
-              "downloads": 1779,
+              "downloads": 1782,
               "likes": 10,
               "createdAt": "2026-07-01T14:40:40.000Z"
             },
             {
               "id": "xmanii/Ava-82M",
-              "downloads": 1498,
+              "downloads": 1528,
               "likes": 22,
               "createdAt": "2026-07-26T20:17:30.000Z"
             }
@@ -2641,19 +2641,19 @@
           "top": [
             {
               "id": "remsky/kokoro-inno-clone-tuner",
-              "downloads": 1567510,
+              "downloads": 1576768,
               "likes": 39,
               "createdAt": "2026-08-31T02:47:06.000Z"
             },
             {
               "id": "AKinvox/kokoro-cloning-v1",
-              "downloads": 559,
+              "downloads": 546,
               "likes": 12,
               "createdAt": "2026-09-27T16:08:13.000Z"
             },
             {
               "id": "Aicraftar/Tharo.G-Eco",
-              "downloads": 74,
+              "downloads": 75,
               "likes": 1,
               "createdAt": "2025-01-22T14:16:34.000Z"
             },
@@ -2672,35 +2672,35 @@
           ]
         },
         "quantized": {
-          "count": 122,
+          "count": 124,
           "top": [
             {
               "id": "onnx-community/Kokoro-82M-v1.0-ONNX",
-              "downloads": 850996,
-              "likes": 291,
+              "downloads": 857263,
+              "likes": 292,
               "createdAt": "2025-02-07T11:07:04.000Z"
             },
             {
               "id": "software-mansion/Kokoro-82M-ExecuTorch",
-              "downloads": 109447,
+              "downloads": 108747,
               "likes": 4,
               "createdAt": "2025-11-12T09:59:03.000Z"
             },
             {
               "id": "onnx-community/Kokoro-82M-ONNX",
-              "downloads": 80686,
-              "likes": 181,
+              "downloads": 80735,
+              "likes": 183,
               "createdAt": "2025-01-12T01:48:29.000Z"
             },
             {
               "id": "litert-community/Kokoro-82M",
-              "downloads": 35304,
+              "downloads": 38190,
               "likes": 9,
               "createdAt": "2026-07-07T02:27:31.000Z"
             },
             {
               "id": "onnx-community/Kokoro-82M-v1.0-ONNX-timestamped",
-              "downloads": 21876,
+              "downloads": 22628,
               "likes": 11,
               "createdAt": "2025-02-21T19:49:20.000Z"
             }
@@ -2723,10 +2723,10 @@
       "gated": false,
       "createdAt": "2026-10-01T04:34:57.000Z",
       "parameters": 35899643008,
-      "downloads": 46391,
-      "downloadsAllTime": 50220,
-      "likes": 1268,
-      "trendingScore": 46,
+      "downloads": 45500,
+      "downloadsAllTime": 51597,
+      "likes": 1270,
+      "trendingScore": 41,
       "parents": [],
       "tree": {
         "finetune": {
@@ -2734,31 +2734,31 @@
           "top": [
             {
               "id": "pentacoxian-dev/drama3-expressive-medium-GGUF",
-              "downloads": 4074,
+              "downloads": 4076,
               "likes": 0,
               "createdAt": "2026-10-26T14:44:53.000Z"
             },
             {
               "id": "mlx-community/fish-audio-drama-3-bf16",
-              "downloads": 637,
+              "downloads": 596,
               "likes": 3,
               "createdAt": "2026-10-14T13:37:52.000Z"
             },
             {
               "id": "kasparovabi/drama-3-tr-speaker",
-              "downloads": 122,
+              "downloads": 128,
               "likes": 5,
               "createdAt": "2026-10-20T18:33:51.000Z"
             },
             {
               "id": "jordimas/drama-3-ct2",
-              "downloads": 66,
+              "downloads": 67,
               "likes": 0,
               "createdAt": "2026-10-17T18:05:42.000Z"
             },
             {
               "id": "alexwengg/drama-3-e64-zh-en",
-              "downloads": 53,
+              "downloads": 58,
               "likes": 0,
               "createdAt": "2026-10-21T14:50:35.000Z"
             }
@@ -2769,35 +2769,35 @@
           "top": []
         },
         "quantized": {
-          "count": 57,
+          "count": 58,
           "top": [
             {
               "id": "Jmica/Drama-3-GGUF",
-              "downloads": 433603,
+              "downloads": 491244,
               "likes": 43,
               "createdAt": "2026-10-13T23:12:44.000Z"
             },
             {
               "id": "pentacoxian-dev/drama3-small-GGUF",
-              "downloads": 79366,
+              "downloads": 77916,
               "likes": 13,
               "createdAt": "2026-10-15T13:38:51.000Z"
             },
             {
               "id": "sakasegawa/drama-3-GGUF",
-              "downloads": 46308,
+              "downloads": 46433,
               "likes": 4,
               "createdAt": "2026-10-15T17:31:03.000Z"
             },
             {
               "id": "0xE2E/Drama-3-Windows-GGUF",
-              "downloads": 13627,
+              "downloads": 12489,
               "likes": 1,
               "createdAt": "2026-10-14T11:48:53.000Z"
             },
             {
               "id": "fishaudio/drama-3-int4",
-              "downloads": 11175,
+              "downloads": 10547,
               "likes": 26,
               "createdAt": "2026-10-14T16:12:13.000Z"
             }
@@ -2820,8 +2820,8 @@
       "gated": false,
       "createdAt": "2023-12-05T09:31:24.000Z",
       "parameters": 7063427072,
-      "downloads": 651439,
-      "downloadsAllTime": 42900812,
+      "downloads": 646844,
+      "downloadsAllTime": 42921365,
       "likes": 383,
       "trendingScore": 0,
       "parents": [],
@@ -2831,33 +2831,33 @@
           "top": [
             {
               "id": "huggingface-mic/llava-mic",
-              "downloads": 2990,
+              "downloads": 3127,
               "likes": 0,
               "createdAt": "2026-10-12T15:26:48.000Z"
             },
             {
               "id": "unsloth/llava-1.5-7b-hf",
-              "downloads": 283,
+              "downloads": 271,
               "likes": 2,
               "createdAt": "2024-11-21T08:05:09.000Z"
             },
             {
               "id": "shashikanth-a/llava-1.5-7b-hf-4bit",
-              "downloads": 139,
+              "downloads": 134,
               "likes": 0,
               "createdAt": "2024-12-03T03:25:01.000Z"
             },
             {
               "id": "Lordvarun23/llava-1.5-7b-mllmu-ft",
-              "downloads": 101,
+              "downloads": 100,
               "likes": 0,
               "createdAt": "2026-09-26T08:48:52.000Z"
             },
             {
-              "id": "wangzyuan/SafeRLHFV-Llava15-7B-RM-10K-Step625-Research",
-              "downloads": 88,
-              "likes": 0,
-              "createdAt": "2026-10-26T16:43:45.000Z"
+              "id": "TIGER-Lab/Mantis-llava-7b",
+              "downloads": 89,
+              "likes": 16,
+              "createdAt": "2024-04-13T19:19:14.000Z"
             }
           ]
         },
@@ -2872,7 +2872,7 @@
             },
             {
               "id": "NouRed/Med-LLaVa-QLoRA",
-              "downloads": 33,
+              "downloads": 34,
               "likes": 2,
               "createdAt": "2024-01-12T20:05:41.000Z"
             },
@@ -2884,15 +2884,15 @@
             },
             {
               "id": "Salmamoori/llava_finetuned_kuka",
-              "downloads": 28,
+              "downloads": 29,
               "likes": 0,
               "createdAt": "2024-10-02T15:41:24.000Z"
             },
             {
-              "id": "catworld1212/llava-1.5-7b-hf-ft-mix-vsft",
-              "downloads": 27,
+              "id": "HuggingFaceH4/sft-llava-1.5-7b-hf",
+              "downloads": 26,
               "likes": 0,
-              "createdAt": "2024-04-21T14:32:25.000Z"
+              "createdAt": "2024-07-26T16:43:14.000Z"
             }
           ]
         },
@@ -2901,27 +2901,27 @@
           "top": [
             {
               "id": "unsloth/llava-1.5-7b-hf-bnb-4bit",
-              "downloads": 132988,
+              "downloads": 126193,
               "likes": 7,
               "createdAt": "2024-11-21T08:17:46.000Z"
             },
             {
               "id": "Marwan02/llava-1.5-7b-hf-Q4_K_M-GGUF",
-              "downloads": 35,
+              "downloads": 36,
               "likes": 1,
               "createdAt": "2025-05-14T17:40:04.000Z"
-            },
-            {
-              "id": "ddackmon/llava-1.5-7b-hf-llm-4bit",
-              "downloads": 35,
-              "likes": 0,
-              "createdAt": "2026-10-15T06:16:54.000Z"
             },
             {
               "id": "colossatr0n/llava-1.5-7b-hf-Q8_0-GGUF",
               "downloads": 20,
               "likes": 0,
               "createdAt": "2025-06-15T01:47:26.000Z"
+            },
+            {
+              "id": "ddackmon/llava-1.5-7b-hf-llm-4bit",
+              "downloads": 14,
+              "likes": 0,
+              "createdAt": "2026-10-15T06:16:54.000Z"
             }
           ]
         },
@@ -2942,9 +2942,9 @@
       "gated": false,
       "createdAt": "2024-06-15T00:34:55.000Z",
       "parameters": 776721497,
-      "downloads": 398551,
-      "downloadsAllTime": 24367708,
-      "likes": 1889,
+      "downloads": 391667,
+      "downloadsAllTime": 24373772,
+      "likes": 1890,
       "trendingScore": 1,
       "parents": [],
       "tree": {
@@ -2953,33 +2953,33 @@
           "top": [
             {
               "id": "2toINF/X-VLA-Pt",
-              "downloads": 9460,
+              "downloads": 9226,
               "likes": 14,
               "createdAt": "2025-11-04T14:23:57.000Z"
             },
             {
               "id": "gokaygokay/Florence-2-Flux-Large",
-              "downloads": 4130,
+              "downloads": 4222,
               "likes": 62,
               "createdAt": "2024-08-25T16:29:57.000Z"
             },
             {
               "id": "thwri/CogFlorence-2.2-Large",
-              "downloads": 3323,
+              "downloads": 3430,
               "likes": 45,
               "createdAt": "2024-08-23T07:41:13.000Z"
             },
             {
               "id": "thwri/CogFlorence-2.1-Large",
-              "downloads": 2942,
+              "downloads": 3033,
               "likes": 28,
               "createdAt": "2024-07-27T07:05:50.000Z"
             },
             {
-              "id": "2toINF/X-VLA-Libero",
-              "downloads": 784,
-              "likes": 2,
-              "createdAt": "2025-11-05T17:18:02.000Z"
+              "id": "HongxinLi/GoClick-Large",
+              "downloads": 790,
+              "likes": 4,
+              "createdAt": "2026-05-09T11:52:18.000Z"
             }
           ]
         },
@@ -2988,13 +2988,13 @@
           "top": [
             {
               "id": "anushreeberlia/fashion-florence",
-              "downloads": 263,
+              "downloads": 273,
               "likes": 4,
               "createdAt": "2026-03-11T02:50:42.000Z"
             },
             {
               "id": "EricChan1122/florence2-parasitic-egg-detection-version3",
-              "downloads": 20,
+              "downloads": 19,
               "likes": 0,
               "createdAt": "2026-02-12T02:02:29.000Z"
             },
@@ -3006,7 +3006,7 @@
             },
             {
               "id": "Mitchins/Florence-Chan-2.1",
-              "downloads": 13,
+              "downloads": 12,
               "likes": 1,
               "createdAt": "2026-07-17T11:53:42.000Z"
             },
@@ -3029,13 +3029,13 @@
             },
             {
               "id": "mlboydaisuke/Florence-2-large-ExecuTorch",
-              "downloads": 32,
+              "downloads": 35,
               "likes": 0,
               "createdAt": "2026-08-24T08:19:14.000Z"
             },
             {
               "id": "silv4souz4/florence-2-large-coreai-w8a16",
-              "downloads": 22,
+              "downloads": 21,
               "likes": 1,
               "createdAt": "2026-10-12T13:02:33.000Z"
             }
@@ -3046,7 +3046,7 @@
           "top": [
             {
               "id": "bkbj/Atest",
-              "downloads": 29,
+              "downloads": 30,
               "likes": 0,
               "createdAt": "2024-10-28T22:42:51.000Z"
             }
@@ -3065,42 +3065,42 @@
       "gated": false,
       "createdAt": "2025-01-26T09:26:37.000Z",
       "parameters": 8292166656,
-      "downloads": 5711718,
-      "downloadsAllTime": 110832081,
+      "downloads": 5587287,
+      "downloadsAllTime": 110942230,
       "likes": 1771,
       "trendingScore": 2,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 1261,
+          "count": 1262,
           "top": [
             {
               "id": "allenai/olmOCR-2-7B-1025",
-              "downloads": 81124,
+              "downloads": 81244,
               "likes": 161,
               "createdAt": "2025-10-06T21:16:59.000Z"
             },
             {
               "id": "mlx-community/Qwen2.5-VL-7B-Instruct-4bit",
-              "downloads": 20328,
+              "downloads": 19370,
               "likes": 6,
               "createdAt": "2025-01-29T02:20:49.000Z"
             },
             {
               "id": "TIGER-Lab/VideoScore2",
-              "downloads": 16687,
+              "downloads": 17754,
               "likes": 5,
               "createdAt": "2025-09-19T03:19:16.000Z"
             },
             {
               "id": "nvidia/Cosmos-Reason1-7B",
-              "downloads": 14668,
+              "downloads": 15532,
               "likes": 249,
               "createdAt": "2025-04-18T17:52:36.000Z"
             },
             {
               "id": "Vchitect/ShotVL-7B",
-              "downloads": 8133,
+              "downloads": 8186,
               "likes": 16,
               "createdAt": "2025-06-25T11:17:12.000Z"
             }
@@ -3111,13 +3111,13 @@
           "top": [
             {
               "id": "EditScore/EditScore-7B",
-              "downloads": 974,
+              "downloads": 932,
               "likes": 11,
               "createdAt": "2025-09-27T13:17:47.000Z"
             },
             {
               "id": "nomic-ai/colnomic-embed-multimodal-7b",
-              "downloads": 813,
+              "downloads": 862,
               "likes": 109,
               "createdAt": "2025-03-31T14:56:14.000Z"
             },
@@ -3129,13 +3129,13 @@
             },
             {
               "id": "nomic-ai/nomic-embed-multimodal-7b",
-              "downloads": 463,
+              "downloads": 440,
               "likes": 50,
               "createdAt": "2025-03-29T16:58:25.000Z"
             },
             {
               "id": "brishen/colnomic-embed-multimodal-7b-GGUF",
-              "downloads": 443,
+              "downloads": 427,
               "likes": 1,
               "createdAt": "2026-05-01T02:31:57.000Z"
             }
@@ -3145,32 +3145,32 @@
           "count": 161,
           "top": [
             {
-              "id": "Qwen/Qwen2.5-VL-7B-Instruct-AWQ",
-              "downloads": 1039088,
-              "likes": 120,
-              "createdAt": "2025-02-15T09:21:11.000Z"
-            },
-            {
               "id": "nvidia/Qwen2.5-VL-7B-Instruct-NVFP4",
-              "downloads": 1004558,
+              "downloads": 959795,
               "likes": 28,
               "createdAt": "2025-09-10T03:04:44.000Z"
             },
             {
+              "id": "Qwen/Qwen2.5-VL-7B-Instruct-AWQ",
+              "downloads": 955246,
+              "likes": 120,
+              "createdAt": "2025-02-15T09:21:11.000Z"
+            },
+            {
               "id": "unsloth/Qwen2.5-VL-7B-Instruct-GGUF",
-              "downloads": 291454,
+              "downloads": 288036,
               "likes": 253,
               "createdAt": "2025-05-11T13:03:32.000Z"
             },
             {
               "id": "mlx-community/olmOCR-2-7B-1025-mlx-8bit",
-              "downloads": 242540,
+              "downloads": 242815,
               "likes": 2,
               "createdAt": "2025-10-29T08:07:19.000Z"
             },
             {
               "id": "allenai/olmOCR-2-7B-1025-FP8",
-              "downloads": 190545,
+              "downloads": 190514,
               "likes": 261,
               "createdAt": "2025-10-06T22:03:48.000Z"
             }
@@ -3181,33 +3181,33 @@
           "top": [
             {
               "id": "diyanmuhhamed/Qwen-VL-Coder-R1-7B",
-              "downloads": 201,
+              "downloads": 203,
               "likes": 0,
               "createdAt": "2026-07-15T15:20:58.000Z"
             },
             {
               "id": "voidful/Qwen2.5-7b-ds-vl",
-              "downloads": 19,
+              "downloads": 17,
               "likes": 0,
               "createdAt": "2025-03-15T15:33:42.000Z"
             },
             {
               "id": "YongchengYAO/MedVision__SFT-m__qwen25vl-7b__TL",
-              "downloads": 11,
+              "downloads": 12,
               "likes": 0,
               "createdAt": "2025-09-17T06:43:13.000Z"
+            },
+            {
+              "id": "YongchengYAO/MedVision__SFT-m__qwen25vl-7b__AD",
+              "downloads": 10,
+              "likes": 0,
+              "createdAt": "2025-09-19T14:00:44.000Z"
             },
             {
               "id": "YongchengYAO/MedVision__SFT-m__qwen25vl-7b__detect",
               "downloads": 9,
               "likes": 0,
               "createdAt": "2025-09-19T13:32:39.000Z"
-            },
-            {
-              "id": "YongchengYAO/MedVision__SFT-m__qwen25vl-7b__AD",
-              "downloads": 9,
-              "likes": 0,
-              "createdAt": "2025-09-19T14:00:44.000Z"
             }
           ]
         }
@@ -3224,8 +3224,8 @@
       "gated": "manual",
       "createdAt": "2025-03-01T19:10:19.000Z",
       "parameters": 27432406640,
-      "downloads": 335736,
-      "downloadsAllTime": 17790765,
+      "downloads": 326029,
+      "downloadsAllTime": 17792798,
       "likes": 2066,
       "trendingScore": 1,
       "parents": [
@@ -3240,31 +3240,31 @@
           "top": [
             {
               "id": "m8than/gemma-3-27b-lenientchatfix",
-              "downloads": 44806,
+              "downloads": 44969,
               "likes": 0,
               "createdAt": "2025-06-23T17:47:44.000Z"
             },
             {
               "id": "unsloth/gemma-3-27b-it",
-              "downloads": 33149,
+              "downloads": 32907,
               "likes": 16,
               "createdAt": "2025-03-12T06:50:10.000Z"
             },
             {
               "id": "Alevnokc/Gemma-3-27B-Roblox-Luau",
-              "downloads": 1479,
+              "downloads": 1456,
               "likes": 3,
               "createdAt": "2026-02-28T20:50:40.000Z"
             },
             {
               "id": "EPFLiGHT/Gemma-3-27B-MeditronFO",
-              "downloads": 1043,
+              "downloads": 1059,
               "likes": 3,
               "createdAt": "2026-05-08T11:43:28.000Z"
             },
             {
               "id": "farbodtavakkoli/OTel-LLM-27B-IT",
-              "downloads": 1018,
+              "downloads": 1012,
               "likes": 0,
               "createdAt": "2026-02-11T09:26:38.000Z"
             }
@@ -3281,7 +3281,7 @@
             },
             {
               "id": "sababishraq/foodsense-vl",
-              "downloads": 50,
+              "downloads": 42,
               "likes": 0,
               "createdAt": "2026-04-15T03:58:39.000Z"
             },
@@ -3299,7 +3299,7 @@
             },
             {
               "id": "raulgdp/qwen25-32b-ft-009",
-              "downloads": 32,
+              "downloads": 30,
               "likes": 0,
               "createdAt": "2025-05-17T20:36:06.000Z"
             }
@@ -3310,33 +3310,33 @@
           "top": [
             {
               "id": "gaunernst/gemma-3-27b-it-int4-awq",
-              "downloads": 811967,
+              "downloads": 802666,
               "likes": 50,
               "createdAt": "2025-03-21T14:11:46.000Z"
             },
             {
               "id": "RedHatAI/gemma-3-27b-it-FP8-dynamic",
-              "downloads": 64410,
+              "downloads": 64035,
               "likes": 13,
               "createdAt": "2025-04-28T13:56:47.000Z"
             },
             {
               "id": "unsloth/gemma-3-27b-it-GGUF",
-              "downloads": 50429,
+              "downloads": 44547,
               "likes": 211,
               "createdAt": "2025-03-12T10:15:27.000Z"
             },
             {
-              "id": "ISTA-DASLab/gemma-3-27b-it-GPTQ-4b-128g",
-              "downloads": 26981,
-              "likes": 43,
-              "createdAt": "2025-03-14T07:58:52.000Z"
-            },
-            {
               "id": "MaziyarPanahi/gemma-3-27b-it-GGUF",
-              "downloads": 25237,
+              "downloads": 27156,
               "likes": 8,
               "createdAt": "2025-03-12T14:56:14.000Z"
+            },
+            {
+              "id": "ggml-org/gemma-3-27b-it-GGUF",
+              "downloads": 16726,
+              "likes": 25,
+              "createdAt": "2025-03-12T06:49:48.000Z"
             }
           ]
         },
@@ -3345,19 +3345,19 @@
           "top": [
             {
               "id": "allura-org/Gemma-3-Glitter-27B",
-              "downloads": 35,
+              "downloads": 52,
               "likes": 9,
               "createdAt": "2025-04-18T02:52:03.000Z"
             },
             {
               "id": "Columbidae/gemma-3-27b-half-full",
-              "downloads": 10,
+              "downloads": 11,
               "likes": 1,
               "createdAt": "2025-04-08T20:21:37.000Z"
             },
             {
               "id": "copiglet/medgemma-nuslerp-27b",
-              "downloads": 9,
+              "downloads": 10,
               "likes": 2,
               "createdAt": "2025-07-28T03:20:37.000Z"
             },
@@ -3382,129 +3382,129 @@
       "gated": false,
       "createdAt": "2026-08-05T08:22:59.000Z",
       "parameters": 27781427952,
-      "downloads": 6960395,
-      "downloadsAllTime": 22538609,
-      "likes": 19921,
-      "trendingScore": 412,
+      "downloads": 6757964,
+      "downloadsAllTime": 22678606,
+      "likes": 20046,
+      "trendingScore": 439,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 897,
+          "count": 905,
           "top": [
             {
               "id": "autotrust/AutoTrust-Decider-Pro-27B",
-              "downloads": 449075,
+              "downloads": 448979,
               "likes": 487,
               "createdAt": "2026-09-25T12:58:37.000Z"
             },
             {
               "id": "incoai/Qwen3.8-27B-DFlash2",
-              "downloads": 414280,
-              "likes": 301,
+              "downloads": 398183,
+              "likes": 302,
               "createdAt": "2026-08-18T04:09:16.000Z"
             },
             {
               "id": "Cloudflare/clef",
-              "downloads": 73460,
-              "likes": 2359,
+              "downloads": 74442,
+              "likes": 2362,
               "createdAt": "2026-09-30T21:15:35.000Z"
             },
             {
               "id": "z-lab/Qwen3.8-27B-DFlash2",
-              "downloads": 45353,
+              "downloads": 44768,
               "likes": 336,
               "createdAt": "2026-08-15T21:26:10.000Z"
             },
             {
               "id": "unsloth/Qwen3.8-27B",
-              "downloads": 30988,
+              "downloads": 30717,
               "likes": 58,
               "createdAt": "2026-08-13T08:28:31.000Z"
             }
           ]
         },
         "adapter": {
-          "count": 333,
+          "count": 335,
           "top": [
             {
               "id": "autotrust/AutoTrust-Decider-Pro-Vision-27B",
-              "downloads": 1512222,
-              "likes": 4820,
+              "downloads": 1462022,
+              "likes": 4994,
               "createdAt": "2026-09-30T05:02:23.000Z"
             },
             {
               "id": "rico03/Qwen3.8-27B-Claude-Opus-Reasoning-Distilled-GGUF",
-              "downloads": 3096,
+              "downloads": 3100,
               "likes": 24,
               "createdAt": "2026-08-15T10:58:40.000Z"
             },
             {
               "id": "german-gimenez/mato-v1.0-sft",
-              "downloads": 2135,
+              "downloads": 2201,
               "likes": 1,
               "createdAt": "2026-09-17T14:10:33.000Z"
             },
             {
               "id": "fudan-generative-ai/Qwen3.8-27B-REMORY-1.9B",
-              "downloads": 1720,
-              "likes": 74,
+              "downloads": 2059,
+              "likes": 75,
               "createdAt": "2026-10-07T05:00:30.000Z"
             },
             {
               "id": "liuchen88/CLA1.1-27B-MLX",
-              "downloads": 1246,
+              "downloads": 1256,
               "likes": 0,
               "createdAt": "2026-10-26T15:41:37.000Z"
             }
           ]
         },
         "quantized": {
-          "count": 1791,
+          "count": 1809,
           "top": [
             {
               "id": "unsloth/Qwen3.8-27B-GGUF",
-              "downloads": 6253865,
-              "likes": 5900,
+              "downloads": 6422783,
+              "likes": 5964,
               "createdAt": "2026-08-13T08:28:40.000Z"
             },
             {
               "id": "Qwen/Qwen3.8-27B-FP8",
-              "downloads": 5460964,
-              "likes": 988,
+              "downloads": 5621425,
+              "likes": 989,
               "createdAt": "2026-08-13T08:01:58.000Z"
             },
             {
               "id": "cdiamond/Qwen3.8-27B-iMatrix-NVFP4-MTP-GGUF",
-              "downloads": 3287932,
-              "likes": 51,
+              "downloads": 3309931,
+              "likes": 52,
               "createdAt": "2026-08-17T22:29:42.000Z"
             },
             {
               "id": "lmstudio-community/Qwen3.8-27B-MLX-4bit",
-              "downloads": 2838898,
-              "likes": 124,
+              "downloads": 2795596,
+              "likes": 125,
               "createdAt": "2026-08-14T15:08:24.000Z"
             },
             {
               "id": "lmstudio-community/Qwen3.8-27B-MLX-8bit",
-              "downloads": 2683350,
+              "downloads": 2639969,
               "likes": 57,
               "createdAt": "2026-08-14T15:19:31.000Z"
             }
           ]
         },
         "merge": {
-          "count": 31,
+          "count": 33,
           "top": [
             {
               "id": "Youssofal/Ternary-Bonsai-2-27B-MTPLX-Optimized-Speed",
-              "downloads": 2868,
+              "downloads": 2829,
               "likes": 20,
               "createdAt": "2026-09-22T10:49:04.000Z"
             },
             {
               "id": "Deathsquad10/Qwen3.8B-27B-Mix",
-              "downloads": 1362,
+              "downloads": 1382,
               "likes": 1,
               "createdAt": "2026-08-18T09:43:29.000Z"
             },
@@ -3522,7 +3522,7 @@
             },
             {
               "id": "Bestbug/Swift-Bonsai-2-PQ2_0-MTP-Q8_0",
-              "downloads": 928,
+              "downloads": 930,
               "likes": 4,
               "createdAt": "2026-10-25T08:42:39.000Z"
             }
@@ -3541,36 +3541,36 @@
       "gated": false,
       "createdAt": "2026-10-17T02:40:38.000Z",
       "parameters": 763205315794,
-      "downloads": 398161,
-      "downloadsAllTime": 398161,
-      "likes": 5679,
-      "trendingScore": 200,
+      "downloads": 434013,
+      "downloadsAllTime": 434013,
+      "likes": 5713,
+      "trendingScore": 207,
       "parents": [],
       "tree": {
         "finetune": {
-          "count": 85,
+          "count": 87,
           "top": [
             {
               "id": "rapid-mlx/DeepSeek-V4.1-Flash-1017-MLX",
-              "downloads": 2941,
+              "downloads": 3039,
               "likes": 5,
               "createdAt": "2026-10-19T14:10:39.000Z"
             },
             {
               "id": "ddalcu/DeepSeek-V4.1-Flash-1017-MLX-Serve-Lossless",
-              "downloads": 2202,
+              "downloads": 2288,
               "likes": 4,
               "createdAt": "2026-10-31T21:11:23.000Z"
             },
             {
               "id": "gatilin/deepseek_vit_412m.deepseek_v4_1_flash_1017",
-              "downloads": 566,
+              "downloads": 567,
               "likes": 2,
               "createdAt": "2026-10-17T08:42:18.000Z"
             },
             {
               "id": "OsaurusAI/DeepSeek-V4.1-Flash-1017-JANGHT1.4",
-              "downloads": 453,
+              "downloads": 469,
               "likes": 0,
               "createdAt": "2026-10-26T12:55:53.000Z"
             },
@@ -3583,17 +3583,17 @@
           ]
         },
         "adapter": {
-          "count": 11,
+          "count": 12,
           "top": [
             {
               "id": "loglogai/yvligo",
-              "downloads": 101,
+              "downloads": 102,
               "likes": 1,
               "createdAt": "2026-11-06T08:06:27.000Z"
             },
             {
               "id": "phylobio/DeepSeek-V4.1-Flash-epistemic-lora",
-              "downloads": 29,
+              "downloads": 35,
               "likes": 0,
               "createdAt": "2026-11-09T19:38:24.000Z"
             },
@@ -3618,35 +3618,35 @@
           ]
         },
         "quantized": {
-          "count": 210,
+          "count": 213,
           "top": [
             {
               "id": "ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-GGUF",
-              "downloads": 3756059,
+              "downloads": 3983957,
               "likes": 664,
               "createdAt": "2026-10-23T09:43:05.000Z"
             },
             {
               "id": "unsloth/DeepSeek-V4.1-Flash-1017-GGUF",
-              "downloads": 1345104,
-              "likes": 395,
+              "downloads": 1388600,
+              "likes": 402,
               "createdAt": "2026-10-17T20:36:06.000Z"
             },
             {
               "id": "ISTA-DASLab/DeepSeek-V4.1-Flash-1017-GSQ-RCO-Coder-GGUF",
-              "downloads": 402719,
-              "likes": 229,
+              "downloads": 431762,
+              "likes": 232,
               "createdAt": "2026-11-02T13:52:10.000Z"
             },
             {
               "id": "peasantsmith/DeepSeek-V4.1-Flash-1017-Maya-GGUF",
-              "downloads": 215456,
+              "downloads": 220456,
               "likes": 66,
               "createdAt": "2026-10-19T07:48:43.000Z"
             },
             {
               "id": "nazeshinjite/DeepSeek-V4.1-Flash-1017-ds4-GGUF",
-              "downloads": 128034,
+              "downloads": 128197,
               "likes": 13,
               "createdAt": "2026-10-18T01:33:50.000Z"
             }
